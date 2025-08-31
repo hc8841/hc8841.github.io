@@ -19,14 +19,51 @@ body {
   overflow-y: auto;
 }
 
+/* Container do terminal */
 #terminal-output {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #0f0f0f;
+  background-color: #000;
+  padding: 1rem;
+  height: 400px;
+  overflow-y: auto;
   white-space: pre-wrap;
 }
 
+/* Prompt e texto já existentes */
 .prompt {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #4cc9f0;
   margin: 0;
-  line-height: 1.5;
+  display: inline;
 }
+
+/* Input alinhado na mesma linha do prompt */
+#terminal-input {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  background: transparent;
+  border: none;
+  color: #4cc9f0;
+  outline: none;
+  padding: 0;
+  margin-left: 0.3rem;
+  width: calc(100% - 140px); /* Ajuste conforme necessário */
+  display: inline;
+}
+
+/* Container do prompt + input */
+#terminal-line {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 
 #terminal-input {
   background: transparent;
