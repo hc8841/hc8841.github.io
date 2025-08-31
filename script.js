@@ -14,21 +14,21 @@ Available commands:
   `,
 
   about: `
-I’m Henrique (hc8841), 19 y.o.
+I'm Henrique (hc8841), 19 y.o.
 Autistic (level 1), Savant syndrome (under evaluation).
-Radio operator (PU5HEF), tech enthusiast, low-level & embedded dev.
-Lover of philosophy: Nietzsche, Schopenhauer.
-Fluent in English.
+Radio operator (PU5HEF), low-level dev & microcontroller addict.
+Also a philosophy nerd: Nietzsche & Schopenhauer.
+(NOT 100%) Fluent in English.
   `,
 
   skills: `
-C, C++, Python, Kotlin, Java (desktop & Android),
-Assembly (basic), JavaScript, HTML, CSS, Arduino,
-Basic cybersecurity, Linux systems, custom kernels.
+Languages & Tools:
+- C, C++, Python, Assembly (basic)
+- Java (PC & Android), Kotlin
+- HTML, CSS, JavaScript
+- Arduino, Linux, cybersecurity basics
   `,
 
-  projects: `Fetching projects from GitHub...`,
-  
   contact: `
 Primary email: henriquemattos841@gmail.com
 Alt email:     henriquepu5hef@gmail.com
@@ -53,11 +53,15 @@ terminalInput.addEventListener('keydown', async (e) => {
 
     if (commands[input]) {
       if (input === 'projects') {
-        const res = await fetch('https://api.github.com/users/hc8841/repos?sort=updated&per_page=5');
-        const repos = await res.json();
-
-        let output = repos.map(r => `- ${r.name}: ${r.description || 'No description'}`).join('\n');
-        terminalOutput.innerHTML += output + '\n';
+        terminalOutput.innerHTML += "Fetching projects from GitHub...\n";
+        try {
+          const res = await fetch('https://api.github.com/users/hc8841/repos?sort=updated&per_page=5');
+          const repos = await res.json();
+          let output = repos.map(r => `- ${r.name}: ${r.description || 'No description'}`).join('\n');
+          terminalOutput.innerHTML += output + '\n';
+        } catch (err) {
+          terminalOutput.innerHTML += 'Error fetching projects.\n';
+        }
       } else {
         terminalOutput.innerHTML += commands[input] + '\n';
       }
@@ -69,7 +73,7 @@ terminalInput.addEventListener('keydown', async (e) => {
   }
 });
 
-// Optional: welcome effect
+// Type welcome message
 let welcome = "Type 'help' to get started";
 let i = 0;
 function type() {
