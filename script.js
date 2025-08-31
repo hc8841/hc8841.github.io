@@ -2,7 +2,6 @@ const terminalOutput = document.getElementById('terminal-output');
 
 let language = 'en';
 
-// Comandos em inglês
 const commandsEn = {
   help: `
 Available commands:
@@ -48,7 +47,6 @@ Phone (alt):   +55 47 99606-1835
   lang: `Language changed to English.`,
 };
 
-// Comandos em português
 const commandsPt = {
   help: `
 Comandos disponíveis:
@@ -94,69 +92,99 @@ Telefone (alternativo): +55 47 99606-1835
   lang: `Idioma alterado para Português.`,
 };
 
-// Função pra pegar o objeto de comandos atual conforme idioma
 function getCommands() {
   return language === 'en' ? commandsEn : commandsPt;
 }
 
-// Função para criar o prompt + input alinhados e setar listener no input
+function appendOutput(text) {
+  const p = document.createElement('p');
+  p.textContent = text.trim();
+  terminalOutput.appendChild(p);
+  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
+
 function printPrompt() {
-  terminalOutput.insertAdjacentHTML('beforeend', `
-    <div id="terminal-line" style="display: flex; align-items: center; gap: 0.3rem; margin: 0.2rem 0;">
-      <span class="prompt" style="font-family: 'Courier New', Courier, monospace; font-size: 16px; color: #4cc9f0;">hc8841@portfolio:~$</span>
-      <input id="terminal-input" autocomplete="off" autofocus style="font-family: 'Courier New', Courier, monospace; font-size: 16px; background: transparent; border: none; color: #4cc9f0; outline: none; flex: 1;" />
-    </div>
-  `);
+  // Cria container flex
+  const lineDiv = document.createElement('div');
+  lineDiv.style.display = 'flex';
+  lineDiv.style.alignItems = 'center';
+  lineDiv.style.gap = '0.3rem';
+  lineDiv.style.margin = '0.2rem 0';
 
-  const terminalInput = document.getElementById('terminal-input');
-  terminalInput.focus();
+  // Cria span do prompt
+  const promptSpan = document.createElement('span');
+  promptSpan.textContent = 'hc8841@portfolio:~$';
+  promptSpan.style.fontFamily = "'Courier New', Courier, monospace";
+  promptSpan.style.fontSize = '16px';
+  promptSpan.style.color = '#4cc9f0';
 
-  terminalInput.addEventListener('keydown', (e) => {
+  // Cria input
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.autocomplete = 'off';
+  input.autofocus = true;
+  input.style.fontFamily = "'Courier New', Courier, monospace";
+  input.style.fontSize = '16px';
+  input.style.background = 'transparent';
+  input.style.border = 'none';
+  input.style.color = '#4cc9f0';
+  input.style.outline = 'none';
+  input.style.flex = '1';
+
+  lineDiv.appendChild(promptSpan);
+  lineDiv.appendChild(input);
+
+  terminalOutput.appendChild(lineDiv);
+  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+
+  input.focus();
+
+  input.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
-      const inputRaw = terminalInput.value.trim();
-      const input = inputRaw.toLowerCase();
-      // Remove input line so user cannot edit
-      terminalInput.disabled = true;
-      terminalInput.style.color = '#888'; // deixa cinza pra parecer 'finalizado'
+      const inputRaw = input.value.trim();
+      const inputValue = inputRaw.toLowerCase();
 
-      if (input === 'clear') {
+      // Desabilita input e deixa cinza para parecer "finalizado"
+      input.disabled = true;
+      input.style.color = '#888';
+
+      if (inputValue === 'clear') {
         terminalOutput.innerHTML = '';
         printPrompt();
         return;
       }
 
-      if (input.startsWith('lang ')) {
-        const langArg = input.split(' ')[1];
+      if (inputValue.startsWith('lang ')) {
+        const langArg = inputValue.split(' ')[1];
         if (langArg === 'en' || langArg === 'pt') {
           language = langArg;
-          terminalOutput.insertAdjacentHTML('beforeend', `<p>${getCommands().lang}</p>`);
+          appendOutput(getCommands().lang);
         } else {
-          terminalOutput.insertAdjacentHTML('beforeend', `<p>Invalid language. Use "lang pt" or "lang en".</p>`);
+          appendOutput(language === 'en' ? 'Invalid language. Use "lang pt" or "lang en".' : 'Idioma inválido. Use "lang pt" ou "lang en".');
         }
         printPrompt();
         return;
       }
 
-      if (input.startsWith('sudo')) {
-        terminalOutput.insertAdjacentHTML('beforeend', `<p>Permission denied: You are not the superuser.</p>`);
+      if (inputValue.startsWith('sudo')) {
+        appendOutput(language === 'en' ? 'Permission denied: You are not the superuser.' : 'Permissão negada: Você não é o superusuário.');
         printPrompt();
         return;
       }
 
       const commands = getCommands();
 
-      if (commands[input]) {
-        terminalOutput.insertAdjacentHTML('beforeend', `<p>${commands[input].trim()}</p>`);
+      if (commands[inputValue]) {
+        appendOutput(commands[inputValue]);
       } else {
-        terminalOutput.insertAdjacentHTML('beforeend', `<p>'${inputRaw}' is not recognized. Type 'help'.</p>`);
+        appendOutput(language === 'en' ? `'${inputRaw}' is not recognized. Type 'help'.` : `'${inputRaw}' não é um comando válido. Digite 'help'.`);
       }
 
       printPrompt();
-      terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
   });
 }
 
-// Inicializa o terminal
-terminalOutput.innerHTML = `<p>Welcome! Type 'help' (or 'lang pt' para português) to get started.</p>`;
+// Inicializa
+appendOutput(language === 'en' ? "Welcome! Type 'help' (or 'lang pt' para português) to get started." : "Bem-vindo! Digite 'help' (ou 'lang en' para inglês) para começar.");
 printPrompt();
