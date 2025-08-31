@@ -2,15 +2,18 @@ const typedText = document.getElementById('typed');
 const terminalInput = document.getElementById('terminal-input');
 const terminalOutput = document.getElementById('terminal-output');
 
-const commands = {
+let language = 'en';
+
+const commandsEn = {
   help: `
 Available commands:
   about        - Info about me
   skills       - My tech stack
-  projects     - Recent projects from GitHub
+  projects     - Link to GitHub projects
   contact      - Contact information
   clear        - Clear the terminal
   exit         - Close the terminal (not really)
+  lang         - Change language (usage: lang pt/en)
   `,
 
   about: `
@@ -18,7 +21,7 @@ I'm Henrique (hc8841), 19 y.o.
 Autistic (level 1), Savant syndrome (under evaluation).
 Radio operator (PU5HEF), low-level dev & microcontroller addict.
 Also a philosophy nerd: Nietzsche & Schopenhauer.
-(NOT 100%) Fluent in English.
+Fluent in English.
   `,
 
   skills: `
@@ -29,6 +32,11 @@ Languages & Tools:
 - Arduino, Linux, cybersecurity basics
   `,
 
+  projects: `
+Check out my GitHub projects here:
+https://github.com/hc8841?tab=repositories
+  `,
+
   contact: `
 Primary email: henriquemattos841@gmail.com
 Alt email:     henriquepu5hef@gmail.com
@@ -37,50 +45,111 @@ Phone (alt):   +55 47 99606-1835
   `,
 
   exit: `Nice try. But this terminal never sleeps.`,
+
+  lang: `Language changed to English.`,
 };
 
-terminalInput.addEventListener('keydown', async (e) => {
+const commandsPt = {
+  help: `
+Comandos disponíveis:
+  about        - Sobre mim
+  skills       - Minhas habilidades
+  projects     - Link para meus projetos no GitHub
+  contact      - Contato
+  clear        - Limpar terminal
+  exit         - Sair do terminal (não realmente)
+  lang         - Mudar idioma (uso: lang pt/en)
+  `,
+
+  about: `
+Sou Henrique (hc8841), 19 anos.
+Autista (nível 1), Síndrome de Savant (em investigação).
+Radioamador (PU5HEF), apaixonado por microcontroladores e dev de baixo nível.
+Amante de filosofia: Nietzsche & Schopenhauer.
+Falo inglês fluente.
+  `,
+
+  skills: `
+Linguagens & Ferramentas:
+- C, C++, Python, Assembly (básico)
+- Java (PC & Android), Kotlin
+- HTML, CSS, JavaScript
+- Arduino, Linux, noções de cibersegurança
+  `,
+
+  projects: `
+Confira meus projetos no GitHub:
+https://github.com/hc8841?tab=repositories
+  `,
+
+  contact: `
+Email principal: henriquemattos841@gmail.com
+Email alternativo: henriquepu5hef@gmail.com
+Telefone (principal): +55 47 99673-6277
+Telefone (alternativo): +55 47 99606-1835
+  `,
+
+  exit: `Boa tentativa. Mas este terminal nunca dorme.`,
+
+  lang: `Idioma alterado para Português.`,
+};
+
+function getCommands() {
+  return language === 'en' ? commandsEn : commandsPt;
+}
+
+function printPrompt() {
+  terminalOutput.innerHTML += `<p class="prompt">hc8841@portfolio:~$ <span id="typed"></span></p>`;
+  terminalInput.focus();
+}
+
+terminalInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
-    const input = terminalInput.value.trim().toLowerCase();
+    const inputRaw = terminalInput.value.trim();
+    const input = inputRaw.toLowerCase();
     terminalInput.value = '';
-    
-    terminalOutput.innerHTML += `\nhc8841@portfolio:~$ ${input}\n`;
+
+    // Print command with prompt
+    terminalOutput.innerHTML += `<p class="prompt">hc8841@portfolio:~$ ${inputRaw}</p>`;
 
     if (input === 'clear') {
       terminalOutput.innerHTML = '';
+      printPrompt();
       return;
     }
 
-    if (commands[input]) {
-      if (input === 'projects') {
-        terminalOutput.innerHTML += "Fetching projects from GitHub...\n";
-        try {
-          const res = await fetch('https://api.github.com/users/hc8841/repos?sort=updated&per_page=5');
-          const repos = await res.json();
-          let output = repos.map(r => `- ${r.name}: ${r.description || 'No description'}`).join('\n');
-          terminalOutput.innerHTML += output + '\n';
-        } catch (err) {
-          terminalOutput.innerHTML += 'Error fetching projects.\n';
-        }
+    if (input.startsWith('lang ')) {
+      const langArg = input.split(' ')[1];
+      if (langArg === 'en' || langArg === 'pt') {
+        language = langArg;
+        terminalOutput.innerHTML += `<p>${getCommands().lang}</p>`;
       } else {
-        terminalOutput.innerHTML += commands[input] + '\n';
+        terminalOutput.innerHTML += `<p>Invalid language. Use "lang pt" or "lang en".</p>`;
       }
-    } else {
-      terminalOutput.innerHTML += `'${input}' is not recognized. Type 'help'.\n`;
+      printPrompt();
+      return;
     }
 
+    // Easter egg: sudo command
+    if (input.startsWith('sudo')) {
+      terminalOutput.innerHTML += `<p>Permission denied: You are not the superuser.</p>`;
+      printPrompt();
+      return;
+    }
+
+    const commands = getCommands();
+
+    if (commands[input]) {
+      terminalOutput.innerHTML += `<p>${commands[input].trim()}</p>`;
+    } else {
+      terminalOutput.innerHTML += `<p>'${inputRaw}' is not recognized. Type 'help'.</p>`;
+    }
+
+    printPrompt();
     terminalOutput.scrollTop = terminalOutput.scrollHeight;
   }
 });
 
-// Type welcome message
-let welcome = "Type 'help' to get started";
-let i = 0;
-function type() {
-  if (i < welcome.length) {
-    typedText.innerHTML += welcome.charAt(i);
-    i++;
-    setTimeout(type, 50);
-  }
-}
-type();
+// Inicializa terminal com prompt e mensagem de boas vindas
+terminalOutput.innerHTML = `<p>Welcome! Type 'help' (or 'lang pt' para português) to get started.</p>`;
+printPrompt();
