@@ -53,8 +53,9 @@ terminalInput.addEventListener('keydown', async (e) => {
 
     if (commands[input]) {
       if (input === 'projects') {
-        const res = await fetch('github.php');
+        const res = await fetch('https://api.github.com/users/hc8841/repos?sort=updated&per_page=5');
         const repos = await res.json();
+
         let output = repos.map(r => `- ${r.name}: ${r.description || 'No description'}`).join('\n');
         terminalOutput.innerHTML += output + '\n';
       } else {
