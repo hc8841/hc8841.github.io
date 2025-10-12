@@ -1,289 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Henrique Chaves - Terminal Portfolio</title>
-<style>
-  /* Reset & base */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    background-color: #0f0f0f;
-    color: #4cc9f0;
-    font-family: 'Courier New', Courier, monospace;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pai Henrique do PC - Assistência Técnica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-  header {
-    background: linear-gradient(135deg, #3a0ca3, #7209b7);
-    color: #fff;
-    text-align: center;
-    padding: 2rem 1rem;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.8);
-    user-select: none;
-  }
-  header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.3rem;
-  }
-  header p {
-    font-size: 1.1rem;
-    font-style: italic;
-    opacity: 0.85;
-  }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
 
-  #terminal-output {
-    background: #000;
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    line-height: 1.4;
-  }
-  #terminal-output p {
-    white-space: pre-wrap;
-  }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-  /* Prompt/input line */
-  .prompt-line {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin: 0.25rem 0;
-  }
-  .prompt {
-    color: #4cc9f0;
-    font-weight: bold;
-    user-select: none;
-  }
-  input[type="text"] {
-    background: transparent;
-    border: none;
-    color: #4cc9f0;
-    outline: none;
-    font-family: inherit;
-    font-size: 1rem;
-    flex: 1;
-  }
-  input[type="text"]:disabled {
-    color: #888;
-  }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
 
-  /* Scrollbar styling */
-  #terminal-output::-webkit-scrollbar {
-    width: 8px;
-  }
-  #terminal-output::-webkit-scrollbar-track {
-    background: #111;
-  }
-  #terminal-output::-webkit-scrollbar-thumb {
-    background: #7209b7;
-    border-radius: 4px;
-  }
+        h2 {
+            color: #b22222;
+        }
 
-  /* Footer */
-  footer {
-    background: #1a1a1a;
-    color: #666;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.9rem;
-    user-select: none;
-  }
-</style>
+        .contact-info {
+            margin-top: 30px;
+        }
+
+        .contact-info p {
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            color: #b22222;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .content {
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Henrique Chaves</h1>
-  <p>Low-Level Dev | Microcontrollers | Radioamador PU5HEF | Philosophy Nerd</p>
-</header>
+    <header>
+        <h1>PAI HENRIQUE DO PC</h1>
+        <p>Técnico de PCs, Notebooks e Rede</p>
+    </header>
 
-<div id="terminal-output" aria-live="polite" role="log"></div>
+    <div class="container">
+        <h2>Consultas e trabalhos em geral no Bairro Centenário, São Bento do Sul</h2>
+        <p class="content">
+            Trago o <span class="highlight">Windows de volta em até 3 dias</span>.
+        </p>
+        <p class="content">
+            <strong>EXORCISO PC FORMATA-DO POR SOBRINHO!</strong>
+        </p>
+        <ul class="content">
+            <li>Retiro vírus, malware e "mau olhado" do seu computador ou notebook.</li>
+            <li>Recupero mp3, fotos e arquivos <span class="highlight">desaparecidos</span> ou <span class="highlight">escondidos</span>.</li>
+            <li>Configuro sua rede contra o "olho gordo" e trago sinal Wi-Fi com alcance melhor.</li>
+        </ul>
+        <p class="content">
+            <strong>Mais de 6.000 Windows ressuscitados!</strong><br>
+            Sofrendo com <span class="highlight">lentidão</span> ou <span class="highlight">travamento</span>?<br>
+            <strong>Pare agora de sofrer!</strong>
+        </p>
+        <p class="content">
+            Fecho a sua rede contra o "olho gordo" e trago sinal Wi-Fi do além!
+        </p>
 
-<footer>
-  &copy; 2025 Henrique Chaves - <a href="https://github.com/hc8841" target="_blank" style="color:#4cc9f0; text-decoration:none;">GitHub hc8841</a>
-</footer>
+        <div class="contact-info">
+            <p><strong>Pagamento somente após resultado!</strong></p>
+            <p><strong>Fale comigo:</strong></p>
+            <p>📞 <strong>(47) 99673-6277</strong></p>
+            <p>📧 <strong>henriquemattos841@gmail.com</strong></p>
+            <p>📍 <strong>Rua Treze de Maio, 47 – Bairro Centenário, São Bento do Sul</strong></p>
+        </div>
+    </div>
 
-<script>
-const terminalOutput = document.getElementById('terminal-output');
-
-let language = 'en';
-
-const commandsEn = {
-  help: `
-Available commands:
-  about        - Info about me
-  skills       - My tech stack
-  projects     - Link to GitHub projects
-  contact      - Contact information
-  clear        - Clear the terminal
-  exit         - Close the terminal (not really)
-  lang         - Change language (usage: lang pt/en)
-  `,
-
-  about: `
-I'm Henrique (hc8841), 19 y.o.
-Autistic (level 1), Savant syndrome (under evaluation).
-Radio operator (PU5HEF), low-level dev & microcontroller addict.
-Also a philosophy nerd: Nietzsche & Schopenhauer.
-Fluent in English.
-  `,
-
-  skills: `
-Languages & Tools:
-- C, C++, Python, Assembly (basic)
-- Java (PC & Android), Kotlin
-- HTML, CSS, JavaScript
-- Arduino, Linux, cybersecurity basics
-  `,
-
-  projects: `
-Check out my GitHub projects here:
-https://github.com/hc8841?tab=repositories
-  `,
-
-  contact: `
-Primary email: henriquemattos841@gmail.com
-Alt email:     henriquepu5hef@gmail.com
-Phone (main):  +55 47 99673-6277
-Phone (alt):   +55 47 99606-1835
-  `,
-
-  exit: `Nice try. But this terminal never sleeps.`,
-
-  lang: `Language changed to English.`,
-};
-
-const commandsPt = {
-  help: `
-Comandos disponíveis:
-  about        - Sobre mim
-  skills       - Minhas habilidades
-  projects     - Link para meus projetos no GitHub
-  contact      - Contato
-  clear        - Limpar terminal
-  exit         - Sair do terminal (não realmente)
-  lang         - Mudar idioma (uso: lang pt/en)
-  `,
-
-  about: `
-Sou Henrique (hc8841), 19 anos.
-Autista (nível 1), Síndrome de Savant (em investigação).
-Radioamador (PU5HEF), apaixonado por microcontroladores e dev de baixo nível.
-Amante de filosofia: Nietzsche & Schopenhauer.
-Falo inglês fluente.
-  `,
-
-  skills: `
-Linguagens & Ferramentas:
-- C, C++, Python, Assembly (básico)
-- Java (PC & Android), Kotlin
-- HTML, CSS, JavaScript
-- Arduino, Linux, noções de cibersegurança
-  `,
-
-  projects: `
-Confira meus projetos no GitHub:
-https://github.com/hc8841?tab=repositories
-  `,
-
-  contact: `
-Email principal: henriquemattos841@gmail.com
-Email alternativo: henriquepu5hef@gmail.com
-Telefone (principal): +55 47 99673-6277
-Telefone (alternativo): +55 47 99606-1835
-  `,
-
-  exit: `Boa tentativa. Mas este terminal nunca dorme.`,
-
-  lang: `Idioma alterado para Português.`,
-};
-
-function getCommands() {
-  return language === 'en' ? commandsEn : commandsPt;
-}
-
-function appendOutput(text) {
-  const p = document.createElement('p');
-  p.textContent = text.trim();
-  terminalOutput.appendChild(p);
-  terminalOutput.scrollTop = terminalOutput.scrollHeight;
-}
-
-function printPrompt() {
-  const lineDiv = document.createElement('div');
-  lineDiv.className = 'prompt-line';
-
-  const promptSpan = document.createElement('span');
-  promptSpan.className = 'prompt';
-  promptSpan.textContent = 'hc8841@portfolio:~$';
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.autocomplete = 'off';
-  input.autofocus = true;
-
-  lineDiv.appendChild(promptSpan);
-  lineDiv.appendChild(input);
-
-  terminalOutput.appendChild(lineDiv);
-  terminalOutput.scrollTop = terminalOutput.scrollHeight;
-
-  input.focus();
-
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      const inputRaw = input.value.trim();
-      const inputValue = inputRaw.toLowerCase();
-
-      input.disabled = true;
-      input.style.color = '#888';
-
-      if (inputValue === 'clear') {
-        terminalOutput.innerHTML = '';
-        printPrompt();
-        return;
-      }
-
-      if (inputValue.startsWith('lang ')) {
-        const langArg = inputValue.split(' ')[1];
-        if (langArg === 'en' || langArg === 'pt') {
-          language = langArg;
-          appendOutput(getCommands().lang);
-        } else {
-          appendOutput(language === 'en' ? 'Invalid language. Use "lang pt" or "lang en".' : 'Idioma inválido. Use "lang pt" ou "lang en".');
-        }
-        printPrompt();
-        return;
-      }
-
-      if (inputValue.startsWith('sudo')) {
-        appendOutput(language === 'en' ? 'Permission denied: You are not the superuser.' : 'Permissão negada: Você não é o superusuário.');
-        printPrompt();
-        return;
-      }
-
-      const commands = getCommands();
-
-      if (commands[inputValue]) {
-        appendOutput(commands[inputValue]);
-      } else {
-        appendOutput(language === 'en' ? `'${inputRaw}' is not recognized. Type 'help'.` : `'${inputRaw}' não é um comando válido. Digite 'help'.`);
-      }
-
-      printPrompt();
-    }
-  });
-}
-
-// Start the terminal with a welcome message
-appendOutput(language === 'en' ? "Welcome! Type 'help' (or 'lang pt' para português) to get started." : "Bem-vindo! Digite 'help' (ou 'lang en' para inglês) para começar.");
-printPrompt();
-</script>
+    <footer>
+        <p>&copy; 2025 Pai Henrique do PC. Todos os direitos reservados.</p>
+    </footer>
 
 </body>
 </html>
