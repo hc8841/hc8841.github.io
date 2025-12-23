@@ -6,17 +6,16 @@
 <title>HenriqueOS</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <link id="favicon" rel="icon"
   href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>$</text></svg>">
 
 <style>
-  body { background:black; color:#00ff00; font-family:monospace; margin:0 }
-  #terminal { padding:20px }
-  .line { white-space:pre-wrap }
-  #input-line { display:flex; gap:6px }
-  #cmd { background:black; border:none; color:inherit; outline:none; flex:1 }
-  a { color:inherit; text-decoration:underline }
+body { background:black; color:#00ff00; font-family:monospace; margin:0 }
+#terminal { padding:20px }
+.line { white-space:pre-wrap }
+#input-line { display:flex; gap:6px }
+#cmd { background:black; border:none; color:inherit; outline:none; flex:1 }
+a { color:inherit; text-decoration:underline }
 </style>
 </head>
 
@@ -27,144 +26,158 @@
 <script>
 $(function () {
 
-  const terminal = $("#terminal");
-  let sudoMode = false;
-  let history = [], historyIndex = 0;
+const terminal = $("#terminal");
+let sudoMode = false;
+let history = [], historyIndex = 0;
 
-  const files = {
-    "kernel_panic.txt": "Kernel panic - not syncing: curiosity overflow.",
-    "coffee_dependency.md": "System cannot boot without caffeine.\nSeverity: critical.",
-    "stackoverflow.log": "Searched same error 37 times.\nSolution ignored.",
-    "deprecated_code.c": "// TODO: rewrite this in Rust\n// TODO: never happens",
-    "todo_fix_later.sh": "#!/bin/bash\necho \"One day...\"",
-    "segfault_notes.txt": "If it crashes, it's probably a pointer.",
-  };
+const files = {
+  "kernel_panic.txt": "Kernel panic - not syncing: curiosity overflow.",
+  "coffee_dependency.md": "System cannot boot without caffeine.",
+  "stackoverflow.log": "Searched same error 37 times. Solution ignored.",
+  "deprecated_code.c": "// TODO: rewrite this in Rust",
+  "todo_fix_later.sh": "#!/bin/bash\necho \"One day...\"",
+  "segfault_notes.txt": "Segmentation fault, investigate pointer usage.",
+};
 
-  function print(text) {
-    $("<div class='line'>").html(text).appendTo(terminal);
-    terminal.scrollTop(terminal[0].scrollHeight);
-  }
-
-  function setFavicon(c) {
-    $("#favicon").attr("href",
-      `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>${c}</text></svg>`
-    );
-  }
-
-  /* ---------- BOOT ---------- */
-  const boot = [
-    "HenriqueOS bootloader v1.1",
-    "Initializing hardware...",
-    "Loading kernel modules...",
-    "Mounting /dev/sda1...",
-    "Starting fakebash...",
-    "",
-    "System ready. Type 'help'.",
-    ""
-  ];
-
-  let i = 0;
-  function bootSequence() {
-    if (i < boot.length) {
-      print(boot[i++]);
-      setTimeout(bootSequence, 300);
-    } else startTerminal();
-  }
-
-  /* ---------- TERMINAL ---------- */
-  function startTerminal() {
-    terminal.append(`
-      <div id="input-line">
-        <span id="prompt">$</span>
-        <input id="cmd" autofocus>
-      </div>
-    `);
-    $("#cmd").on("keydown", handleInput).focus();
-  }
-
-  function handleInput(e) {
-    const input = $("#cmd");
-
-    if (e.key === "ArrowUp") {
-      if (historyIndex > 0) input.val(history[--historyIndex]);
-      return;
-    }
-    if (e.key === "ArrowDown") {
-      if (historyIndex < history.length - 1) input.val(history[++historyIndex]);
-      else input.val("");
-      return;
-    }
-
-    if (e.key !== "Enter") return;
-
-    const raw = input.val();
-    const cmd = raw.trim().toLowerCase();
-    print(`${$("#prompt").text()} ${raw}`);
-
-    if (cmd) history.push(raw);
-    historyIndex = history.length;
-    input.val("");
-
-    if (cmd === "clear") {
-      terminal.find(".line").remove();
-      return;
-    }
-
-    if (cmd === "ls") {
-      print(Object.keys(files).join("   "));
-      return;
-    }
-
-    if (cmd.startsWith("cat ")) {
-      const file = cmd.split(" ")[1];
-      print(files[file] || "cat: file not found");
-      return;
-    }
-
-    if (cmd === "shutdown now") {
-      print("Shutting down...");
-      setTimeout(() => {
-        print("System halted.");
-        window.close();
-      }, 1500);
-      return;
-    }
-
-    if (cmd === "sudo") {
-      sudoMode = true;
-      terminal.css("color","red");
-      $("#prompt").text("#");
-      setFavicon("#");
-      print("Permission denied. You are now suspicious.");
-      return;
-    }
-
-    if (cmd === "exit" && sudoMode) {
-      sudoMode = false;
-      terminal.css("color","#00ff00");
-      $("#prompt").text("$");
-      setFavicon("$");
-      print("Exited sudo mode.");
-      return;
-    }
-
-    const responses = {
-      help: `
-help about skills experience contact certificates
-whoami neofetch ls cat clear shutdown exit
+const responses = {
+  help: `
+Comandos disponíveis:
+  about
+  skills
+  experience
+  contact
+  certificates
+  whoami
+  neofetch
+  ls
+  cat <arquivo>
+  clear
+  shutdown now
+  exit
 `,
-      whoami: "henrique",
-      neofetch: "HenriqueOS | fakebash | uptime: since load",
-      about: "Henrique Chaves — hardware, low level, infosec.",
-      skills: "hardware | low level | security | curiosity",
-      experience: "Condor | Raia Drogasil | SDB Alimentos",
-      contact: "github.com/hc8841 | linkedin.com/in/henrique-chaves"
-    };
+  about: `
+Olá! Eu sou Henrique Eslabão da Fonseca Chaves, 19 anos.
+Formado em Técnico em Informática em 2023.
+Sempre fui apaixonado por tecnologia, especialmente hardware e low level.
 
-    print(responses[cmd] || "command not found.");
+Curiosidade: Apesar de ainda não ter experiência formal em TI, meu interesse e dedicação pela área são enormes!
+`,
+  skills: `
+Habilidades técnicas:
+  - Hardware e manutenção de PCs
+  - Programação básica e lógica
+  - Conhecimento em sistemas e redes domésticas
+  - Segurança da informação (interesse e estudo)
+
+Soft skills:
+  - Liderança nata
+  - Raciocínio lógico e pensamento crítico
+  - Trabalho em equipe e comunicação clara
+`,
+  experience: `
+Experiências profissionais:
+  Condor S/A — Ajudante de carga e descarga
+  Raia Drogasil S.A — Atendente 1
+  SDB Comércio de Alimentos Ltda — Caixa
+
+Obs: Não foram cargos de TI, mas me ensinaram disciplina, organização e atendimento ao público.
+`,
+  contact: `
+Email principal: <a href="mailto:henriquemattos841@gmail.com">henriquemattos841@gmail.com</a>
+Email secundário: <a href="mailto:henriquemattos841@tutamail.com">henriquemattos841@tutamail.com</a>
+Telefone: <a href="tel:+5547996736277">+55 47 99673-6277</a>
+GitHub: <a href="https://github.com/hc8841" target="_blank">github.com/hc8841</a>
+LinkedIn: <a href="https://linkedin.com/in/henrique-chaves-448288300" target="_blank">linkedin.com/in/henrique-chaves</a>
+`,
+  certificates: `
+Meus certificados podem ser acessados aqui:
+<a href="https://drive.google.com/drive/folders/1k7mJwBy7egEE-h_HCGNXxc6mR8M9QGmY" target="_blank">Google Drive - Certificados</a>
+`,
+  whoami: "henrique",
+  neofetch: `
+HenriqueOS
+User: henrique
+Shell: fakebash
+Uptime: since page load
+`
+};
+
+function print(text) {
+  $("<div class='line'>").html(text).appendTo(terminal);
+  terminal.scrollTop(terminal[0].scrollHeight);
+}
+
+function setFavicon(c) {
+  $("#favicon").attr("href",
+    `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>${c}</text></svg>`
+  );
+}
+
+/* ---------- BOOT ---------- */
+const boot = [
+  "HenriqueOS bootloader v1.3",
+  "Initializing hardware...",
+  "Loading kernel modules...",
+  "Mounting /dev/sda1...",
+  "Starting fakebash...",
+  "",
+  "System ready. Type 'help'.",
+  ""
+];
+
+let i=0;
+function bootSequence() {
+  if(i<boot.length){
+    print(boot[i++]);
+    setTimeout(bootSequence, 300);
+  } else newPrompt();
+}
+
+/* ---------- PROMPT ---------- */
+function newPrompt(){
+  const prompt = sudoMode ? "#" : "$";
+  const line = $(`
+    <div id="input-line">
+      <span>${prompt}</span>
+      <input class="cmd" autocomplete="off">
+    </div>
+  `);
+  terminal.append(line);
+  line.find("input").focus().on("keydown",handleInput);
+  terminal.scrollTop(terminal[0].scrollHeight);
+}
+
+function handleInput(e){
+  const input=$(this);
+  if(e.key==="ArrowUp"){ if(historyIndex>0) input.val(history[--historyIndex]); return; }
+  if(e.key==="ArrowDown"){ if(historyIndex<history.length-1) input.val(history[++historyIndex]); else input.val(""); return; }
+  if(e.key!=="Enter") return;
+
+  const raw=input.val();
+  const cmd=raw.trim().toLowerCase();
+  if(raw) history.push(raw);
+  historyIndex=history.length;
+
+  input.parent().replaceWith(`<div class="line">${sudoMode?"#":"$"} ${raw}</div>`);
+
+  if(cmd==="clear"){ terminal.find(".line").remove(); newPrompt(); return; }
+  if(cmd==="ls"){ print(Object.keys(files).join("   ")); newPrompt(); return; }
+  if(cmd.startsWith("cat ")){
+    const file=cmd.split(" ")[1];
+    print(files[file] || "cat: file not found");
+    newPrompt();
+    return;
   }
+  if(cmd==="sudo"){ sudoMode=true; terminal.css("color","red"); setFavicon("#"); print("Permission denied. You are now suspicious."); newPrompt(); return; }
+  if(cmd==="exit" && sudoMode){ sudoMode=false; terminal.css("color","#00ff00"); setFavicon("$"); print("Exited sudo mode."); newPrompt(); return; }
+  if(cmd==="shutdown now"){ print("Shutting down..."); setTimeout(()=>window.close(),1500); return; }
 
-  bootSequence();
+  print(responses[cmd] || "Comando não encontrado.");
+  newPrompt();
+}
+
+bootSequence();
+
 });
 </script>
 </body>
