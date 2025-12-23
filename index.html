@@ -10,17 +10,26 @@
   href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>$</text></svg>">
 
 <style>
-body { background:black; color:#00ff00; font-family:monospace; margin:0; }
-#terminal { padding:20px; white-space:pre-wrap; overflow-y:auto; height:100vh; }
-.cursor { display:inline-block; width:10px; background:#00ff00; animation:blink 1s step-start infinite; margin-left:2px; }
-@keyframes blink { 50% { background:transparent; } }
-.line { display:block; }
-a { color:inherit; text-decoration:underline; }
+body { background:black; color:#00ff00; font-family:monospace; margin:0 }
+#terminal { padding:20px; white-space:pre-wrap; height:100vh; overflow-y:auto }
+.line { white-space:pre-wrap; }
+#input-line { display:flex; gap:6px; align-items:center }
+#input-line span { min-width:10px; color:inherit }
+.cmd {
+  background:black;
+  color:inherit;
+  border:none;
+  outline:none;
+  flex:1;
+  font-family:monospace;
+  caret-color:#00ff00;
+}
+a { color:inherit; text-decoration:underline }
 </style>
 </head>
 
 <body>
-<div id="terminal"></div>
+<div id="terminal" class="container-fluid"></div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
@@ -29,12 +38,7 @@ $(function(){
 const terminal=$("#terminal");
 let sudoMode=false;
 let history=[], historyIndex=0;
-let currentLine="";
-let cursor=$("<span class='cursor'></span>");
-let commands=[
-  "about","skills","experience","contact","certificates",
-  "whoami","neofetch","ls","cat","clear","shutdown now","exit"
-];
+
 const files={
   "kernel_panic.txt":"Kernel panic - not syncing: curiosity overflow.",
   "coffee_dependency.md":"System cannot boot without caffeine.",
@@ -43,7 +47,22 @@ const files={
   "todo_fix_later.sh":"#!/bin/bash\necho \"One day...\"",
   "segfault_notes.txt":"Segmentation fault, investigate pointer usage."
 };
+
 const responses={
+  help:`Comandos disponíveis:
+  about
+  skills
+  experience
+  contact
+  certificates
+  whoami
+  neofetch
+  ls
+  cat <arquivo>
+  clear
+  shutdown now
+  exit
+`,
   about:`
 Olá! Eu sou Henrique Eslabão da Fonseca Chaves, 19 anos.
 Formado em Técnico em Informática em 2023.
@@ -76,8 +95,7 @@ Telefone: <a href="tel:+5547996736277">+55 47 99673-6277</a>
 GitHub: <a href="https://github.com/hc8841" target="_blank">github.com/hc8841</a>
 LinkedIn: <a href="https://linkedin.com/in/henrique-chaves-448288300" target="_blank">linkedin.com/in/henrique-chaves</a>
 `,
-  certificates:`
-Meus certificados podem ser acessados aqui:
+  certificates:`Meus certificados podem ser acessados aqui:
 <a href="https://drive.google.com/drive/folders/1k7mJwBy7egEE-h_HCGNXxc6mR8M9QGmY" target="_blank">Google Drive - Certificados</a>
 `,
   whoami:"henrique",
@@ -87,10 +105,11 @@ Shell: fakebash
 Uptime: since page load`
 };
 
+/* ---------- UTIL ---------- */
 function print(text){ $("<div class='line'>").html(text).appendTo(terminal); terminal.scrollTop(terminal[0].scrollHeight); }
 function setFavicon(c){ $("#favicon").attr("href",`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>${c}</text></svg>`); }
 
-/* Boot */
+/* ---------- BOOT ---------- */
 const boot=[
   "HenriqueOS bootloader v2.0",
   "Initializing hardware...",
@@ -107,47 +126,53 @@ function bootSequence(){
   else newPrompt();
 }
 
+/* ---------- PROMPT ---------- */
 function newPrompt(){
   const prompt = sudoMode ? "#" : "$";
-  currentLine="";
-  let line=$("<div class='line'></div>");
-  line.append(`<span>${prompt} </span>`);
-  line.append(cursor);
+  const line=$("<div id='input-line' class='line'></div>");
+  line.append(`<span>${prompt}</span>`);
+  const input=$("<input class='cmd' autocomplete='off' spellcheck='false'>");
+  line.append(input);
   terminal.append(line);
+  input.focus();
+  
+  input.on("keydown", function(e){
+    if(e.key==="Enter"){
+      const cmd=input.val().trim();
+      executeCommand(cmd);
+      e.preventDefault();
+    } else if(e.key==="ArrowUp"){ if(historyIndex>0){ input.val(history[--historyIndex]); } e.preventDefault(); }
+    else if(e.key==="ArrowDown"){ if(historyIndex<history.length-1){ input.val(history[++historyIndex]);}else{input.val("");} e.preventDefault(); }
+  });
   terminal.scrollTop(terminal[0].scrollHeight);
 }
 
-$(document).keydown(function(e){
-  if(e.key.length===1){ currentLine+=e.key; updateLine(); }
-  else if(e.key==="Backspace"){ currentLine=currentLine.slice(0,-1); updateLine(); e.preventDefault(); }
-  else if(e.key==="Enter"){ executeCommand(currentLine.trim()); currentLine=""; e.preventDefault(); }
-  else if(e.key==="ArrowUp"){ if(historyIndex>0){ currentLine=history[--historyIndex]; updateLine(); } e.preventDefault();}
-  else if(e.key==="ArrowDown"){ if(historyIndex<history.length-1){ currentLine=history[++historyIndex];}else{currentLine="";} updateLine(); e.preventDefault();}
-});
-
-function updateLine(){
-  cursor.prevAll().remove();
-  cursor.before(document.createTextNode(currentLine));
-  terminal.scrollTop(terminal[0].scrollHeight);
-}
-
+/* ---------- EXEC ---------- */
 function executeCommand(cmd){
   if(cmd!=="") history.push(cmd);
   historyIndex=history.length;
-  let line=$("<div class='line'></div>").text((sudoMode?"#":"$")+" "+cmd);
-  cursor.before(line.contents());
-  cursor.remove();
-  cursor=$("<span class='cursor'></span>");
-  terminal.append(cursor);
-  
-  if(cmd==="clear"){ terminal.empty(); cursor=$("<span class='cursor'></span>"); terminal.append(cursor); newPrompt(); return; }
+  $("#input-line").replaceWith(`<div class='line'>${sudoMode?"#":"$"} ${cmd}</div>`);
+
+  if(cmd==="clear"){ terminal.empty(); newPrompt(); return; }
   if(cmd==="ls"){ print(Object.keys(files).join("   ")); newPrompt(); return; }
   if(cmd.startsWith("cat ")){ 
     const f=cmd.split(" ")[1]; 
     print(files[f]||"cat: file not found"); newPrompt(); return; 
   }
-  if(cmd==="sudo"){ sudoMode=true; terminal.css("color","red"); setFavicon("#"); print("Permission denied. You are now suspicious."); newPrompt(); return; }
-  if(cmd==="exit" && sudoMode){ sudoMode=false; terminal.css("color","#00ff00"); setFavicon("$"); print("Exited sudo mode."); newPrompt(); return; }
+  if(cmd==="sudo"){ 
+    sudoMode=true; 
+    terminal.css("color","red"); 
+    setFavicon("#"); 
+    print("Permission denied. You are now suspicious."); 
+    newPrompt(); return; 
+  }
+  if(cmd==="exit" && sudoMode){ 
+    sudoMode=false; 
+    terminal.css("color","#00ff00"); 
+    setFavicon("$"); 
+    print("Exited sudo mode."); 
+    newPrompt(); return; 
+  }
   if(cmd==="shutdown now"){ print("Shutting down..."); setTimeout(()=>window.close(),1500); return; }
 
   print(responses[cmd] || "Comando não encontrado.");
@@ -155,6 +180,7 @@ function executeCommand(cmd){
 }
 
 bootSequence();
+
 });
 </script>
 </body>
