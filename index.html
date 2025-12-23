@@ -15,7 +15,6 @@
   #terminal { padding:20px }
   .line { white-space:pre-wrap }
   #input-line { display:flex; gap:6px }
-  #prompt { min-width:10px }
   #cmd { background:black; border:none; color:inherit; outline:none; flex:1 }
   a { color:inherit; text-decoration:underline }
 </style>
@@ -32,16 +31,14 @@ $(function () {
   let sudoMode = false;
   let history = [], historyIndex = 0;
 
-  const files = [
-    "certificates/",
-    "kernel_panic.txt",
-    "deprecated_code.c",
-    "sudo_secrets/",
-    "coffee_dependency.md",
-    "stackoverflow.log",
-    "segfault_notes.txt",
-    "todo_fix_later.sh"
-  ];
+  const files = {
+    "kernel_panic.txt": "Kernel panic - not syncing: curiosity overflow.",
+    "coffee_dependency.md": "System cannot boot without caffeine.\nSeverity: critical.",
+    "stackoverflow.log": "Searched same error 37 times.\nSolution ignored.",
+    "deprecated_code.c": "// TODO: rewrite this in Rust\n// TODO: never happens",
+    "todo_fix_later.sh": "#!/bin/bash\necho \"One day...\"",
+    "segfault_notes.txt": "If it crashes, it's probably a pointer.",
+  };
 
   function print(text) {
     $("<div class='line'>").html(text).appendTo(terminal);
@@ -56,7 +53,7 @@ $(function () {
 
   /* ---------- BOOT ---------- */
   const boot = [
-    "HenriqueOS bootloader v1.0",
+    "HenriqueOS bootloader v1.1",
     "Initializing hardware...",
     "Loading kernel modules...",
     "Mounting /dev/sda1...",
@@ -70,10 +67,8 @@ $(function () {
   function bootSequence() {
     if (i < boot.length) {
       print(boot[i++]);
-      setTimeout(bootSequence, 350);
-    } else {
-      startTerminal();
-    }
+      setTimeout(bootSequence, 300);
+    } else startTerminal();
   }
 
   /* ---------- TERMINAL ---------- */
@@ -94,7 +89,6 @@ $(function () {
       if (historyIndex > 0) input.val(history[--historyIndex]);
       return;
     }
-
     if (e.key === "ArrowDown") {
       if (historyIndex < history.length - 1) input.val(history[++historyIndex]);
       else input.val("");
@@ -103,9 +97,11 @@ $(function () {
 
     if (e.key !== "Enter") return;
 
-    const cmd = input.val().trim().toLowerCase();
-    print(`${$("#prompt").text()} ${cmd}`);
-    if (cmd) history.push(cmd);
+    const raw = input.val();
+    const cmd = raw.trim().toLowerCase();
+    print(`${$("#prompt").text()} ${raw}`);
+
+    if (cmd) history.push(raw);
     historyIndex = history.length;
     input.val("");
 
@@ -115,7 +111,22 @@ $(function () {
     }
 
     if (cmd === "ls") {
-      print(files.join("   "));
+      print(Object.keys(files).join("   "));
+      return;
+    }
+
+    if (cmd.startsWith("cat ")) {
+      const file = cmd.split(" ")[1];
+      print(files[file] || "cat: file not found");
+      return;
+    }
+
+    if (cmd === "shutdown now") {
+      print("Shutting down...");
+      setTimeout(() => {
+        print("System halted.");
+        window.close();
+      }, 1500);
       return;
     }
 
@@ -124,7 +135,7 @@ $(function () {
       terminal.css("color","red");
       $("#prompt").text("#");
       setFavicon("#");
-      print("permission denied. but nice try.");
+      print("Permission denied. You are now suspicious.");
       return;
     }
 
@@ -133,25 +144,19 @@ $(function () {
       terminal.css("color","#00ff00");
       $("#prompt").text("$");
       setFavicon("$");
-      print("leaving sudo mode.");
+      print("Exited sudo mode.");
       return;
     }
 
     const responses = {
       help: `
-commands:
-  help about skills experience contact certificates
-  whoami neofetch ls clear exit
+help about skills experience contact certificates
+whoami neofetch ls cat clear shutdown exit
 `,
       whoami: "henrique",
-      neofetch: `
-HenriqueOS
-User: henrique
-Shell: fakebash
-Uptime: since page load
-`,
-      about: "Henrique Chaves — técnico em informática, hardware & low level.",
-      skills: "hardware | low level | infosec | curiosity-driven",
+      neofetch: "HenriqueOS | fakebash | uptime: since load",
+      about: "Henrique Chaves — hardware, low level, infosec.",
+      skills: "hardware | low level | security | curiosity",
       experience: "Condor | Raia Drogasil | SDB Alimentos",
       contact: "github.com/hc8841 | linkedin.com/in/henrique-chaves"
     };
