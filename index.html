@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfólio Henrique Chaves</title>
+<title>Henrique Chaves</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -25,7 +25,10 @@
   }
   #input-line {
     display: flex;
-    gap: 5px;
+    gap: 6px;
+  }
+  #prompt {
+    min-width: 10px;
   }
   #cmd {
     background: black;
@@ -44,10 +47,10 @@
 
 <body>
 <div id="terminal" class="container-fluid">
-  <div class="line">Bem-vindo ao portfólio de Henrique Chaves. Digite <b>help</b>.</div>
+  <div class="line">HenriqueOS v1.0 — digite <b>help</b></div>
 
   <div id="input-line">
-    <span>&gt;</span>
+    <span id="prompt">$</span>
     <input id="cmd" autofocus>
   </div>
 </div>
@@ -58,8 +61,12 @@ $(function () {
 
   const terminal = $("#terminal");
   const input = $("#cmd");
+  const prompt = $("#prompt");
   const inputLine = $("#input-line");
+
   let sudoMode = false;
+  let history = [];
+  let historyIndex = 0;
 
   const commands = {
     help: `
@@ -69,19 +76,22 @@ Comandos disponíveis:
   experience
   contact
   certificates
+  whoami
+  neofetch
   clear
   exit
 `,
     about: `
-Henrique Eslabão da Fonseca Chaves, 19 anos.
-Técnico em Informática (2023).
-Interesse forte em hardware, low level e segurança.
+Henrique Eslabão da Fonseca Chaves
+19 anos — Técnico em Informática (2023)
+
+Apaixonado por hardware, low level e segurança da informação.
 `,
     skills: `
-- Hardware e manutenção
-- Lógica de programação
-- Redes domésticas
-- Interesse em infosec
+Hardware e manutenção
+Lógica de programação
+Redes domésticas
+Segurança da informação (estudos)
 
 Soft skills:
 - Liderança
@@ -89,9 +99,9 @@ Soft skills:
 - Comunicação
 `,
     experience: `
-Condor S/A - Carga e descarga
-Raia Drogasil S.A - Atendente 1
-SDB Comércio de Alimentos - Caixa
+Condor S/A — carga e descarga
+Raia Drogasil S.A — atendente 1
+SDB Comércio de Alimentos — caixa
 `,
     contact: `
 Email: <a href="mailto:henriquemattos841@gmail.com">henriquemattos841@gmail.com</a>
@@ -102,12 +112,28 @@ LinkedIn: <a href="https://linkedin.com/in/henrique-chaves-448288300" target="_b
 `,
     certificates: `
 <a href="https://drive.google.com/drive/folders/1k7mJwBy7egEE-h_HCGNXxc6mR8M9QGmY" target="_blank">
-Google Drive - Certificados
+Google Drive — Certificados
 </a>
 `,
     sudo: `
 Acesso negado.
-Você realmente achou que teria root aqui?
+Mas agora você chamou atenção.
+`,
+    whoami: `
+henrique
+`,
+    neofetch: `
+       ██████╗ ███████╗
+       ██╔══██╗██╔════╝
+       ██████╔╝███████╗
+       ██╔═══╝ ╚════██║
+       ██║     ███████║
+       ╚═╝     ╚══════╝
+
+OS: HenriqueOS
+User: henrique
+Shell: fakebash
+Uptime: desde que você abriu a página
 `
   };
 
@@ -124,21 +150,46 @@ Você realmente achou que teria root aqui?
   }
 
   input.on("keydown", function (e) {
+
+    if (e.key === "ArrowUp") {
+      if (historyIndex > 0) {
+        historyIndex--;
+        input.val(history[historyIndex]);
+      }
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      if (historyIndex < history.length - 1) {
+        historyIndex++;
+        input.val(history[historyIndex]);
+      } else {
+        input.val("");
+      }
+      return;
+    }
+
     if (e.key !== "Enter") return;
 
     const cmd = input.val().trim().toLowerCase();
-    print(`&gt; ${cmd}`);
+    print(`${prompt.text()} ${cmd}`);
+
+    if (cmd) {
+      history.push(cmd);
+      historyIndex = history.length;
+    }
+
     input.val("");
 
     if (cmd === "clear") {
       terminal.find(".line").remove();
-      print("Terminal limpo.");
       return;
     }
 
     if (cmd === "sudo") {
       sudoMode = true;
       terminal.css("color", "red");
+      prompt.text("#");
       setFavicon("#");
       print(commands.sudo);
       return;
@@ -147,6 +198,7 @@ Você realmente achou que teria root aqui?
     if (cmd === "exit" && sudoMode) {
       sudoMode = false;
       terminal.css("color", "#00ff00");
+      prompt.text("$");
       setFavicon("$");
       print("Modo sudo encerrado.");
       return;
