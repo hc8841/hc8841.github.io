@@ -1,111 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pai Henrique do PC - Assistência Técnica</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-        }
-
-        h2 {
-            color: #b22222;
-        }
-
-        .contact-info {
-            margin-top: 30px;
-        }
-
-        .contact-info p {
-            font-size: 1.1em;
-        }
-
-        .highlight {
-            color: #b22222;
-            font-weight: bold;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-        .content {
-            line-height: 1.6;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio Henrique Chaves</title>
+<style>
+  body {
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+  }
+  #terminal {
+    padding: 20px;
+  }
+  .line {
+    display: block;
+  }
+  .prompt {
+    display: inline;
+  }
+  #input {
+    background: black;
+    border: none;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 1em;
+    outline: none;
+    width: 90%;
+  }
+  a {
+    color: #00ffff;
+    text-decoration: none;
+  }
+</style>
 </head>
 <body>
+<div id="terminal">
+  <div class="line">Bem-vindo ao portfólio de Henrique Chaves. Digite <strong>help</strong> para ver os comandos disponíveis.</div>
+  <div class="line"><span class="prompt">></span> <input id="input" autofocus></div>
+</div>
 
-    <header>
-        <h1>PAI HENRIQUE DO PC</h1>
-        <p>Técnico de PCs, Notebooks e Rede</p>
-    </header>
+<script>
+const terminal = document.getElementById('terminal');
+const input = document.getElementById('input');
 
-    <div class="container">
-        <h2>Consultas e trabalhos em geral no Bairro Centenário, São Bento do Sul</h2>
-        <p class="content">
-            Trago o <span class="highlight">Windows de volta em até 3 dias</span>.
-        </p>
-        <p class="content">
-            <strong>EXORCISO PC FORMATA-DO POR SOBRINHO!</strong>
-        </p>
-        <ul class="content">
-            <li>Retiro vírus, malware e "mau olhado" do seu computador ou notebook.</li>
-            <li>Recupero mp3, fotos e arquivos <span class="highlight">desaparecidos</span> ou <span class="highlight">escondidos</span>.</li>
-            <li>Configuro sua rede contra o "olho gordo" e trago sinal Wi-Fi com alcance melhor.</li>
-        </ul>
-        <p class="content">
-            <strong>Mais de 6.000 Windows ressuscitados!</strong><br>
-            Sofrendo com <span class="highlight">lentidão</span> ou <span class="highlight">travamento</span>?<br>
-            <strong>Pare agora de sofrer!</strong>
-        </p>
-        <p class="content">
-            Fecho a sua rede contra o "olho gordo" e trago sinal Wi-Fi do além!
-        </p>
+const commands = {
+  help: `
+Comandos disponíveis:
+  about       - Saiba mais sobre Henrique Chaves
+  skills      - Veja minhas habilidades técnicas e soft skills
+  experience  - Minhas experiências profissionais
+  contact     - Contato e redes sociais
+  certificates - Meus certificados
+  clear       - Limpa a tela
+`,
+  about: `
+Olá! Eu sou Henrique Eslabão da Fonseca Chaves, 19 anos.
+Formado em Técnico em Informática em 2023, sempre fui apaixonado por tecnologia, especialmente hardware e programação low level.
 
-        <div class="contact-info">
-            <p><strong>Pagamento somente após resultado!</strong></p>
-            <p><strong>Fale comigo:</strong></p>
-            <p>📞 <strong>(47) 99673-6277</strong></p>
-            <p>📧 <strong>henriquemattos841@gmail.com</strong></p>
-            <p>📍 <strong>Rua Treze de Maio, 47 – Bairro Centenário, São Bento do Sul</strong></p>
-        </div>
-    </div>
+Curiosidade: Apesar de ainda não ter experiência formal em TI, meu interesse e dedicação pela área são enormes!
+`,
+  skills: `
+Habilidades técnicas:
+  - Hardware e manutenção de PCs
+  - Programação básica e lógica
+  - Conhecimento em sistemas e redes domésticas
+  - Segurança da informação (interesse e estudo)
 
-    <footer>
-        <p>&copy; 2025 Pai Henrique do PC. Todos os direitos reservados.</p>
-    </footer>
+Soft skills:
+  - Liderança nata, gosto de organizar e resolver problemas
+  - Raciocínio lógico e pensamento crítico
+  - Trabalho em equipe e comunicação clara
+`,
+  experience: `
+Experiências profissionais:
+  Condor S/A            - Ajudante de carga e descarga
+  Raia Drogasil S.A     - Atendente 1 (caixa, reposição e ajuste de preços)
+  SDB Comércio de Alimentos Ltda - Caixa
 
+Obs: Não foram cargos de TI, mas me ensinaram disciplina, organização e atendimento ao público.
+`,
+  contact: `
+Email principal: henriquemattos841@gmail.com
+Email secundário: henriquemattos841@tutamail.com
+Telefone: +55 47 99673-6277
+GitHub: https://github.com/hc8841
+LinkedIn: https://www.linkedin.com/in/henrique-chaves-448288300?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+`,
+  certificates: `
+Meus certificados podem ser acessados aqui:
+https://drive.google.com/drive/folders/1k7mJwBy7egEE-h_HCGNXxc6mR8M9QGmY
+`,
+  sudo: `
+Acesso negado! 😎
+Mas se fosse um sudo de verdade, talvez você tivesse que me pagar um café primeiro ☕
+`
+};
+
+function appendLine(text) {
+  const line = document.createElement('div');
+  line.className = 'line';
+  line.innerHTML = text.replace(/\n/g, '<br>');
+  terminal.insertBefore(line, input.parentNode);
+}
+
+input.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const cmd = input.value.trim().toLowerCase();
+    appendLine('> ' + input.value);
+    if (cmd === 'clear') {
+      terminal.innerHTML = '';
+      appendLine('Bem-vindo ao portfólio de Henrique Chaves. Digite <strong>help</strong> para ver os comandos disponíveis.');
+      const inputLine = document.createElement('div');
+      inputLine.className = 'line';
+      inputLine.innerHTML = '<span class="prompt">></span> <input id="input">';
+      terminal.appendChild(inputLine);
+      input.focus();
+      const newInput = document.getElementById('input');
+      newInput.addEventListener('keydown', arguments.callee);
+    } else if (commands[cmd]) {
+      appendLine(commands[cmd]);
+    } else {
+      appendLine(`Comando não encontrado: ${cmd}. Digite help para a lista de comandos.`);
+    }
+    input.value = '';
+    terminal.scrollTop = terminal.scrollHeight;
+  }
+});
+</script>
 </body>
 </html>
