@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfólio Henrique Chaves</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>$</text></svg>">
 <style>
   body {
     background: black;
@@ -24,30 +27,33 @@
   #input {
     background: black;
     border: none;
-    color: #00ff00;
+    color: inherit;
     font-family: monospace;
     font-size: 1em;
     outline: none;
     width: 90%;
   }
   a {
-    color: #00ffff;
-    text-decoration: none;
+    color: inherit;
+    text-decoration: underline;
   }
 </style>
 </head>
 <body>
-<div id="terminal">
+<div id="terminal" class="container-fluid">
   <div class="line">Bem-vindo ao portfólio de Henrique Chaves. Digite <strong>help</strong> para ver os comandos disponíveis.</div>
   <div class="line"><span class="prompt">></span> <input id="input" autofocus></div>
 </div>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
-const terminal = document.getElementById('terminal');
-const input = document.getElementById('input');
+$(document).ready(function() {
+  const terminal = $("#terminal");
+  let easterActive = false;
 
-const commands = {
-  help: `
+  const commands = {
+    help: `
 Comandos disponíveis:
   about        - Saiba mais sobre Henrique Chaves
   skills       - Veja minhas habilidades técnicas e soft skills
@@ -55,14 +61,15 @@ Comandos disponíveis:
   contact      - Contato e redes sociais
   certificates - Meus certificados
   clear        - Limpa a tela
+  exit         - Sai do modo sudo (se ativo)
 `,
-  about: `
+    about: `
 Olá! Eu sou Henrique Eslabão da Fonseca Chaves, 19 anos.
 Formado em Técnico em Informática em 2023, sempre fui apaixonado por tecnologia, especialmente hardware e programação low level.
 
 Curiosidade: Apesar de ainda não ter experiência formal em TI, meu interesse e dedicação pela área são enormes!
 `,
-  skills: `
+    skills: `
 Habilidades técnicas:
   - Hardware e manutenção de PCs
   - Programação básica e lógica
@@ -74,7 +81,7 @@ Soft skills:
   - Raciocínio lógico e pensamento crítico
   - Trabalho em equipe e comunicação clara
 `,
-  experience: `
+    experience: `
 Experiências profissionais:
   Condor S/A            - Ajudante de carga e descarga
   Raia Drogasil S.A     - Atendente 1 (caixa, reposição e ajuste de preços)
@@ -82,52 +89,75 @@ Experiências profissionais:
 
 Obs: Não foram cargos de TI, mas me ensinaram disciplina, organização e atendimento ao público.
 `,
-  contact: `
+    contact: `
 Email principal: <a href="mailto:henriquemattos841@gmail.com">henriquemattos841@gmail.com</a>
 Email secundário: <a href="mailto:henriquemattos841@tutamail.com">henriquemattos841@tutamail.com</a>
 Telefone: <a href="tel:+5547996736277">+55 47 99673-6277</a>
 GitHub: <a href="https://github.com/hc8841" target="_blank">github.com/hc8841</a>
 LinkedIn: <a href="https://www.linkedin.com/in/henrique-chaves-448288300?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">linkedin.com/in/henrique-chaves</a>
 `,
-  certificates: `
+    certificates: `
 Meus certificados podem ser acessados aqui:
 <a href="https://drive.google.com/drive/folders/1k7mJwBy7egEE-h_HCGNXxc6mR8M9QGmY" target="_blank">Google Drive - Certificados</a>
 `,
-  sudo: `
+    sudo: `
 Acesso negado! 😎
 Mas se fosse um sudo de verdade, talvez você tivesse que me pagar um café primeiro ☕
 `
-};
+  };
 
-function appendLine(text) {
-  const line = document.createElement('div');
-  line.className = 'line';
-  line.innerHTML = text.replace(/\n/g, '<br>');
-  terminal.insertBefore(line, input.parentNode);
-}
-
-input.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    const cmd = input.value.trim().toLowerCase();
-    appendLine('> ' + input.value);
-    if (cmd === 'clear') {
-      terminal.innerHTML = '';
-      appendLine('Bem-vindo ao portfólio de Henrique Chaves. Digite <strong>help</strong> para ver os comandos disponíveis.');
-      const inputLine = document.createElement('div');
-      inputLine.className = 'line';
-      inputLine.innerHTML = '<span class="prompt">></span> <input id="input">';
-      terminal.appendChild(inputLine);
-      input.focus();
-      const newInput = document.getElementById('input');
-      newInput.addEventListener('keydown', arguments.callee);
-    } else if (commands[cmd]) {
-      appendLine(commands[cmd]);
-    } else {
-      appendLine(`Comando não encontrado: ${cmd}. Digite help para a lista de comandos.`);
-    }
-    input.value = '';
-    terminal.scrollTop = terminal.scrollHeight;
+  function appendLine(text) {
+    $("<div>").addClass("line").html(text.replace(/\n/g,"<br>")).insertBefore("#input");
+    scrollTerminal();
   }
+
+  function scrollTerminal() {
+    terminal.scrollTop(terminal[0].scrollHeight);
+  }
+
+  function createInput() {
+    const inputLine = $('<div class="line"><span class="prompt">></span> <input id="input"></div>');
+    terminal.append(inputLine);
+    $("#input").focus();
+    $("#input").on('keydown', handleInput);
+  }
+
+  function setFavicon(iconChar) {
+    const favicon = document.getElementById('favicon');
+    favicon.href = `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>${iconChar}</text></svg>`;
+  }
+
+  function handleInput(e) {
+    if(e.key === 'Enter') {
+      const cmd = $(this).val().trim().toLowerCase();
+      appendLine('> ' + $(this).val());
+
+      if(cmd === 'clear') {
+        terminal.empty();
+        appendLine('Bem-vindo ao portfólio de Henrique Chaves. Digite <strong>help</strong> para ver os comandos disponíveis.');
+        createInput();
+      } else if(cmd === 'exit' && easterActive) {
+        easterActive = false;
+        terminal.css('color', '#00ff00');
+        setFavicon('$');
+        appendLine('Saindo do modo sudo. Terminal normal restaurado.');
+      } else if(cmd === 'sudo') {
+        easterActive = true;
+        terminal.css('color', 'red');
+        setFavicon('#');
+        appendLine(commands.sudo);
+      } else if(commands[cmd]) {
+        appendLine(commands[cmd]);
+      } else {
+        appendLine(`Comando não encontrado: ${cmd}. Digite help para a lista de comandos.`);
+      }
+
+      $(this).remove();
+      if(!easterActive || cmd !== 'clear') createInput();
+    }
+  }
+
+  $("#input").on('keydown', handleInput);
 });
 </script>
 </body>
