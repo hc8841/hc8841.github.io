@@ -152,8 +152,9 @@ Mas se fosse um sudo de verdade, talvez você tivesse que me pagar um café prim
         appendLine(`Comando não encontrado: ${cmd}. Digite help para a lista de comandos.`);
       }
 
+      // Remove o input antigo e cria um novo sempre
       $(this).remove();
-      if(!easterActive || cmd !== 'clear') createInput();
+      createInput();
     }
   }
 
