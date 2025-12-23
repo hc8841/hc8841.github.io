@@ -13,19 +13,18 @@
 body { background:black; color:#00ff00; font-family:monospace; margin:0 }
 #terminal { padding:20px }
 .line { white-space:pre-wrap }
-#input-line span {
-  min-width: 10px;
-  color: inherit;
-}
+#input-line { display:flex; gap:6px; align-items:center }
 #cmd {
-  background: black;      /* fundo preto */
-  color: inherit;         /* herda verde do terminal */
-  border: none;           /* sem borda */
-  outline: none;          /* remove highlight do foco */
-  flex: 1;                /* ocupa espaço restante */
-  font-family: monospace; /* fonte de terminal */
-  caret-color: #00ff00;   /* cursor verde */
+  background:black;
+  color:inherit;
+  border:none;
+  outline:none;
+  flex:1;
+  font-family:monospace;
+  caret-color:#00ff00;
 }
+#input-line span { min-width:10px; color:inherit }
+a { color:inherit; text-decoration:underline }
 </style>
 </head>
 
