@@ -131,7 +131,11 @@ fetch('img/list.json')
         const div = document.createElement("div");
         div.className = "carousel-item" + (index === 0 ? " active" : "");
 
-        div.innerHTML = `<img src="img/${foto}" cla
+        div.innerHTML = `<img src="img/${foto}" class="d-block w-100">`;
+        container.appendChild(div);
+    });
+});
+</script>
 
 </body>
-        </html>
+</html>
