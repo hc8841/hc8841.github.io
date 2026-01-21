@@ -4,37 +4,227 @@
 <meta charset="UTF-8">
 <title>Para o Amor da Minha Vida 💖</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ff5fa2">
+
+<!-- PWA -->
+<link rel="manifest" href="data:application/json,{
+  &quot;name&quot;:&quot;Nosso Amor&quot;,
+  &quot;short_name&quot;:&quot;💖&quot;,
+  &quot;start_url&quot;:&quot;.&quot;,
+  &quot;display&quot;:&quot;standalone&quot;,
+  &quot;background_color&quot;:&quot;#ffc0cb&quot;,
+  &quot;theme_color&quot;:&quot;#ff5fa2&quot;
+}">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
+:root {
+    --bg: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+    --card: rgba(255,255,255,0.9);
+    --text: #5a002b;
+    --terminal-bg: #0d0d0d;
+    --terminal-text: #00ff9c;
+}
+
+body.dark {
+    --bg: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    --card: rgba(20,20,20,0.9);
+    --text: #ffd6e8;
+}
+
 body {
-    background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+    background: var(--bg);
+    color: var(--text);
     font-family: 'Segoe UI', sans-serif;
     overflow-x: hidden;
+    transition: all .4s ease;
 }
 
 h1, h2 {
-    color: #b30059;
-    text-shadow: 1px 1px 2px #fff;
+    text-shadow: 1px 1px 3px #00000030;
 }
 
 .poema {
-    background: rgba(255,255,255,0.85);
+    background: var(--card);
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 0 20px rgba(255,105,180,0.6);
+    box-shadow: 0 0 25px rgba(255,105,180,0.6);
+}
+
+.frase {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.terminal {
+    display: none;
+    background: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: monospace;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,255,156,0.6);
+    white-space: pre-wrap;
+    text-align: left;
+    margin-top: 20px;
 }
 
 .heart {
     position: fixed;
-    color: pink;
     animation: floatUp 6s linear forwards;
     z-index: 9999;
 }
 
 @keyframes floatUp {
     0% { transform: translateY(0) scale(1); opacity: 1;}
+    100% { transform: translateY(-900px) scale(1.8); opacity: 0;}
+}
+
+.toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10000;
+}
+</style>
+</head>
+
+<body>
+
+<button class="btn btn-sm btn-dark toggle" onclick="toggleDark()">🌙</button>
+
+<div class="container text-center py-5">
+    <h1 id="titulo">💖 Para o Amor da Minha Vida 💖</h1>
+    <p class="lead frase" id="fraseAleatoria"></p>
+
+    <div class="poema my-4">
+        <h2>Meu amor</h2>
+        <p>
+            Entre bilhões de pessoas, foi você que meu coração escolheu.<br><br>
+            Sem pedir permissão, você virou parte do sistema.<br><br>
+            E desde então, tudo roda melhor. 💕
+        </p>
+    </div>
+
+    <h2>⏳ Nosso tempo juntos</h2>
+    <p id="contador" class="fs-5"></p>
+
+    <h2 class="mt-5">💌 Carta secreta</h2>
+    <button class="btn btn-outline-danger" onclick="executarTerminal()">🔓 Executar script</button>
+
+    <div id="terminal" class="terminal"></div>
+
+    <h2 class="mt-5">🎶 Nossa Playlist</h2>
+
+    <div class="ratio ratio-16x9 my-3">
+        <iframe src="https://open.spotify.com/embed/playlist/3mdR6eRviYp09jrrYKTQrG"
+        allow="encrypted-media" loading="lazy"></iframe>
+    </div>
+
+    <!-- Espaço Spotify API -->
+    <div class="my-4 text-muted">
+        <!-- Aqui entra a Spotify API -->
+    </div>
+</div>
+
+<script>
+/* DARK MODE AUTO */
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add('dark');
+}
+
+function toggleDark() {
+    document.body.classList.toggle('dark');
+}
+
+/* FRASES */
+const frases = [
+ "Você já faz parte do sistema.",
+ "Rodando em background há 2 meses.",
+ "Meu lugar seguro tem seu nome.",
+ "Te amar é fácil.",
+ "Meu coração não pede permissão.",
+ "Desde você, tudo funciona melhor."
+];
+
+fraseAleatoria.innerText = frases[Math.floor(Math.random() * frases.length)];
+
+/* CONTADOR */
+const inicio = new Date("2024-11-22T00:00:00");
+setInterval(() => {
+    const diff = new Date() - inicio;
+    const dias = Math.floor(diff / 86400000);
+    contador.innerText = `Já se passaram ${dias} dias desde que tudo começou 💕`;
+}, 1000);
+
+/* TERMINAL DIGITANDO */
+const log = `aircrack-ng 1.7
+
+[00:00:01] Interface wlan0 initialized
+[00:00:02] Monitor mode enabled
+[00:00:03] Scanning for networks...
+
+Target selected: sorriso-dela
+
+ERROR: acesso concedido sem senha
+ERROR: firewall desativado manualmente
+
+SESSION ABORTED
+Reason: impossível invadir algo que já me deixou entrar
+
+NOTE:
+Você virou parte do sistema.
+Rodando em background há 2 meses.
+`;
+
+function executarTerminal() {
+    terminal.style.display = "block";
+    terminal.innerText = "";
+    let i = 0;
+    const typing = setInterval(() => {
+        terminal.innerText += log[i];
+        i++;
+        if (i >= log.length) clearInterval(typing);
+    }, 18);
+}
+
+/* EASTER EGG */
+let clicks = 0;
+titulo.onclick = () => {
+    clicks++;
+    if (clicks === 7) {
+        alert("Eu escolheria você em todas as vidas 💍");
+        clicks = 0;
+    }
+};
+
+/* CORAÇÕES */
+setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerText = "💖";
+    h.style.left = Math.random() * innerWidth + "px";
+    h.style.bottom = "-30px";
+    h.style.fontSize = (Math.random() * 25 + 15) + "px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 6000);
+}, 350);
+
+/* SERVICE WORKER INLINE */
+if ('serviceWorker' in navigator) {
+    const sw = `
+    self.addEventListener('fetch', e => {});
+    `;
+    const blob = new Blob([sw], {type: 'text/javascript'});
+    navigator.serviceWorker.register(URL.createObjectURL(blob));
+}
+</script>
+
+</body>
+</html>    0% { transform: translateY(0) scale(1); opacity: 1;}
     100% { transform: translateY(-900px) scale(1.8); opacity: 0;}
 }
 
