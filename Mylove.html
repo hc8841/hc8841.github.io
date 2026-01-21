@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#ff5fa2">
 
-<!-- PWA -->
+<!-- PWA MANIFEST INLINE -->
 <link rel="manifest" href="data:application/json,{
   &quot;name&quot;:&quot;Nosso Amor&quot;,
   &quot;short_name&quot;:&quot;💖&quot;,
@@ -72,6 +72,11 @@ h1, h2 {
     margin-top: 20px;
 }
 
+.carousel img {
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255,105,180,0.8);
+}
+
 .heart {
     position: fixed;
     animation: floatUp 6s linear forwards;
@@ -114,53 +119,64 @@ h1, h2 {
 
     <h2 class="mt-5">💌 Carta secreta</h2>
     <button class="btn btn-outline-danger" onclick="executarTerminal()">🔓 Executar script</button>
-
     <div id="terminal" class="terminal"></div>
 
     <h2 class="mt-5">🎶 Nossa Playlist</h2>
-
     <div class="ratio ratio-16x9 my-3">
         <iframe src="https://open.spotify.com/embed/playlist/3mdR6eRviYp09jrrYKTQrG"
         allow="encrypted-media" loading="lazy"></iframe>
     </div>
 
-    <!-- Espaço Spotify API -->
+    <!-- ESPAÇO SPOTIFY API -->
     <div class="my-4 text-muted">
+        <!-- Aqui entra a Spotify API -->
         <div style="left: 0; width: 100%; height: 152px; position: relative;"><iframe src="https://open.spotify.com/embed/track/2SiXAy7TuUkycRVbbWDEpo?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;"></iframe></div>
+    </div>
+
+    <h2 class="mt-5">📸 Nossas Memórias</h2>
+    <div id="carouselFotos" class="carousel slide my-4" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carouselInner"></div>
+
+        <button class="carousel-control-prev" data-bs-target="#carouselFotos" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" data-bs-target="#carouselFotos" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-/* DARK MODE AUTO */
+// DARK MODE AUTO
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.body.classList.add('dark');
 }
-
 function toggleDark() {
     document.body.classList.toggle('dark');
 }
 
-/* FRASES */
+// FRASES
 const frases = [
  "Você já faz parte do sistema.",
  "Rodando em background há 2 meses.",
  "Meu lugar seguro tem seu nome.",
  "Te amar é fácil.",
- "Meu coração não pede permissão.",
- "Desde você, tudo funciona melhor."
+ "Desde você, tudo funciona melhor.",
+ "Meu coração não pediu permissão."
 ];
-
 fraseAleatoria.innerText = frases[Math.floor(Math.random() * frases.length)];
 
-/* CONTADOR */
-const inicio = new Date("2025-11-22T00:00:00");
+// CONTADOR
+const inicio = new Date("2024-11-22T00:00:00");
 setInterval(() => {
-    const diff = new Date() - inicio;
-    const dias = Math.floor(diff / 86400000);
+    const dias = Math.floor((new Date() - inicio) / 86400000);
     contador.innerText = `Já se passaram ${dias} dias desde que tudo começou 💕`;
 }, 1000);
 
-/* TERMINAL DIGITANDO */
+// TERMINAL DIGITANDO
 const log = `aircrack-ng 1.7
 
 [00:00:01] Interface wlan0 initialized
@@ -170,7 +186,6 @@ const log = `aircrack-ng 1.7
 Target selected: sorriso-dela
 
 ERROR: acesso concedido sem senha
-ERROR: firewall desativado manualmente
 
 SESSION ABORTED
 Reason: impossível invadir algo que já me deixou entrar
@@ -184,24 +199,22 @@ function executarTerminal() {
     terminal.style.display = "block";
     terminal.innerText = "";
     let i = 0;
-    const typing = setInterval(() => {
-        terminal.innerText += log[i];
-        i++;
-        if (i >= log.length) clearInterval(typing);
+    const t = setInterval(() => {
+        terminal.innerText += log[i++];
+        if (i >= log.length) clearInterval(t);
     }, 18);
 }
 
-/* EASTER EGG */
+// EASTER EGG
 let clicks = 0;
 titulo.onclick = () => {
-    clicks++;
-    if (clicks === 7) {
+    if (++clicks === 7) {
         alert("Eu escolheria você em todas as vidas 💍");
         clicks = 0;
     }
 };
 
-/* CORAÇÕES */
+// CORAÇÕES
 setInterval(() => {
     const h = document.createElement("div");
     h.className = "heart";
@@ -213,15 +226,27 @@ setInterval(() => {
     setTimeout(() => h.remove(), 6000);
 }, 350);
 
-/* SERVICE WORKER INLINE */
+// CARROSSEL AUTOMÁTICO
+fetch('img/list.json')
+.then(r => r.json())
+.then(fotos => {
+    const c = document.getElementById("carouselInner");
+    fotos.forEach((f, i) => {
+        const d = document.createElement("div");
+        d.className = "carousel-item" + (i === 0 ? " active" : "");
+        d.innerHTML = `<img src="img/${f}" class="d-block w-100">`;
+        c.appendChild(d);
+    });
+});
+
+// SERVICE WORKER INLINE (PWA)
 if ('serviceWorker' in navigator) {
-    const sw = `
-    self.addEventListener('fetch', e => {});
-    `;
-    const blob = new Blob([sw], {type: 'text/javascript'});
-    navigator.serviceWorker.register(URL.createObjectURL(blob));
+    const sw = `self.addEventListener('fetch',()=>{});`;
+    navigator.serviceWorker.register(URL.createObjectURL(
+        new Blob([sw], {type:'text/javascript'})
+    ));
 }
 </script>
 
 </body>
-      </html>
+</html>
