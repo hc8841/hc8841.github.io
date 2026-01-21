@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HenriqueOS</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link id="favicon" rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>$</text></svg>">
+
+<style>
+body { background:black; color:#00ff00; font-family:monospace; margin:0 }
+#terminal { padding:20px; white-space:pre-wrap; height:100vh; overflow-y:auto }
+.line { white-space:pre-wrap; }
+#input-line { display:flex; gap:6px; align-items:center }
+#input-line span { min-width:10px; color:inherit }
+.cmd {
+  background:black;
+  color:inherit;
+  border:none;
+  outline:none;
+  flex:1;
+  font-family:monospace;
+  caret-color:#00ff00;
+}
+a { color:inherit; text-decoration:underline }
+</style>
+</head>
+
+<body>
+<div id="terminal" class="container-fluid"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$(function(){
+
+const terminal=$("#terminal");
+let sudoMode=false;
+let history=[], historyIndex=0;
+
+const files={
+  "kernel_panic.txt":"Kernel panic - not syncing: curiosity overflow.",
+  "coffee_dependency.md":"System cannot boot without caffeine.",
+  "stackoverflow.log":"Searched same error 37 times. Solution ignored.",
+  "deprecated_code.c":"// TODO: rewrite this in Rust",
+  "todo_fix_later.sh":"#!/bin/bash\necho \"One day...\"",
+  "segfault_notes.txt":"Segmentation fault, investigate pointer usage."
+};
+
+const responses={
+  help:`Comandos disponíveis:
+  about
+  skills
+  experience
+  contact
+  certificates
+  whoami
+  neofetch
+  ls
+  cat <arquivo>
+  clear
+  shutdown now
+  exit
+`,
+  about:`
+Olá! Eu sou Henrique Eslabão da Fonseca Chaves, 19 anos.
+Formado em Técnico em Informática em 2023.
+Sempre fui apaixonado por tecnologia, especialmente hardware e low level.
+
+Curiosidade: Apesar de ainda não ter experiência formal em TI, meu interesse e dedicação pela área são enormes!
+`,
+  skills:`
+Habilidades técnicas:
+  - Hardware e manutenção de PCs
+  - Programação básica e lógica
+  - Conhecimento em sistemas e redes domésticas
+  - Segurança da informação (interesse e estudo)
+
+Soft skills:
+  - Liderança nata
+  - Raciocínio lógico e pensamento crítico
+  - Trabalho em equipe e comunicação clara
+`,
+  experience:`
+Experiências profissionais:
+  Condor S/A — Ajudante de carga e descarga
+  Raia Drogasil S.A — Atendente 1
+  SDB Comércio de Alimentos Ltda — Caixa
+`,
+  contact:`
+Email principal: <a href="mailto:henriquemattos841@gmail.com">henriquemattos841@gmail.com</a>
+Email secundário: <a href="mailto:henriquemattos841@tutamail.com">henriquemattos841@tutamail.com</a>
+Telefone: <a href="tel:+5547996736277">+55 47 99673-6277</a>
+GitHub: <a href="https://github.com/hc8841" target="_blank">github.com/hc8841</a>
+LinkedIn: <a href="https://linkedin.com/in/henrique-chaves-448288300" target="_blank">linkedin.com/in/henrique-chaves</a>
+`,
+  certificates:`Meus certificados podem ser acessados aqui:
+<a href="https://drive.google.com/drive/folders/1k7mJwBy7egEE-h_HCGNXxc6mR8M9QGmY" target="_blank">Google Drive - Certificados</a>
+`,
+  whoami:"henrique",
+  neofetch:`HenriqueOS
+User: henrique
+Shell: fakebash
+Uptime: since page load`
+};
+
+/* ---------- UTIL ---------- */
+function print(text){ $("<div class='line'>").html(text).appendTo(terminal); terminal.scrollTop(terminal[0].scrollHeight); }
+function setFavicon(c){ $("#favicon").attr("href",`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text x=%220%22 y=%2212%22 font-size=%2216%22>${c}</text></svg>`); }
+
+/* ---------- BOOT ---------- */
+const boot=[
+  "HenriqueOS bootloader v2.0",
+  "Initializing hardware...",
+  "Loading kernel modules...",
+  "Mounting /dev/sda1...",
+  "Starting fakebash...",
+  "",
+  "System ready. Type 'help'.",
+  ""
+];
+let i=0;
+function bootSequence(){ 
+  if(i<boot.length){ print(boot[i++]); setTimeout(bootSequence,300); } 
+  else newPrompt();
+}
+
+/* ---------- PROMPT ---------- */
+function newPrompt(){
+  const prompt = sudoMode ? "#" : "$";
+  const line=$("<div id='input-line' class='line'></div>");
+  line.append(`<span>${prompt}</span>`);
+  const input=$("<input class='cmd' autocomplete='off' spellcheck='false'>");
+  line.append(input);
+  terminal.append(line);
+  input.focus();
+  
+  input.on("keydown", function(e){
+    if(e.key==="Enter"){
+      const cmd=input.val().trim();
+      executeCommand(cmd);
+      e.preventDefault();
+    } else if(e.key==="ArrowUp"){ if(historyIndex>0){ input.val(history[--historyIndex]); } e.preventDefault(); }
+    else if(e.key==="ArrowDown"){ if(historyIndex<history.length-1){ input.val(history[++historyIndex]);}else{input.val("");} e.preventDefault(); }
+  });
+  terminal.scrollTop(terminal[0].scrollHeight);
+}
+
+/* ---------- EXEC ---------- */
+function executeCommand(cmd){
+  if(cmd!=="") history.push(cmd);
+  historyIndex=history.length;
+  $("#input-line").replaceWith(`<div class='line'>${sudoMode?"#":"$"} ${cmd}</div>`);
+
+  if(cmd==="clear"){ terminal.empty(); newPrompt(); return; }
+  if(cmd==="ls"){ print(Object.keys(files).join("   ")); newPrompt(); return; }
+  if(cmd.startsWith("cat ")){ 
+    const f=cmd.split(" ")[1]; 
+    print(files[f]||"cat: file not found"); newPrompt(); return; 
+  }
+  if(cmd==="sudo"){ 
+    sudoMode=true; 
+    terminal.css("color","red"); 
+    setFavicon("#"); 
+    print("Permission denied. You are now suspicious."); 
+    newPrompt(); return; 
+  }
+  if(cmd==="exit" && sudoMode){ 
+    sudoMode=false; 
+    terminal.css("color","#00ff00"); 
+    setFavicon("$"); 
+    print("Exited sudo mode."); 
+    newPrompt(); return; 
+  }
+  if(cmd==="shutdown now"){ print("Shutting down..."); setTimeout(()=>window.close(),1500); return; }
+
+  print(responses[cmd] || "Comando não encontrado.");
+  newPrompt();
+}
+
+bootSequence();
+
+});
+</script>
+</body>
+</html>
