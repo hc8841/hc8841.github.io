@@ -138,60 +138,140 @@ Mas você continua sendo especial.
 </div>
 
 </div>
-
 <script>
 
-let texto=`┌─[henrique@kali]─[~/heart]
-
+let texto = `┌─[henrique@kali]─[~/heart]
 └──╼ $ airmon-ng start wlan0
 
-monitor mode enabled
+Found device MEDIATEK MT7603
+Monitor mode enabled
 
 ┌─[henrique@kali]─[~/heart]
-
 └──╼ $ airodump-ng wlan0mon
 
-ESSID Agatha detected
+ESSID detected: Agatha
+Signal: Excelente
+Compatibility: 100%
 
-Signal excelente
-
-Compatibility 100%
-
-┌─[henrique@kali]
-
+┌─[henrique@kali]─[~/heart]
 └──╼ $ aircrack-ng love.cap
 
 KEY FOUND!
-
 quer_namorar_comigo
 
 OUTPUT:
 
-Agatha desde que te conheci
-
+Agatha, desde que te conheci
 você virou minha conexão favorita.
 
-Posso estabelecer
+Posso estabelecer uma conexão oficial? ❤️`;
 
-uma conexão oficial?`;
-
-let i=0;
+let i = 0;
+let digitando = false;
 
 function digitar(){
 
-if(i<texto.length){
+if(i < texto.length){
 
-$("#terminalText").append(texto.charAt(i));
+document.getElementById("terminalText").textContent += texto.charAt(i);
 
 i++;
 
-setTimeout(digitar,25);
+setTimeout(digitar,20);
+
+}else{
+
+digitando=false;
 
 }
 
 }
 
 $("#revelar").click(function(){
+
+$("#terminalBox").slideToggle(400,function(){
+
+if(!digitando && i===0){
+
+digitando=true;
+
+digitar();
+
+}
+
+});
+
+});
+
+$("#btnSim").click(function(){
+
+$("#msgNao").hide();
+
+$("#msgSim").fadeIn();
+
+confete();
+
+});
+
+$("#btnNao").mouseenter(function(){
+
+let x=Math.random()*150-75;
+
+let y=Math.random()*150-75;
+
+$(this).css("transform",
+`translate(${x}px,${y}px)`);
+
+});
+
+$("#btnNao").click(function(){
+
+$("#msgSim").hide();
+
+$("#msgNao").fadeIn();
+
+});
+
+function confete(){
+
+for(let i=0;i<60;i++){
+
+let div=document.createElement("div");
+
+div.className="confetti";
+
+document.body.appendChild(div);
+
+div.style.left=Math.random()*window.innerWidth+"px";
+
+div.style.background=
+"hsl("+Math.random()*360+",100%,60%)";
+
+div.animate([
+
+{transform:'translateY(0px)'},
+
+{transform:'translateY('+window.innerHeight+'px)'}
+
+],{
+
+duration:2000,
+
+iterations:1
+
+});
+
+setTimeout(()=>{
+
+div.remove();
+
+},2000);
+
+}
+
+}
+
+</script>
 
 $("#terminalBox").slideDown();
 
