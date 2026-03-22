@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>✨ Alya & Oxum — Um amor em flor ✨</title>
+  
+  <!-- Bootstrap 5 + Ícones + Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- jQuery (para pequenas interações) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: linear-gradient(145deg, #fff8e7 0%, #ffefc0 50%, #ffe6a3 100%);
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Efeito de partículas douradas sutis (apenas decorativo) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 20% 40%, rgba(255,215,0,0.08) 2%, transparent 2.5%),
+                        radial-gradient(circle at 80% 70%, rgba(218,165,32,0.08) 1.8%, transparent 2.2%);
+      background-size: 55px 55px, 70px 70px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 2;
+      margin-top: 30px;
+      margin-bottom: 50px;
+      max-width: 800px;
+      background: rgba(255, 252, 240, 0.6);
+      backdrop-filter: blur(2px);
+      border-radius: 60px 60px 50px 50px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 20px 30px 40px;
+    }
+    
+    /* título principal */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 3.3rem;
+      background: linear-gradient(135deg, #c97e0a, #f4b942, #e6a017);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 12px rgba(255,215,0,0.3);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    
+    .subtitulo {
+      font-size: 1.15rem;
+      color: #b0731a;
+      background: rgba(255,245,200,0.7);
+      display: inline-block;
+      padding: 5px 18px;
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    
+    /* card mensagem principal */
+    .mensagem {
+      background: rgba(255, 255, 250, 0.96);
+      padding: 28px 22px;
+      border-radius: 48px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,200,0.8);
+      margin-top: 20px;
+      border: 1px solid #ffecb3;
+      transition: transform 0.3s ease;
+    }
+    
+    .mensagem:hover {
+      transform: scale(1.01);
+    }
+    
+    .mensagem p {
+      font-size: 1.12rem;
+      line-height: 1.55;
+      color: #5a3e1b;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    
+    .mensagem p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .destaque-oxum {
+      background: linear-gradient(120deg, #fdebb3, #fff3cf);
+      display: inline-block;
+      padding: 0 6px;
+      border-radius: 20px;
+      font-weight: 600;
+      color: #bd7b13;
+    }
+    
+    /* seção música */
+    .music-card {
+      background: rgba(0,0,0,0.03);
+      border-radius: 35px;
+      padding: 12px 12px 8px;
+      margin-top: 15px;
+      transition: all 0.2s;
+    }
+    
+    .music-wrapper {
+      position: relative;
+      width: 100%;
+      height: 152px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 24px;
+    }
+    
+    /* carrossel elegante */
+    .carousel-container {
+      background: #fff9ed;
+      padding: 15px 12px 20px;
+      border-radius: 48px;
+      margin-top: 20px;
+      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+    }
+    
+    .carousel {
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    }
+    
+    .carousel-item img {
+      object-fit: cover;
+      height: 380px;
+      width: 100%;
+      background: #e9d7a3;
+      transition: transform 0.4s ease;
+    }
+    
+    .carousel-control-prev-icon, 
+    .carousel-control-next-icon {
+      background-color: #e6b422;
+      border-radius: 50%;
+      padding: 22px;
+      background-size: 55%;
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+    
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+      background-color: #c97e0a;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    
+    .legenda-carousel {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #aa7c3c;
+      font-weight: 500;
+      background: #fff3df;
+      display: inline-block;
+      padding: 4px 20px;
+      border-radius: 60px;
+    }
+    
+    /* contador de carinho (detalhe especial) */
+    .contador-carinho {
+      background: #fffaec;
+      border-radius: 80px;
+      padding: 10px 20px;
+      margin: 25px 0 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+      border: 1px solid #ffe1a0;
+    }
+    
+    .btn-coracao {
+      background: #ffd966;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 22px;
+      font-weight: bold;
+      color: #8b5a2b;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    
+    .btn-coracao i {
+      margin-right: 8px;
+      color: #e63946;
+    }
+    
+    .btn-coracao:hover {
+      background: #ffcd4a;
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    #carinhoCount {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #c96212;
+      font-family: monospace;
+      background: white;
+      padding: 0 12px;
+      border-radius: 50px;
+      min-width: 70px;
+    }
+    
+    /* footer refinado */
+    footer {
+      margin-top: 50px;
+      font-size: 1rem;
+      color: #b37b2e;
+      background: rgba(255,245,205,0.7);
+      padding: 12px 20px;
+      border-radius: 80px;
+      backdrop-filter: blur(5px);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    
+    footer i {
+      color: #f3a712;
+      margin: 0 3px;
+    }
+    
+    /* mensagem extra decorativa */
+    .selo-axé {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      background: #fae67a40;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 5px 20px;
+      border-radius: 40px;
+      color: #a57228;
+    }
+    
+    /* responsividade */
+    @media (max-width: 640px) {
+      .container {
+        padding: 15px 20px;
+        margin-top: 15px;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      .carousel-item img {
+        height: 280px;
+      }
+      .mensagem p {
+        font-size: 1rem;
+      }
+      .music-wrapper {
+        height: 130px;
+      }
+    }
+    
+    /* efeito brilho */
+    .glow-text {
+      text-shadow: 0 0 3px #ffd58c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Cabeçalho romântico -->
+  <h1><i class="fas fa-star-of-life" style="font-size: 2rem; color: #f5bc42;"></i> Para Alya <i class="fas fa-heart" style="font-size: 2rem; color: #ff8c42;"></i></h1>
+  <div class="subtitulo">
+    <i class="fas fa-feather-alt"></i> Minha essência, minha Oxum <i class="fas fa-water"></i>
+  </div>
+  
+  <!-- Mensagem principal + detalhes culturais e afetivos -->
+  <div class="mensagem">
+    <p>
+      <i class="fas fa-crown" style="color: #f3b33d;"></i> <strong class="destaque-oxum">Alya</strong>, desde que você chegou, meu mundo ganhou tons dourados e 
+      <i class="fas fa-leaf"></i> poesia infinita. Seu sorriso é como o reflexo do sol nas águas sagradas, 
+      uma energia que acalma e encanta.
+    </p>
+    <p>
+      <i class="fas fa-hand-sparkles"></i> Inspirada na beleza de <strong class="destaque-oxum">Oxum</strong>, senhora das águas doces, do ouro, do amor e da fertilidade, 
+      você carrega a delicadeza dos rios e a força que floresce nos corações. Que a doce mãe 
+      cubra seus caminhos com <i class="fas fa-feather"></i> axé, proteção e prosperidade. 🌊💛
+    </p>
+    <p>
+      <i class="fas fa-sun"></i> Cada momento ao seu lado é um presente divino. Que sua trajetória brilhe como 
+      as águas cristalinas, cheia de bênçãos, realizações e a certeza de que você é 
+      <strong class="destaque-oxum">única e insubstituível</strong>.
+    </p>
+    <p>
+      <i class="fas fa-gem"></i> Você é especial demais, minha princesa. Meu coração bate no ritmo da sua felicidade. ❤️‍🔥
+    </p>
+  </div>
+  
+  <!-- Nossa música + detalhe título -->
+  <div class="mt-4">
+    <h3 class="mb-2" style="font-weight: 700; color: #c67f1f;"><i class="fas fa-headphones-alt"></i> Nossa trilha sonora <i class="fas fa-music"></i></h3>
+    <p style="font-size: 0.9rem; color:#a4661a;">A música que traduz o que sinto — aperte o play e viaje comigo ✨</p>
+  </div>
+  
+  <div class="music-card">
+    <div class="music-wrapper">
+      <iframe src="https://open.spotify.com/embed/track/2DllnWTQNjh5NDN1A2ZtnH?utm_source=oembed&theme=0" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              title="Música especial para Alya"></iframe>
+    </div>
+  </div>
+  
+  <!-- Galeria de momentos com mais afeto -->
+  <h3 class="mt-5" style="font-weight: 700; color: #c67f1f;"><i class="fas fa-images"></i> Alguns momentos que guardo com amor 💛</h3>
+  <div class="carousel-container">
+    <div id="carouselMemorias" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="1.jpg" class="d-block w-100" alt="Momento especial 1 - Alya e sorriso radiante">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded-3">
+            <p class="fw-bold">✨ Sorriso que ilumina ✨</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="2.jpg" class="d-block w-100" alt="Momento 2 - Doce energia">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded-3">
+            <p class="fw-bold">🌼 Leveza e doçura 🌼</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="3.jpg" class="d-block w-100" alt="Momento 3 - Caminhos dourados">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded-3">
+            <p class="fw-bold">💛 Nossa sintonia 💛</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="4.jpg" class="d-block w-100" alt="Momento 4 - Abraço quentinho">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded-3">
+            <p class="fw-bold">🤗 Abraço que cura 🤗</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="5.jpg" class="d-block w-100" alt="Momento 5 - Energia Oxum">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded-3">
+            <p class="fw-bold">🌊 Como as águas de Oxum 🌊</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="6.jpg" class="d-block w-100" alt="Momento 6 - Eterno amor">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 rounded-3">
+            <p class="fw-bold">💎 Meu maior tesouro 💎</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselMemorias" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselMemorias" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+    </div>
+    <div class="legenda-carousel">
+      <i class="fas fa-camera-retro"></i> Clique nas setas ou deslize — cada clique é uma recordação
+    </div>
+  </div>
+  
+  <!-- Detalhe interativo: contador de carinho (lembrança afetiva) -->
+  <div class="contador-carinho">
+    <i class="fas fa-hands-clapping fa-2x" style="color:#f5bc42;"></i>
+    <span style="font-weight:600;">Toques de carinho:</span>
+    <span id="carinhoCount">0</span>
+    <button id="btnCarinho" class="btn-coracao"><i class="fas fa-heart"></i> Enviar axé</button>
+  </div>
+  <div class="selo-axé">
+    <i class="fas fa-dharmachakra"></i> Que Oxum abençoe nossa história <i class="fas fa-fan"></i>
+  </div>
+  
+  <!-- footer personalizado com mensagem extra e assinatura -->
+  <footer>
+    <i class="fas fa-feather-alt"></i> Feito com devoção, café e raios de sol <i class="fas fa-sun"></i> <br>
+    <span style="font-size:0.85rem;">✨ Para Alya — meu pedacinho de ouro neste mundo. Te amo além das palavras. ✨</span>
+    <div class="mt-2">
+      <i class="fab fa-spotify"></i> Música tema | <i class="fas fa-water"></i> Axé, amor e prosperidade
+    </div>
+  </footer>
+</div>
+
+<!-- Bootstrap JS (necessário para o carrossel funcionar) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- script adicional com contador e mensagem carinhosa -->
+<script>
+  $(document).ready(function(){
+    console.log("❤️ Site carregado com todo amor do mundo para Alya! ❤️");
+    
+    // Animação suave ao entrar na página
+    $(".container").hide().fadeIn(1000);
+    
+    // Contador de carinho interativo com localStorage para persistir carinho
+    let carinhoTotal = localStorage.getItem("carinhoAlya");
+    if(carinhoTotal === null || isNaN(parseInt(carinhoTotal))) {
+      carinhoTotal = 0;
+    } else {
+      carinhoTotal = parseInt(carinhoTotal);
+    }
+    $("#carinhoCount").text(carinhoTotal);
+    
+    $("#btnCarinho").on("click", function(){
+      carinhoTotal++;
+      $("#carinhoCount").text(carinhoTotal);
+      localStorage.setItem("carinhoAlya", carinhoTotal);
+      
+      // pequeno efeito visual
+      const btn = $(this);
+      btn.css("transform", "scale(0.95)");
+      setTimeout(() => btn.css("transform", "scale(1)"), 120);
+      
+      // mensagem flutuante de carinho
+      let mensagemFloat = $("<div class='toast-carinho'>💛 +1 Axé enviado! 💛</div>");
+      $("body").append(mensagemFloat);
+      mensagemFloat.css({
+        position: "fixed",
+        bottom: "20px",
+        right: "20px",
+        background: "#ffefb0",
+        color: "#aa6f20",
+        padding: "8px 16px",
+        borderRadius: "40px",
+        fontWeight: "bold",
+        zIndex: 9999,
+        boxShadow: "0 5px 12px rgba(0,0,0,0.2)",
+        fontFamily: "Poppins, sans-serif",
+        fontSize: "0.9rem",
+        borderLeft: "5px solid #f5bc42"
+      });
+      setTimeout(() => mensagemFloat.fadeOut(600, function(){ $(this).remove(); }), 1500);
+      
+      // se atingir marcos especiais, mostrar mensagem extra
+      if(carinhoTotal === 7) {
+        setTimeout(() => alert("✨ 7 toques de axé! Que a energia de Oxum te envolva sempre ✨"), 100);
+      } else if(carinhoTotal === 21) {
+        setTimeout(() => alert("🌼 21 carinhos! Nossa conexão é abençoada, minha princesa 🌼"), 100);
+      } else if(carinhoTotal === 50) {
+        setTimeout(() => alert("💎 50 vezes amor! Você ilumina minha vida! 💎"), 100);
+      }
+    });
+    
+    // melhorar fallback para imagens que não existem (evitar quebra visual)
+    $(".carousel-item img").each(function(){
+      $(this).on("error", function(){
+        $(this).attr("src", "https://placehold.co/800x500/ffe6b3/aa7733?text=Momentos+EmBreve+💛");
+        $(this).attr("alt", "Imagem temporária - recordações lindas");
+      });
+    });
+    
+    // adicionar tooltips suaves nos ícones de música e carrossel (bônus)
+    $(".music-wrapper").hover(function(){
+      $(this).css("box-shadow", "0 12px 25px rgba(0,0,0,0.2)");
+    }, function(){
+      $(this).css("box-shadow", "0 8px 18px rgba(0,0,0,0.1)");
+    });
+    
+    // prevenir erro de imagens, mensagem console amigável
+    console.log("🌈 Alya, esse site foi aprimorado com todo carinho, espero que sorria ao ver cada detalhe. 🌈");
+    
+    // bônus: inserir data e hora personalizada? (detalhe sutil)
+    let hoje = new Date();
+    let dataBonita = hoje.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+    $("footer").append(`<div style="font-size:0.7rem; margin-top:6px;"><i class="far fa-calendar-alt"></i> ${dataBonita} — Nosso amor em flor</div>`);
+  });
+</script>
+
+<!-- pequeno ajuste de estilo para notificação flutuante consistente -->
+<style>
+  .toast-carinho {
+    animation: fadeSlide 0.3s ease-out;
+  }
+  @keyframes fadeSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .carousel-caption p {
+    background: rgba(0,0,0,0.6);
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+  }
+  /* garantindo que o carrossel tenha indicadores mais suaves */
+  .carousel-indicators [data-bs-target] {
+    background-color: #e2a526;
+  }
+  .carousel-inner img {
+    background: #ffdd99;
+  }
+</style>
+</body>
+</html>
