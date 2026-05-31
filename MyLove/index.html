@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para o meu amor, Rebeca</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -34,6 +37,217 @@
         .card-pedido {
             background: rgba(255, 255, 255, 0.9);
             border: 2px solid var(--cor-secundaria);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+            padding: 40px 30px;
+            transition: all 0.5s ease;
+        }
+
+        .foto-placeholder {
+            width: 120px;
+            height: 120px;
+            background: var(--cor-secundaria);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-sim {
+            background-color: var(--cor-principal);
+            border: none;
+            color: white;
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-sim:hover {
+            background-color: var(--cor-escura);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .btn-nao {
+            background-color: #6c757d;
+            border: none;
+            color: white;
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: background-color 0.2s;
+        }
+
+        /* Container ajustado para segurar o botão fujão dentro do card */
+        .container-botoes {
+            position: relative;
+            min-height: 100px;
+            margin-top: 30px;
+        }
+
+        .secao-mae {
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            border-left: 5px solid var(--cor-principal);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        #tela-sucesso {
+            display: none;
+        }
+
+        .coracoes-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="coracoes-bg" id="coracoes"></div>
+
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                
+                <!-- TELA PRINCIPAL -->
+                <div id="tela-pedido" class="card-pedido">
+                    <div class="foto-placeholder">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    
+                    <h1 class="romantic-font display-4 mb-3" style="color: var(--cor-escura);">Querida Rebeca,</h1>
+                    
+                    <p class="lead">
+                        Cada momento ao seu lado tem sido único e especial. Seu sorriso ilumina os meus dias e o seu carinho transforma a minha vida.
+                    </p>
+
+                    <!-- Tópico Especial de Mãe -->
+                    <div class="secao-mae text-start">
+                        <h4 class="h5 fw-bold mb-2" style="color: var(--cor-escura);">
+                            <i class="fa-solid fa-baby-carriage me-2"></i> Uma Mulher e Mãe Admirável
+                        </h4>
+                        <p class="mb-0 small" style="line-height: 1.6;">
+                            Além de namorada incrível, ver a mãe dedicada, forte, amorosa e protetora que você é só me faz te admirar mil vezes mais. O tamanho do seu coração e o cuidado que você tem com a sua família me dão a certeza de que você é a mulher certa para a minha vida.
+                        </p>
+                    </div>
+
+                    <h3 class="romantic-font fs-2 mt-4 text-uppercase fw-bold" style="color: var(--cor-principal);">
+                        Quer namorar comigo?
+                    </h3>
+
+                    <!-- Container dos Botões Corrigido -->
+                    <div class="container-botoes d-flex justify-content-center align-items-center gap-4">
+                        <button id="btn-sim" class="btn btn-sim shadow">SIM!</button>
+                        <button id="btn-nao" class="btn btn-nao shadow">Não</button>
+                    </div>
+                </div>
+
+                <!-- TELA DE SUCESSO -->
+                <div id="tela-sucesso" class="card-pedido text-center">
+                    <div class="display-1 mb-3" style="color: var(--cor-principal);">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+                    <h1 class="romantic-font display-3" style="color: var(--cor-escura);">Ela disse SIM!</h1>
+                    <p class="lead mt-3">
+                        Obrigado por me escolher, Rebeca. Prometo te fazer a mulher e a mãe mais feliz e amada desse mundo todos os dias. Eu te amo! ❤️
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery e Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            
+            // Lógica corrigida para fazer o botão "Não" fugir sem quebrar o layout inicial
+            $('#btn-nao').on('mouseenter touchstart', function(e) {
+                e.preventDefault(); 
+                
+                var botao = $(this);
+                var container = $('.container-botoes');
+                
+                // Transforma o botão em absoluto apenas no primeiro toque/interação
+                if (botao.css('position') !== 'absolute') {
+                    botao.css({
+                        'position': 'absolute',
+                        'z-index': '10'
+                    });
+                }
+                
+                // Limites para o botão se mover dentro do container principal
+                var maxW = container.width() - botao.outerWidth();
+                var maxH = container.height() - botao.outerHeight();
+                
+                // Garante valores positivos para o cálculo aleatório
+                var novoX = Math.floor(Math.random() * Math.max(maxW, 1));
+                var novoY = Math.floor(Math.random() * Math.max(maxH, 1));
+                
+                botao.css({
+                    'left': novoX + 'px',
+                    'top': novoY + 'px'
+                });
+            });
+
+            // Ação ao clicar no botão "Sim"
+            $('#btn-sim').click(function() {
+                $('#tela-pedido').fadeOut(500, function() {
+                    $('#tela-sucesso').fadeIn(500);
+                    iniciarChuvaDeCoracoes();
+                });
+            });
+
+            // Chuva de corações
+            function iniciarChuvaDeCoracoes() {
+                setInterval(function() {
+                    var coracao = $('<div class="fa-solid fa-heart"></div>').css({
+                        'position': 'fixed',
+                        'top': '-20px',
+                        'left': Math.random() * $(window).width() + 'px',
+                        'color': Math.random() > 0.5 ? '#ff4d6d' : '#ff758f',
+                        'font-size': (Math.random() * 20 + 10) + 'px',
+                        'opacity': Math.random(),
+                        'z-index': '-1',
+                        'transition': 'transform 4s linear'
+                    });
+
+                    $('#coracoes').append(coracao);
+
+                    setTimeout(function() {
+                        coracao.css({
+                            'transform': 'translateY(' + ($(window).height() + 40) + 'px) rotate(' + (Math.random() * 360) + 'deg)',
+                        });
+                    }, 50);
+
+                    setTimeout(function() {
+                        coracao.remove();
+                    }, 4000);
+
+                }, 150);
+            }
+        });
+    </script>
+</body>
+</html>
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
             padding: 40px 30px;
