@@ -149,11 +149,21 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Animações de entrada */
-        .celebrate-bg {
-            transition: all 0.5s;
+        /* Mensagens Toast personalizadas */
+        .toast-romantic {
+            background: #fff0f3;
+            border-left: 8px solid #ff6b81;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            font-family: 'Segoe UI', sans-serif;
         }
-
+        .toast-romantic .toast-header {
+            background: #ffe4e9;
+            color: #b33b5c;
+            border-bottom: none;
+            border-radius: 24px 24px 0 0;
+        }
+        
         /* Responsividade */
         @media (max-width: 576px) {
             .glass-card {
@@ -197,9 +207,30 @@
             border: 1px solid #ff95a8;
             color: #c73b5e;
         }
+
+        /* Container dos toasts fixo */
+        .toast-container-custom {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        @media (max-width: 576px) {
+            .toast-container-custom {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Container de toasts para mensagens -->
+    <div class="toast-container-custom" id="toastContainer"></div>
 
     <!-- container principal -->
     <div class="container d-flex align-items-center justify-content-center min-vh-100 py-4">
@@ -267,11 +298,50 @@
     <script>
         $(document).ready(function() {
             let aceito = false;      // controle para não repetir a celebração
-            let heartInterval;       // intervalo dos corações flutuantes
             
-            // ========== FIRULA: CORAÇÕES FLUTUANDO INFINITOS ==========
+            // ========== FUNÇÃO PARA MOSTRAR TOASTS (MENSAGENS) ==========
+            function showMessage(title, message, icon = '❤️', bgClass = 'toast-romantic') {
+                const toastId = 'toast-' + Date.now() + Math.random();
+                const toastHtml = `
+                    <div id="${toastId}" class="toast ${bgClass}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="4000">
+                        <div class="toast-header">
+                            <i class="fas ${icon} me-2" style="color:#d43f6b;"></i>
+                            <strong class="me-auto">${title}</strong>
+                            <small>agorinha</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
+                        </div>
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                    </div>
+                `;
+                $('#toastContainer').append(toastHtml);
+                const toastElement = document.getElementById(toastId);
+                const bsToast = new bootstrap.Toast(toastElement, { animation: true, autohide: true, delay: 4000 });
+                bsToast.show();
+                // Remove do DOM após sumir
+                toastElement.addEventListener('hidden.bs.toast', function() {
+                    $(this).remove();
+                });
+            }
+            
+            // Mensagens personalizadas para cada interação
+            function showSimHoverMessage() {
+                showMessage('Ei, Fernanda 💖', 'Sabia que você ia querer saber mais... aperta o SIM e me faz a pessoa mais feliz!', 'fa-heart');
+            }
+            function showNaoHoverMessage() {
+                showMessage('Ops! 💔', 'Antes de clicar, pensa bem... meu coração já é todo seu!', 'fa-heart-broken');
+            }
+            function showSimClickMessage() {
+                showMessage('Você é demais! 🥰', 'O melhor clique da minha vida! Prepara os fogos...', 'fa-check-circle');
+            }
+            function showNaoClickMessage() {
+                showMessage('Amor, não faz isso! 😢', 'Seu coraçãozinho sabe que a resposta certa é SIM. Olha o modal mágico ali 👆', 'fa-sad-tear');
+            }
+            
+            // ========== CORAÇÕES FLUTUANTES ==========
             function createFloatingHeart() {
-                if (aceito) return; // mesmo depois do sim continuamos criando (mais romance) - sem problemas
+                if (aceito) return;
                 const heart = $('<div class="floating-heart"><i class="fas fa-heart"></i></div>');
                 const randomLeft = Math.random() * 100;
                 const randomSize = 0.8 + Math.random() * 1.2;
@@ -283,88 +353,41 @@
                     opacity: 0.7 + Math.random() * 0.3
                 });
                 $('body').append(heart);
-                // remover após animação
-                setTimeout(() => {
-                    heart.remove();
-                }, duration * 1000);
+                setTimeout(() => heart.remove(), duration * 1000);
             }
             
-            // gera corações a cada 400ms (bastante firula)
-            heartInterval = setInterval(() => {
+            // Geração contínua de corações
+            setInterval(() => {
                 if (!aceito) createFloatingHeart();
-                else {
-                    // mesmo após sim, continua gerando alguns corações mas menos frequente (só pra festa)
-                    if (Math.random() > 0.4) createFloatingHeart();
-                }
+                else if (Math.random() > 0.4) createFloatingHeart();
             }, 450);
             
-            // função de confete ESTILO CARNAVAL + corações
+            // ========== CONFETES ==========
             function superConfetti() {
-                // rajada principal
-                canvasConfetti({
-                    particleCount: 180,
-                    spread: 100,
-                    origin: { y: 0.6 },
-                    startVelocity: 20,
-                    colors: ['#ff3366', '#ff66b5', '#ffb3c6', '#ff8c94', '#ffd966']
-                });
+                canvasConfetti({ particleCount: 180, spread: 100, origin: { y: 0.6 }, startVelocity: 20, colors: ['#ff3366', '#ff66b5', '#ffb3c6', '#ff8c94', '#ffd966'] });
                 setTimeout(() => {
-                    canvasConfetti({
-                        particleCount: 70,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0, y: 0.7 },
-                        colors: ['#f9a8d4', '#ff6b81']
-                    });
-                    canvasConfetti({
-                        particleCount: 70,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1, y: 0.7 },
-                        colors: ['#f9a8d4', '#ff6b81']
-                    });
+                    canvasConfetti({ particleCount: 70, angle: 60, spread: 55, origin: { x: 0, y: 0.7 }, colors: ['#f9a8d4', '#ff6b81'] });
+                    canvasConfetti({ particleCount: 70, angle: 120, spread: 55, origin: { x: 1, y: 0.7 }, colors: ['#f9a8d4', '#ff6b81'] });
                 }, 150);
-                // efeito cascata
                 setTimeout(() => {
-                    canvasConfetti({
-                        particleCount: 300,
-                        spread: 120,
-                        origin: { y: 0.5, x: 0.5 },
-                        startVelocity: 25,
-                        decay: 0.9,
-                        colors: ['#ff4d6d', '#ffb3c6', '#ff9eb5']
-                    });
+                    canvasConfetti({ particleCount: 300, spread: 120, origin: { y: 0.5, x: 0.5 }, startVelocity: 25, decay: 0.9, colors: ['#ff4d6d', '#ffb3c6', '#ff9eb5'] });
                 }, 400);
-                // confete de coração (simulação com emoji)
                 for(let i = 0; i < 8; i++) {
                     setTimeout(() => {
-                        canvasConfetti({
-                            particleCount: 30,
-                            spread: 45,
-                            origin: { y: 0.5 + Math.random() * 0.3, x: Math.random() },
-                            startVelocity: 20,
-                            ticks: 200,
-                            colors: ['#ff3b6f', '#ff87a2', '#ffcdb0']
-                        });
+                        canvasConfetti({ particleCount: 30, spread: 45, origin: { y: 0.5 + Math.random() * 0.3, x: Math.random() }, startVelocity: 20, ticks: 200, colors: ['#ff3b6f', '#ff87a2', '#ffcdb0'] });
                     }, i * 100);
                 }
             }
             
-            // função de alegria pós SIM
+            // ========== CELEBRAÇÃO ==========
             function celebrarNamoro() {
                 if (aceito) return;
                 aceito = true;
                 
-                // desabilita os botões originais visualmente e troca conteúdo
                 $('#simBtn, #naoBtn').prop('disabled', true).css('opacity', '0.6');
-                
-                // Efeito de sombra e comemoração no card
                 $('.glass-card').addClass('animate__animated animate__rubberBand');
-                setTimeout(() => {
-                    $('.glass-card').removeClass('animate__rubberBand');
-                }, 700);
+                setTimeout(() => $('.glass-card').removeClass('animate__rubberBand'), 700);
                 
-                // Substitui o conteúdo principal por uma mensagem apaixonada
                 const celebrationHtml = `
                     <div class="love-message animate__animated animate__heartBeat">
                         <i class="fas fa-heart" style="font-size: 5rem; color:#e8436e; animation: pulseBeat 0.9s infinite;"></i>
@@ -385,20 +408,15 @@
                     </div>
                 `;
                 
-                // faz fade out e troca conteúdo com show de efeitos
                 $('#proposalContent').fadeOut(300, function() {
                     $(this).html(celebrationHtml).fadeIn(800);
                 });
                 
-                // SUPER CONFETI + foguetes emocionais
                 superConfetti();
-                // segundo round de confete
                 setTimeout(() => superConfetti(), 800);
-                setTimeout(() => {
-                    canvasConfetti({ particleCount: 500, spread: 130, origin: { y: 0.7 } });
-                }, 1500);
+                setTimeout(() => canvasConfetti({ particleCount: 500, spread: 130, origin: { y: 0.7 } }), 1500);
                 
-                // Adiciona um som virtual? Não autoplay, mas efeito extra: mudar título da página
+                // Título animado
                 let titleCounter = 0;
                 const originalTitle = document.title;
                 const loveMessages = ["💞 Fernanda aceitou!! 💞", "❤️ TE AMO FERNANDA ❤️", "🎉 NAMORADOS! 🎉", "💖 FELICIDADE 💖"];
@@ -409,47 +427,18 @@
                 }, 800);
                 setTimeout(() => { document.title = originalTitle; }, 7000);
                 
-                // Mostra notificação de browser (caso permita)
                 if ("Notification" in window && Notification.permission === "granted") {
                     new Notification("Fernanda aceitou o pedido! 💖", { body: "Felicidades ao casal! ❤️" });
                 } else if (Notification.permission !== "denied") {
                     Notification.requestPermission();
                 }
                 
-                // Remove evento dos botões antigos (já desativados) mas garantimos nenhum efeito extra
-                $('#resetCelebration').on('click', function() {
-                    location.reload(); // simples: recarrega a magia (opção de recomeçar)
-                });
+                $('#resetCelebration').on('click', function() { location.reload(); });
             }
             
-            // ========== EVENTO SIM DIRETO ==========
-            $('#simBtn').on('click', function(e) {
-                e.preventDefault();
-                if(aceito) return;
-                // Efeito extra de corações instantâneos
-                for(let i=0;i<12;i++) {
-                    setTimeout(() => createFloatingHeart(), i*60);
-                }
-                celebrarNamoro();
-            });
+            // ========== EVENTOS DOS BOTÕES COM MENSAGENS ==========
             
-            // ========== EVENTO NÃO - Abre modal charmoso ==========
-            $('#naoBtn').on('click', function(e) {
-                e.preventDefault();
-                if(aceito) return;
-                // Efeito dramático: um coração partido flutuante
-                const brokenHeart = $('<div class="floating-heart"><i class="fas fa-heart-broken"></i></div>');
-                brokenHeart.css({ left: '50%', fontSize: '2.5rem', animationDuration: '1.8s' });
-                $('body').append(brokenHeart);
-                setTimeout(() => brokenHeart.remove(), 1800);
-                // Abrir modal
-                const myModal = new bootstrap.Modal(document.getElementById('noModal'));
-                myModal.show();
-            });
-            
-            // Dentro do modal: botão "QUERO DIZER SIM" aciona a celebração e fecha modal
-            $('#modalSimRedirect').on('click', function() {
-                if(aceito) return;
-                // fechar modal
-                bootstrap.Modal.getInstance(document.getElementById('noModal')).hide();
-  
+            // Botão SIM: hover mostra mensagem romântica, clique mostra mensagem + celebra
+            $('#simBtn').on('mouseenter', function() {
+                if(!aceito) showSimHoverMessage();
+            }).
