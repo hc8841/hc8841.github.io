@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Alice, você aceita namorar comigo? ❤️</title>
+    <title>Fernanda, vocÃª aceita namorar comigo? â¤ï¸</title>
     <!-- Bootstrap 5 + Icons + jQuery + Animate.css + Canvas Confetti -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -27,7 +27,7 @@
             padding: 1rem;
         }
 
-        /* Corações flutuantes (firula total) */
+        /* CoraÃ§Ãµes flutuantes (firula total) */
         .floating-heart {
             position: fixed;
             bottom: -20px;
@@ -54,7 +54,7 @@
             }
         }
 
-        /* Card principal com efeito vidro e animação */
+        /* Card principal com efeito vidro e animaÃ§Ã£o */
         .glass-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
@@ -114,7 +114,7 @@
             color: white;
         }
 
-        .alice-name {
+        .Fernanda-name {
             font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
             font-weight: bold;
@@ -137,7 +137,7 @@
             flex-wrap: wrap;
         }
 
-        /* Efeito pulsante no coraçãozinho */
+        /* Efeito pulsante no coraÃ§Ã£ozinho */
         .pulse-heart {
             animation: pulseBeat 1.2s infinite;
             display: inline-block;
@@ -149,7 +149,7 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Animações de entrada */
+        /* AnimaÃ§Ãµes de entrada */
         .celebrate-bg {
             transition: all 0.5s;
         }
@@ -160,7 +160,7 @@
                 margin: 1rem;
                 border-radius: 40px;
             }
-            .alice-name {
+            .Fernanda-name {
                 font-size: 2.5rem;
             }
             .question-text {
@@ -175,7 +175,7 @@
             }
         }
 
-        /* mensagem pós aceite */
+        /* mensagem pÃ³s aceite */
         .love-message {
             background: rgba(255, 230, 235, 0.9);
             border-radius: 48px;
@@ -206,48 +206,48 @@
         <div class="row w-100 justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="glass-card p-4 p-md-5 text-center position-relative animate__animated animate__fadeInUp">
-                    <!-- Ícone enfeite -->
+                    <!-- Ãcone enfeite -->
                     <div class="mb-3">
                         <i class="fas fa-heart pulse-heart heart-title" style="font-size: 3.2rem; color:#e8436e;"></i>
                     </div>
                     
-                    <!-- Conteúdo que será alterado após o sim (dentro da div .proposal-content) -->
+                    <!-- ConteÃºdo que serÃ¡ alterado apÃ³s o sim (dentro da div .proposal-content) -->
                     <div id="proposalContent">
-                        <h1 class="alice-name mb-3">Alice <i class="fas fa-star-of-life" style="font-size: 1.8rem;"></i></h1>
+                        <h1 class="Fernanda-name mb-3">Fernanda <i class="fas fa-star-of-life" style="font-size: 1.8rem;"></i></h1>
                         <div class="mb-4">
                             <span class="question-text"><i class="fas fa-feather-alt me-2"></i> Desde que te conheci, tudo tem mais cor... <i class="fas fa-feather-alt ms-2"></i></span>
                         </div>
-                        <p class="fs-4 fw-light text-dark">Você transforma meus dias em poesia.<br> Meu coração já escolheu:</p>
-                        <h2 class="display-6 fw-bold text-danger mb-4">💖 VOCÊ QUER NAMORAR COMIGO? 💖</h2>
+                        <p class="fs-4 fw-light text-dark">VocÃª transforma meus dias em poesia.<br> Meu coraÃ§Ã£o jÃ¡ escolheu:</p>
+                        <h2 class="display-6 fw-bold text-danger mb-4">ðŸ’– VOCÃŠ QUER NAMORAR COMIGO? ðŸ’–</h2>
                         
-                        <!-- Botões de ação -->
+                        <!-- BotÃµes de aÃ§Ã£o -->
                         <div class="d-flex justify-content-center btn-container mt-3 mb-2">
                             <button id="simBtn" class="btn btn-love"><i class="fas fa-check-circle me-2"></i> SIM, ACEITO!</button>
-                            <button id="naoBtn" class="btn btn-secondary-love"><i class="fas fa-heart-broken me-2"></i> NÃO</button>
+                            <button id="naoBtn" class="btn btn-secondary-love"><i class="fas fa-heart-broken me-2"></i> NÃƒO</button>
                         </div>
-                        <p class="mt-4 text-muted small"><i class="fas fa-grin-hearts"></i> Clique com o coração, Alice <i class="fas fa-grin-hearts"></i></p>
+                        <p class="mt-4 text-muted small"><i class="fas fa-grin-hearts"></i> Clique com o coraÃ§Ã£o, Fernanda <i class="fas fa-grin-hearts"></i></p>
                     </div>
                 </div>
-                <!-- mini footer romântico -->
+                <!-- mini footer romÃ¢ntico -->
                 <footer class="text-center mt-4 text-dark opacity-50">
-                    <i class="fas fa-infinity"></i> pra sempre, só você <i class="fas fa-infinity"></i>
+                    <i class="fas fa-infinity"></i> pra sempre, sÃ³ vocÃª <i class="fas fa-infinity"></i>
                 </footer>
             </div>
         </div>
     </div>
 
-    <!-- Modal do "NÃO" super charmoso (Não tem como escapar do SIM) -->
+    <!-- Modal do "NÃƒO" super charmoso (NÃ£o tem como escapar do SIM) -->
     <div class="modal fade" id="noModal" tabindex="-1" aria-labelledby="noModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="border-radius: 40px; background: #fff5f7; border: 2px solid #ffb7c5;">
                 <div class="modal-header border-0 justify-content-center">
                     <i class="fas fa-heartbeat fa-3x text-danger me-2"></i>
-                    <h5 class="modal-title fw-bold text-dark" id="noModalLabel">Pensou direitinho, Alice?</h5>
+                    <h5 class="modal-title fw-bold text-dark" id="noModalLabel">Pensou direitinho, Fernanda?</h5>
                 </div>
                 <div class="modal-body text-center">
                     <i class="fas fa-sad-tear fa-4x text-secondary mb-3"></i>
-                    <p class="fs-5">Meu coraçãozinho disparou... 💔<br> Mas eu sei que no fundo você quer dizer <strong class="text-danger">SIM</strong>!</p>
-                    <p class="fw-light">Vamos lá, dê uma chance pro amor? Clique no botão mágico:</p>
+                    <p class="fs-5">Meu coraÃ§Ã£ozinho disparou... ðŸ’”<br> Mas eu sei que no fundo vocÃª quer dizer <strong class="text-danger">SIM</strong>!</p>
+                    <p class="fw-light">Vamos lÃ¡, dÃª uma chance pro amor? Clique no botÃ£o mÃ¡gico:</p>
                 </div>
                 <div class="modal-footer border-0 justify-content-center gap-3">
                     <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal"><i class="fas fa-times"></i> Pensar mais</button>
@@ -257,7 +257,7 @@
         </div>
     </div>
 
-    <!-- Botão secreto de mais efeitos (firula extra) -->
+    <!-- BotÃ£o secreto de mais efeitos (firula extra) -->
     <div class="position-fixed bottom-0 end-0 m-3 d-none d-md-block" style="z-index: 1050;">
         <button id="extraSparkleBtn" class="btn btn-sm btn-outline-romantic rounded-circle shadow-sm" style="width: 45px; height: 45px;">
             <i class="fas fa-magic"></i>
@@ -266,10 +266,10 @@
 
     <script>
         $(document).ready(function() {
-            let aceito = false;      // controle para não repetir a celebração
-            let heartInterval;       // intervalo dos corações flutuantes
+            let aceito = false;      // controle para nÃ£o repetir a celebraÃ§Ã£o
+            let heartInterval;       // intervalo dos coraÃ§Ãµes flutuantes
             
-            // ========== FIRULA: CORAÇÕES FLUTUANDO INFINITOS ==========
+            // ========== FIRULA: CORAÃ‡Ã•ES FLUTUANDO INFINITOS ==========
             function createFloatingHeart() {
                 if (aceito) return; // mesmo depois do sim continuamos criando (mais romance) - sem problemas
                 const heart = $('<div class="floating-heart"><i class="fas fa-heart"></i></div>');
@@ -283,22 +283,22 @@
                     opacity: 0.7 + Math.random() * 0.3
                 });
                 $('body').append(heart);
-                // remover após animação
+                // remover apÃ³s animaÃ§Ã£o
                 setTimeout(() => {
                     heart.remove();
                 }, duration * 1000);
             }
             
-            // gera corações a cada 400ms (bastante firula)
+            // gera coraÃ§Ãµes a cada 400ms (bastante firula)
             heartInterval = setInterval(() => {
                 if (!aceito) createFloatingHeart();
                 else {
-                    // mesmo após sim, continua gerando alguns corações mas menos frequente (só pra festa)
+                    // mesmo apÃ³s sim, continua gerando alguns coraÃ§Ãµes mas menos frequente (sÃ³ pra festa)
                     if (Math.random() > 0.4) createFloatingHeart();
                 }
             }, 450);
             
-            // função de confete ESTILO CARNAVAL + corações
+            // funÃ§Ã£o de confete ESTILO CARNAVAL + coraÃ§Ãµes
             function superConfetti() {
                 // rajada principal
                 canvasConfetti({
@@ -335,7 +335,7 @@
                         colors: ['#ff4d6d', '#ffb3c6', '#ff9eb5']
                     });
                 }, 400);
-                // confete de coração (simulação com emoji)
+                // confete de coraÃ§Ã£o (simulaÃ§Ã£o com emoji)
                 for(let i = 0; i < 8; i++) {
                     setTimeout(() => {
                         canvasConfetti({
@@ -350,33 +350,33 @@
                 }
             }
             
-            // função de alegria pós SIM
+            // funÃ§Ã£o de alegria pÃ³s SIM
             function celebrarNamoro() {
                 if (aceito) return;
                 aceito = true;
                 
-                // desabilita os botões originais visualmente e troca conteúdo
+                // desabilita os botÃµes originais visualmente e troca conteÃºdo
                 $('#simBtn, #naoBtn').prop('disabled', true).css('opacity', '0.6');
                 
-                // Efeito de sombra e comemoração no card
+                // Efeito de sombra e comemoraÃ§Ã£o no card
                 $('.glass-card').addClass('animate__animated animate__rubberBand');
                 setTimeout(() => {
                     $('.glass-card').removeClass('animate__rubberBand');
                 }, 700);
                 
-                // Substitui o conteúdo principal por uma mensagem apaixonada
+                // Substitui o conteÃºdo principal por uma mensagem apaixonada
                 const celebrationHtml = `
                     <div class="love-message animate__animated animate__heartBeat">
                         <i class="fas fa-heart" style="font-size: 5rem; color:#e8436e; animation: pulseBeat 0.9s infinite;"></i>
-                        <h2 class="fw-bold mt-3" style="color:#a12a48;">✨ SIM! ✨</h2>
-                        <h3 class="display-6 fw-bold text-danger">Você aceitou, Alice!</h3>
+                        <h2 class="fw-bold mt-3" style="color:#a12a48;">âœ¨ SIM! âœ¨</h2>
+                        <h3 class="display-6 fw-bold text-danger">VocÃª aceitou, Fernanda!</h3>
                         <div class="my-4">
                             <i class="fas fa-check-circle fa-3x text-success"></i>
                             <i class="fas fa-heart fa-3x text-danger mx-2"></i>
                             <i class="fas fa-check-circle fa-3x text-success"></i>
                         </div>
-                        <p class="fs-3 fw-light">Agora somos namorados oficialmente! 💑</p>
-                        <p class="fs-5">Você é a pessoa mais especial do mundo, e vou te fazer feliz todos os dias ❤️</p>
+                        <p class="fs-3 fw-light">Agora somos namorados oficialmente! ðŸ’‘</p>
+                        <p class="fs-5">VocÃª Ã© a pessoa mais especial do mundo, e vou te fazer feliz todos os dias â¤ï¸</p>
                         <div class="cute-gif-place mt-3">
                             <i class="fas fa-kiss-wink-heart fa-3x"></i>  <i class="fas fa-cake-candles fa-3x"></i>  <i class="fas fa-champagne-glasses fa-3x"></i>
                         </div>
@@ -385,7 +385,7 @@
                     </div>
                 `;
                 
-                // faz fade out e troca conteúdo com show de efeitos
+                // faz fade out e troca conteÃºdo com show de efeitos
                 $('#proposalContent').fadeOut(300, function() {
                     $(this).html(celebrationHtml).fadeIn(800);
                 });
@@ -398,10 +398,10 @@
                     canvasConfetti({ particleCount: 500, spread: 130, origin: { y: 0.7 } });
                 }, 1500);
                 
-                // Adiciona um som virtual? Não autoplay, mas efeito extra: mudar título da página
+                // Adiciona um som virtual? NÃ£o autoplay, mas efeito extra: mudar tÃ­tulo da pÃ¡gina
                 let titleCounter = 0;
                 const originalTitle = document.title;
-                const loveMessages = ["💞 Alice aceitou!! 💞", "❤️ TE AMO ALICE ❤️", "🎉 NAMORADOS! 🎉", "💖 FELICIDADE 💖"];
+                const loveMessages = ["ðŸ’ž Fernanda aceitou!! ðŸ’ž", "â¤ï¸ TE AMO Fernanda â¤ï¸", "ðŸŽ‰ NAMORADOS! ðŸŽ‰", "ðŸ’– FELICIDADE ðŸ’–"];
                 const titleInterval = setInterval(() => {
                     document.title = loveMessages[titleCounter % loveMessages.length];
                     titleCounter++;
@@ -409,16 +409,16 @@
                 }, 800);
                 setTimeout(() => { document.title = originalTitle; }, 7000);
                 
-                // Mostra notificação de browser (caso permita)
+                // Mostra notificaÃ§Ã£o de browser (caso permita)
                 if ("Notification" in window && Notification.permission === "granted") {
-                    new Notification("Alice aceitou o pedido! 💖", { body: "Felicidades ao casal! ❤️" });
+                    new Notification("Fernanda aceitou o pedido! ðŸ’–", { body: "Felicidades ao casal! â¤ï¸" });
                 } else if (Notification.permission !== "denied") {
                     Notification.requestPermission();
                 }
                 
-                // Remove evento dos botões antigos (já desativados) mas garantimos nenhum efeito extra
+                // Remove evento dos botÃµes antigos (jÃ¡ desativados) mas garantimos nenhum efeito extra
                 $('#resetCelebration').on('click', function() {
-                    location.reload(); // simples: recarrega a magia (opção de recomeçar)
+                    location.reload(); // simples: recarrega a magia (opÃ§Ã£o de recomeÃ§ar)
                 });
             }
             
@@ -426,18 +426,18 @@
             $('#simBtn').on('click', function(e) {
                 e.preventDefault();
                 if(aceito) return;
-                // Efeito extra de corações instantâneos
+                // Efeito extra de coraÃ§Ãµes instantÃ¢neos
                 for(let i=0;i<12;i++) {
                     setTimeout(() => createFloatingHeart(), i*60);
                 }
                 celebrarNamoro();
             });
             
-            // ========== EVENTO NÃO - Abre modal charmoso ==========
+            // ========== EVENTO NÃƒO - Abre modal charmoso ==========
             $('#naoBtn').on('click', function(e) {
                 e.preventDefault();
                 if(aceito) return;
-                // Efeito dramático: um coração partido flutuante
+                // Efeito dramÃ¡tico: um coraÃ§Ã£o partido flutuante
                 const brokenHeart = $('<div class="floating-heart"><i class="fas fa-heart-broken"></i></div>');
                 brokenHeart.css({ left: '50%', fontSize: '2.5rem', animationDuration: '1.8s' });
                 $('body').append(brokenHeart);
@@ -447,71 +447,9 @@
                 myModal.show();
             });
             
-            // Dentro do modal: botão "QUERO DIZER SIM" aciona a celebração e fecha modal
+            // Dentro do modal: botÃ£o "QUERO DIZER SIM" aciona a celebraÃ§Ã£o e fecha modal
             $('#modalSimRedirect').on('click', function() {
                 if(aceito) return;
                 // fechar modal
                 bootstrap.Modal.getInstance(document.getElementById('noModal')).hide();
-                // cria vários corações e confetes antes de celebrar
-                for(let i=0;i<20;i++) {
-                    setTimeout(() => createFloatingHeart(), i * 50);
-                }
-                celebrarNamoro();
-            });
-            
-            // Firula extra: botão mágico flutuante que faz chuva de corações e confetes (surpresa)
-            $('#extraSparkleBtn').on('click', function() {
-                canvasConfetti({ particleCount: 250, spread: 80, origin: { y: 0.5 }, colors: ['#f7a1c4', '#ff6b81', '#ffe5b4'] });
-                for(let s=0; s<15; s++) {
-                    setTimeout(() => createFloatingHeart(), s * 70);
-                }
-                // animação no botão
-                $(this).addClass('animate__animated animate__tada');
-                setTimeout(() => $(this).removeClass('animate__animated animate__tada'), 600);
-                // mensagem sutil
-                $('.glass-card').addClass('animate__pulse');
-                setTimeout(() => $('.glass-card').removeClass('animate__pulse'), 500);
-            });
-            
-            // Efeito de hover nos botões, corações extras (firula)
-            $('#simBtn, #naoBtn').hover(function() {
-                if(!aceito) {
-                    createFloatingHeart();
-                }
-            });
-            
-            // Pré carregar mais corações na inicialização
-            for(let i=0;i<6;i++) {
-                setTimeout(() => createFloatingHeart(), i*200);
-            }
-            
-            // Efeito de digitação no título (firulinha romântica)
-            let romanticPhrases = ["❤️ Alice ❤️", "Meu amor", "Pra sempre", "Namoro?"];
-            let phraseIndex = 0;
-            setInterval(() => {
-                if(!aceito) {
-                    $('.alice-name i').addClass('animate__heartBeat');
-                    setTimeout(() => $('.alice-name i').removeClass('animate__heartBeat'), 500);
-                }
-            }, 3000);
-            
-            // Botão de flores adicionais: Ao clicar em qualquer lugar do card com coração (double click??) firula)
-            $('.glass-card').on('dblclick', function(e) {
-                if(!aceito) {
-                    for(let i=0;i<9;i++) {
-                        setTimeout(() => createFloatingHeart(), i*40);
-                    }
-                    canvasConfetti({ particleCount: 70, spread: 45, origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }, colors: ['#ffb7c5', '#ff6b81'] });
-                }
-            });
-            
-            // Adiciona estrelinha flutuante em modo mobile também: Garantir que a cada 2 segundos um coração extra pisca
-            setInterval(() => {
-                if (!aceito && Math.random() > 0.6) createFloatingHeart();
-            }, 1200);
-        });
-    </script>
-    <!-- Ajuste extra caso Bootstrap e jquery completos -->
-    <noscript><p style="color:red">Habilite JavaScript para ver toda a magia do pedido!</p></noscript>
-</body>
-</html>
+                // cria vÃ¡rios cora
