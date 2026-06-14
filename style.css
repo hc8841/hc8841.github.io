@@ -1,0 +1,185 @@
+:root {
+    --term-green: #4af626;
+    --term-dim: #278114;
+    --term-bg: #0a0a0a;
+    --term-text: #d1d1d1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--term-bg);
+    color: var(--term-green);
+    font-family: "Fira Code", "Courier New", monospace;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Área principal */
+#terminal {
+    position: relative;
+    padding: 25px;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--term-dim) var(--term-bg);
+}
+
+/* Scrollbar Chrome */
+#terminal::-webkit-scrollbar {
+    width: 8px;
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: var(--term-bg);
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background: var(--term-dim);
+}
+
+/* Linhas */
+.line {
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.command-output {
+    margin-bottom: 12px;
+    color: var(--term-text);
+}
+
+/* Prompt */
+#input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.prompt-symbol {
+    color: var(--term-green);
+    font-weight: bold;
+}
+
+.cmd-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--term-green);
+    font-family: inherit;
+    font-size: 1rem;
+    flex: 1;
+    caret-color: var(--term-green);
+}
+
+/* Links */
+a {
+    color: #5bc0de;
+    text-decoration: none;
+    border-bottom: 1px dashed #5bc0de;
+}
+
+a:hover {
+    color: var(--term-green);
+    border-bottom: 1px solid var(--term-green);
+}
+
+/* ASCII Art */
+.ascii-art {
+    color: var(--term-green);
+    line-height: 1.1;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+/* Cursor piscando */
+.cmd-input::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* CRT */
+#terminal::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.06),
+            rgba(0, 255, 0, 0.02),
+            rgba(0, 0, 255, 0.06)
+        );
+
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Glow verde */
+#terminal {
+    text-shadow:
+        0 0 4px rgba(74, 246, 38, 0.4),
+        0 0 8px rgba(74, 246, 38, 0.15);
+}
+
+/* Seleção */
+::selection {
+    background: var(--term-green);
+    color: black;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    #terminal {
+        padding: 15px;
+    }
+
+    .cmd-input {
+        font-size: 0.95rem;
+    }
+
+    .ascii-art {
+        font-size: 0.65rem;
+        line-height: 1;
+    }
+
+}
+
+/* Celulares pequenos */
+@media (max-width: 500px) {
+
+    .ascii-art {
+        display: none;
+    }
+
+}
+
+/* Pequeno efeito de boot */
+@keyframes fadeBoot {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    animation: fadeBoot .3s ease-in-out;
+}
