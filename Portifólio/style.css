@@ -1,0 +1,9 @@
+:root{--term-green:#4af626;--term-bg:#0a0a0a;}
+body{background:var(--term-bg);color:var(--term-green);font-family:monospace;margin:0}
+#terminal{padding:20px;height:100vh;overflow-y:auto}
+.line{margin-bottom:4px;white-space:pre-wrap}
+.command-output{color:#d1d1d1}
+.prompt-symbol{font-weight:bold}
+#input-line{display:flex;gap:8px}
+.cmd-input{background:transparent;border:none;outline:none;color:var(--term-green);flex:1;font-family:inherit}
+a{color:#5bc0de}
