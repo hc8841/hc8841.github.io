@@ -1,444 +1,230 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Fernanda, você aceita namorar comigo? ❤️</title>
-    <!-- Bootstrap 5 + Icons + jQuery + Animate.css + Canvas Confetti -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Para Sasa 💜</title>
 
-        body {
-            font-family: 'Segoe UI', 'Poppins', 'Dancing Script', cursive, sans-serif;
-            background: linear-gradient(145deg, #ff9a9e 0%, #fad0c4 40%, #fad0c4 70%, #ffdde1 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            padding: 1rem;
-        }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-        /* Corações flutuantes (firula total) */
-        .floating-heart {
-            position: fixed;
-            bottom: -20px;
-            font-size: 1.4rem;
-            user-select: none;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.8;
-            animation: floatHeart 5s ease-out forwards;
-            color: #ff3366;
-            text-shadow: 0 0 3px white;
-        }
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #2a003f, #000);
+  color: #fff;
+  font-family: Arial;
+  overflow-x: hidden;
+}
 
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.9;
-                bottom: -20px;
-            }
-            100% {
-                transform: translateY(-110vh) rotate(20deg);
-                opacity: 0;
-                bottom: 110%;
-            }
-        }
+/* ===== GLITCH ===== */
+#glitchScreen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  cursor: pointer;
+}
 
-        /* Card principal com efeito vidro e animação */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 56px;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            border: none;
-        }
+.glitch-text {
+  font-size: 3rem;
+  color: #c77dff;
+  text-shadow: 0 0 10px #7b2cbf;
+  position: relative;
+  animation: flicker 1.2s infinite;
+}
 
-        .glass-card:hover {
-            transform: scale(1.01);
-            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.25);
-        }
+.hint { color:#aaa; margin-top:10px; }
 
-        .heart-title {
-            font-size: 3.2rem;
-            color: #d43f6b;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-        }
+@keyframes flicker {
+  0%,100%{opacity:1;}
+  50%{opacity:.5;}
+}
 
-        .btn-love {
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            border: none;
-            color: white;
-            font-weight: bold;
-            padding: 12px 30px;
-            font-size: 1.5rem;
-            border-radius: 60px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 18px rgba(255, 66, 108, 0.4);
-            letter-spacing: 1px;
-        }
+/* ===== MAIN ===== */
+.container-main {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  text-align: center;
+}
 
-        .btn-love:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(255, 66, 108, 0.6);
-            background: linear-gradient(135deg, #ff5e7e 0%, #ff669d 100%);
-            color: #fff9e0;
-        }
+h1 { color:#c77dff; text-shadow:0 0 15px #7b2cbf; }
 
-        .btn-secondary-love {
-            background: linear-gradient(135deg, #b0a1a5 0%, #cfb3bb 100%);
-            border: none;
-            color: #2d2d2d;
-            font-weight: bold;
-            padding: 12px 30px;
-            font-size: 1.5rem;
-            border-radius: 60px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-        }
+.card-romantic {
+  background: rgba(123,44,191,.15);
+  border:1px solid rgba(199,125,255,.4);
+  padding:30px;
+  border-radius:20px;
+}
 
-        .btn-secondary-love:hover {
-            transform: scale(0.97);
-            background: linear-gradient(135deg, #a0858c 0%, #c29aa4 100%);
-            color: white;
-        }
+/* buttons */
+.btn-romantic {
+  border-radius:30px;
+  padding:10px 25px;
+}
 
-        .fernanda-name {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #b3415e;
-            text-shadow: 1px 1px 3px #ffe0e7;
-        }
+/* hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  color: #c77dff;
+  animation: fall linear forwards;
+  z-index: 9998;
+}
 
-        .question-text {
-            font-size: 1.9rem;
-            font-weight: 600;
-            color: #4a2a34;
-            background: rgba(255,240,235,0.7);
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            border-radius: 60px;
-        }
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
 
-        .btn-container {
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
+/* final screen */
+#ending {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 99999;
+  text-align: center;
+}
 
-        /* Efeito pulsante no coraçãozinho */
-        .pulse-heart {
-            animation: pulseBeat 1.2s infinite;
-            display: inline-block;
-        }
-
-        @keyframes pulseBeat {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.8; text-shadow: 0 0 10px #ff3366; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Mensagens Toast personalizadas */
-        .toast-romantic {
-            background: #fff0f3;
-            border-left: 8px solid #ff6b81;
-            border-radius: 24px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .toast-romantic .toast-header {
-            background: #ffe4e9;
-            color: #b33b5c;
-            border-bottom: none;
-            border-radius: 24px 24px 0 0;
-        }
-        
-        /* Responsividade */
-        @media (max-width: 576px) {
-            .glass-card {
-                margin: 1rem;
-                border-radius: 40px;
-            }
-            .fernanda-name {
-                font-size: 2.5rem;
-            }
-            .question-text {
-                font-size: 1.4rem;
-            }
-            .btn-love, .btn-secondary-love {
-                font-size: 1.2rem;
-                padding: 10px 22px;
-            }
-            .heart-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        /* mensagem pós aceite */
-        .love-message {
-            background: rgba(255, 230, 235, 0.9);
-            border-radius: 48px;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .cute-gif-place {
-            font-size: 4rem;
-        }
-
-        footer {
-            font-size: 0.75rem;
-            opacity: 0.7;
-        }
-
-        .btn-outline-romantic {
-            background: #ffeef2;
-            border: 1px solid #ff95a8;
-            color: #c73b5e;
-        }
-
-        /* Container dos toasts fixo */
-        .toast-container-custom {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1100;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        @media (max-width: 576px) {
-            .toast-container-custom {
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-            }
-        }
-    </style>
+#ending h1 {
+  color:#c77dff;
+  font-size:3rem;
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Container de toasts para mensagens -->
-    <div class="toast-container-custom" id="toastContainer"></div>
+<!-- GLITCH -->
+<div id="glitchScreen">
+  <div class="glitch-text">SASA...</div>
+  <div class="hint">clique para entrar</div>
+</div>
 
-    <!-- container principal -->
-    <div class="container d-flex align-items-center justify-content-center min-vh-100 py-4">
-        <div class="row w-100 justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
-                <div class="glass-card p-4 p-md-5 text-center position-relative animate__animated animate__fadeInUp">
-                    <!-- Ícone enfeite -->
-                    <div class="mb-3">
-                        <i class="fas fa-heart pulse-heart heart-title" style="font-size: 3.2rem; color:#e8436e;"></i>
-                    </div>
-                    
-                    <!-- Conteúdo que será alterado após o sim (dentro da div .proposal-content) -->
-                    <div id="proposalContent">
-                        <h1 class="fernanda-name mb-3">Fernanda <i class="fas fa-star-of-life" style="font-size: 1.8rem;"></i></h1>
-                        <div class="mb-4">
-                            <span class="question-text"><i class="fas fa-feather-alt me-2"></i> Desde que te conheci, tudo tem mais cor... <i class="fas fa-feather-alt ms-2"></i></span>
-                        </div>
-                        <p class="fs-4 fw-light text-dark">Você transforma meus dias em poesia.<br> Meu coração já escolheu:</p>
-                        <h2 class="display-6 fw-bold text-danger mb-4">💖 VOCÊ QUER NAMORAR COMIGO? 💖</h2>
-                        
-                        <!-- Botões de ação -->
-                        <div class="d-flex justify-content-center btn-container mt-3 mb-2">
-                            <button id="simBtn" class="btn btn-love"><i class="fas fa-check-circle me-2"></i> SIM, ACEITO!</button>
-                            <button id="naoBtn" class="btn btn-secondary-love"><i class="fas fa-heart-broken me-2"></i> NÃO</button>
-                        </div>
-                        <p class="mt-4 text-muted small"><i class="fas fa-grin-hearts"></i> Clique com o coração, Fernanda <i class="fas fa-grin-hearts"></i></p>
-                    </div>
-                </div>
-                <!-- mini footer romântico -->
-                <footer class="text-center mt-4 text-dark opacity-50">
-                    <i class="fas fa-infinity"></i> pra sempre, só você <i class="fas fa-infinity"></i>
-                </footer>
-            </div>
-        </div>
+<!-- ENDING -->
+<div id="ending">
+  <h1>💜 GOOD ENDING UNLOCKED 💜</h1>
+  <p>Você aceitou o melhor bug da minha vida.</p>
+</div>
+
+<!-- SPOTIFY -->
+<div style="height:152px;">
+<iframe src="https://open.spotify.com/embed/track/1tIJba7S9uHsNml4BqZrah"
+style="width:100%;height:100%;border:0;border-radius:12px;"></iframe>
+</div>
+
+<div class="container-main">
+  <h1>Oi, Sasa 💜</h1>
+
+  <div class="card-romantic">
+    <p>Desde que você apareceu, tudo ficou mais bonito.</p>
+
+    <h2>Quer namorar comigo? 💜</h2>
+
+    <button class="btn btn-success btn-romantic" id="btnYes">Sim 💜</button>
+    <button class="btn btn-outline-light btn-romantic" id="btnNo">Não</button>
+
+    <div id="msgYes" style="display:none;margin-top:15px;color:#c77dff;">
+      Eu sabia 😭💜
     </div>
 
-    <!-- Modal do "NÃO" super charmoso (Não tem como escapar do SIM) -->
-    <div class="modal fade" id="noModal" tabindex="-1" aria-labelledby="noModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 40px; background: #fff5f7; border: 2px solid #ffb7c5;">
-                <div class="modal-header border-0 justify-content-center">
-                    <i class="fas fa-heartbeat fa-3x text-danger me-2"></i>
-                    <h5 class="modal-title fw-bold text-dark" id="noModalLabel">Pensou direitinho, Fernanda?</h5>
-                </div>
-                <div class="modal-body text-center">
-                    <i class="fas fa-sad-tear fa-4x text-secondary mb-3"></i>
-                    <p class="fs-5">Meu coraçãozinho disparou... 💔<br> Mas eu sei que no fundo você quer dizer <strong class="text-danger">SIM</strong>!</p>
-                    <p class="fw-light">Vamos lá, dê uma chance pro amor? Clique no botão mágico:</p>
-                </div>
-                <div class="modal-footer border-0 justify-content-center gap-3">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal"><i class="fas fa-times"></i> Pensar mais</button>
-                    <button type="button" id="modalSimRedirect" class="btn btn-love rounded-pill px-4"><i class="fas fa-check-double"></i> QUERO DIZER SIM!</button>
-                </div>
-            </div>
-        </div>
+    <div id="msgNo" style="display:none;margin-top:15px;">
+      Tudo bem… ainda vou tentar 😔
     </div>
+  </div>
+</div>
 
-    <!-- Botão secreto de mais efeitos (firula extra) -->
-    <div class="position-fixed bottom-0 end-0 m-3 d-none d-md-block" style="z-index: 1050;">
-        <button id="extraSparkleBtn" class="btn btn-sm btn-outline-romantic rounded-circle shadow-sm" style="width: 45px; height: 45px;">
-            <i class="fas fa-magic"></i>
-        </button>
-    </div>
+<script>
+$(function () {
 
-    <script>
-        $(document).ready(function() {
-            let aceito = false;      // controle para não repetir a celebração
-            
-            // ========== FUNÇÃO PARA MOSTRAR TOASTS (MENSAGENS) ==========
-            function showMessage(title, message, icon = '❤️', bgClass = 'toast-romantic') {
-                const toastId = 'toast-' + Date.now() + Math.random();
-                const toastHtml = `
-                    <div id="${toastId}" class="toast ${bgClass}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="4000">
-                        <div class="toast-header">
-                            <i class="fas ${icon} me-2" style="color:#d43f6b;"></i>
-                            <strong class="me-auto">${title}</strong>
-                            <small>agorinha</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
-                        </div>
-                        <div class="toast-body">
-                            ${message}
-                        </div>
-                    </div>
-                `;
-                $('#toastContainer').append(toastHtml);
-                const toastElement = document.getElementById(toastId);
-                const bsToast = new bootstrap.Toast(toastElement, { animation: true, autohide: true, delay: 4000 });
-                bsToast.show();
-                // Remove do DOM após sumir
-                toastElement.addEventListener('hidden.bs.toast', function() {
-                    $(this).remove();
-                });
-            }
-            
-            // Mensagens personalizadas para cada interação
-            function showSimHoverMessage() {
-                showMessage('Ei, Fernanda 💖', 'Sabia que você ia querer saber mais... aperta o SIM e me faz a pessoa mais feliz!', 'fa-heart');
-            }
-            function showNaoHoverMessage() {
-                showMessage('Ops! 💔', 'Antes de clicar, pensa bem... meu coração já é todo seu!', 'fa-heart-broken');
-            }
-            function showSimClickMessage() {
-                showMessage('Você é demais! 🥰', 'O melhor clique da minha vida! Prepara os fogos...', 'fa-check-circle');
-            }
-            function showNaoClickMessage() {
-                showMessage('Amor, não faz isso! 😢', 'Seu coraçãozinho sabe que a resposta certa é SIM. Olha o modal mágico ali 👆', 'fa-sad-tear');
-            }
-            
-            // ========== CORAÇÕES FLUTUANTES ==========
-            function createFloatingHeart() {
-                if (aceito) return;
-                const heart = $('<div class="floating-heart"><i class="fas fa-heart"></i></div>');
-                const randomLeft = Math.random() * 100;
-                const randomSize = 0.8 + Math.random() * 1.2;
-                const duration = 3 + Math.random() * 4;
-                heart.css({
-                    left: randomLeft + '%',
-                    fontSize: (randomSize * 1.2) + 'rem',
-                    animationDuration: duration + 's',
-                    opacity: 0.7 + Math.random() * 0.3
-                });
-                $('body').append(heart);
-                setTimeout(() => heart.remove(), duration * 1000);
-            }
-            
-            // Geração contínua de corações
-            setInterval(() => {
-                if (!aceito) createFloatingHeart();
-                else if (Math.random() > 0.4) createFloatingHeart();
-            }, 450);
-            
-            // ========== CONFETES ==========
-            function superConfetti() {
-                canvasConfetti({ particleCount: 180, spread: 100, origin: { y: 0.6 }, startVelocity: 20, colors: ['#ff3366', '#ff66b5', '#ffb3c6', '#ff8c94', '#ffd966'] });
-                setTimeout(() => {
-                    canvasConfetti({ particleCount: 70, angle: 60, spread: 55, origin: { x: 0, y: 0.7 }, colors: ['#f9a8d4', '#ff6b81'] });
-                    canvasConfetti({ particleCount: 70, angle: 120, spread: 55, origin: { x: 1, y: 0.7 }, colors: ['#f9a8d4', '#ff6b81'] });
-                }, 150);
-                setTimeout(() => {
-                    canvasConfetti({ particleCount: 300, spread: 120, origin: { y: 0.5, x: 0.5 }, startVelocity: 25, decay: 0.9, colors: ['#ff4d6d', '#ffb3c6', '#ff9eb5'] });
-                }, 400);
-                for(let i = 0; i < 8; i++) {
-                    setTimeout(() => {
-                        canvasConfetti({ particleCount: 30, spread: 45, origin: { y: 0.5 + Math.random() * 0.3, x: Math.random() }, startVelocity: 20, ticks: 200, colors: ['#ff3b6f', '#ff87a2', '#ffcdb0'] });
-                    }, i * 100);
-                }
-            }
-            
-            // ========== CELEBRAÇÃO ==========
-            function celebrarNamoro() {
-                if (aceito) return;
-                aceito = true;
-                
-                $('#simBtn, #naoBtn').prop('disabled', true).css('opacity', '0.6');
-                $('.glass-card').addClass('animate__animated animate__rubberBand');
-                setTimeout(() => $('.glass-card').removeClass('animate__rubberBand'), 700);
-                
-                const celebrationHtml = `
-                    <div class="love-message animate__animated animate__heartBeat">
-                        <i class="fas fa-heart" style="font-size: 5rem; color:#e8436e; animation: pulseBeat 0.9s infinite;"></i>
-                        <h2 class="fw-bold mt-3" style="color:#a12a48;">✨ SIM! ✨</h2>
-                        <h3 class="display-6 fw-bold text-danger">Você aceitou, Fernanda!</h3>
-                        <div class="my-4">
-                            <i class="fas fa-check-circle fa-3x text-success"></i>
-                            <i class="fas fa-heart fa-3x text-danger mx-2"></i>
-                            <i class="fas fa-check-circle fa-3x text-success"></i>
-                        </div>
-                        <p class="fs-3 fw-light">Agora somos namorados oficialmente! 💑</p>
-                        <p class="fs-5">Você é a pessoa mais especial do mundo, e vou te fazer feliz todos os dias ❤️</p>
-                        <div class="cute-gif-place mt-3">
-                            <i class="fas fa-kiss-wink-heart fa-3x"></i>  <i class="fas fa-cake-candles fa-3x"></i>  <i class="fas fa-champagne-glasses fa-3x"></i>
-                        </div>
-                        <p class="mt-4 fst-italic">"O amor da minha vida, hoje e sempre."</p>
-                        <button id="resetCelebration" class="btn btn-outline-danger rounded-pill mt-3"><i class="fas fa-sync-alt"></i> Reviver a magia</button>
-                    </div>
-                `;
-                
-                $('#proposalContent').fadeOut(300, function() {
-                    $(this).html(celebrationHtml).fadeIn(800);
-                });
-                
-                superConfetti();
-                setTimeout(() => superConfetti(), 800);
-                setTimeout(() => canvasConfetti({ particleCount: 500, spread: 130, origin: { y: 0.7 } }), 1500);
-                
-                // Título animado
-                let titleCounter = 0;
-                const originalTitle = document.title;
-                const loveMessages = ["💞 Fernanda aceitou!! 💞", "❤️ TE AMO FERNANDA ❤️", "🎉 NAMORADOS! 🎉", "💖 FELICIDADE 💖"];
-                const titleInterval = setInterval(() => {
-                    document.title = loveMessages[titleCounter % loveMessages.length];
-                    titleCounter++;
-                    if (titleCounter > 12) clearInterval(titleInterval);
-                }, 800);
-                setTimeout(() => { document.title = originalTitle; }, 7000);
-                
-                if ("Notification" in window && Notification.permission === "granted") {
-                    new Notification("Fernanda aceitou o pedido! 💖", { body: "Felicidades ao casal! ❤️" });
-                } else if (Notification.permission !== "denied") {
-                    Notification.requestPermission();
-                }
-                
-                $('#resetCelebration').on('click', function() { location.reload(); });
-            }
-            
-            // ========== EVENTOS DOS BOTÕES COM MENSAGENS ==========
-            
-            // Botão SIM: hover mostra mensagem romântica, clique mostra mensagem + celebra
-            $('#simBtn').on('mouseenter', function() {
-                if(!aceito) showSimHoverMessage();
-            }).
+  let escapes = 0;
+  let noLocked = false;
+
+  // ===== GLITCH ENTER =====
+  $("#glitchScreen").click(function () {
+    $(this).fadeOut();
+  });
+
+  setTimeout(() => $("#glitchScreen").fadeOut(), 4000);
+
+  // ===== YES =====
+  $("#btnYes").click(function () {
+
+    $("#msgYes").fadeIn();
+    $("#msgNo").hide();
+
+    // vibração mobile
+    if (navigator.vibrate) {
+      navigator.vibrate([200,100,200]);
+    }
+
+    startHearts();
+
+    setTimeout(() => {
+      $("#ending").fadeIn();
+    }, 1500);
+  });
+
+  // ===== NO ESCAPA =====
+  $("#btnNo").on("mouseenter click touchstart", function () {
+    if (noLocked) return;
+
+    escapes++;
+
+    if (escapes >= 10) {
+      noLocked = true;
+      $("#btnNo").text("talvez... 💜").removeClass("btn-outline-light").addClass("btn-success");
+      return;
+    }
+
+    moveButton();
+  });
+
+  function moveButton() {
+    const btn = $("#btnNo");
+
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    btn.css({
+      position: "fixed",
+      left: x + "px",
+      top: y + "px",
+      transition: "0.2s"
+    });
+  }
+
+  // ===== HEART RAIN =====
+  function startHearts() {
+    setInterval(() => {
+      const heart = $("<div>💜</div>");
+      heart.addClass("heart");
+
+      heart.css({
+        left: Math.random() * window.innerWidth + "px",
+        fontSize: (10 + Math.random() * 20) + "px",
+        animationDuration: (2 + Math.random() * 3) + "s"
+      });
+
+      $("body").append(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 150);
+  }
+
+});
+</script>
+
+</body>
+</html>
