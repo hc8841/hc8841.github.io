@@ -1,229 +1,326 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Para Sasa 💜</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Aline 💜</title>
 
+<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #2a003f, #000);
-  color: #fff;
-  font-family: Arial;
-  overflow-x: hidden;
+body{
+    margin:0;
+    background:radial-gradient(circle at top,#2a003f,#000);
+    color:white;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
 }
 
-/* ===== GLITCH ===== */
-#glitchScreen {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 9999;
-  cursor: pointer;
+/* ===== GLITCH SCREEN ===== */
+#glitchScreen{
+    position:fixed;
+    inset:0;
+    background:black;
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    cursor:pointer;
 }
 
-.glitch-text {
-  font-size: 3rem;
-  color: #c77dff;
-  text-shadow: 0 0 10px #7b2cbf;
-  position: relative;
-  animation: flicker 1.2s infinite;
+.glitch{
+    font-size:4rem;
+    color:#c77dff;
+    position:relative;
+    animation:flicker 1.5s infinite;
 }
 
-.hint { color:#aaa; margin-top:10px; }
+.glitch::before,
+.glitch::after{
+    content:"ALINE...";
+    position:absolute;
+    left:0;
+    top:0;
+}
 
-@keyframes flicker {
-  0%,100%{opacity:1;}
-  50%{opacity:.5;}
+.glitch::before{
+    color:#ff00ff;
+    transform:translate(-2px,0);
+}
+
+.glitch::after{
+    color:#00ffff;
+    transform:translate(2px,0);
+}
+
+@keyframes flicker{
+    0%,100%{opacity:1}
+    50%{opacity:.6}
+}
+
+.hint{
+    color:#aaa;
+    margin-top:20px;
+    text-align:center;
 }
 
 /* ===== MAIN ===== */
-.container-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 30px;
-  text-align: center;
+.container-main{
+    max-width:900px;
+    margin:auto;
+    padding:30px;
+    text-align:center;
 }
 
-h1 { color:#c77dff; text-shadow:0 0 15px #7b2cbf; }
-
-.card-romantic {
-  background: rgba(123,44,191,.15);
-  border:1px solid rgba(199,125,255,.4);
-  padding:30px;
-  border-radius:20px;
+h1{
+    color:#c77dff;
+    text-shadow:0 0 15px #7b2cbf;
 }
 
-/* buttons */
-.btn-romantic {
-  border-radius:30px;
-  padding:10px 25px;
+.card-romantic{
+    background:rgba(123,44,191,.15);
+    border:1px solid rgba(199,125,255,.4);
+    border-radius:20px;
+    padding:35px;
+    margin-top:25px;
 }
 
-/* hearts */
-.heart {
-  position: fixed;
-  top: -10px;
-  color: #c77dff;
-  animation: fall linear forwards;
-  z-index: 9998;
+.btn-romantic{
+    border-radius:30px;
+    padding:12px 25px;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+/* ===== HEARTS ===== */
+.heart{
+    position:fixed;
+    top:-20px;
+    z-index:9998;
+    animation:fall linear forwards;
 }
 
-/* final screen */
-#ending {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 99999;
-  text-align: center;
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
 }
 
-#ending h1 {
-  color:#c77dff;
-  font-size:3rem;
+/* ===== ENDING ===== */
+#ending{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999999;
+    text-align:center;
+}
+
+#ending h1{
+    font-size:3rem;
+}
+
+#ending p{
+    color:#ddd;
+    font-size:1.2rem;
+}
+
+/* terminal */
+.terminal{
+    margin-top:30px;
+    background:#111;
+    border:1px solid #7b2cbf;
+    border-radius:15px;
+    padding:20px;
+    text-align:left;
+    color:#d5b3ff;
+    font-family:monospace;
 }
 </style>
 </head>
-
 <body>
 
-<!-- GLITCH -->
+<!-- INTRO -->
 <div id="glitchScreen">
-  <div class="glitch-text">SASA...</div>
-  <div class="hint">clique para entrar</div>
+    <div class="glitch">ALINE...</div>
+
+    <div class="hint">
+        Tem uma coisa importante que eu preciso te perguntar 💜
+        <br><br>
+        clique para entrar
+    </div>
 </div>
 
-<!-- ENDING -->
+<!-- FINAL -->
 <div id="ending">
-  <h1>💜 GOOD ENDING UNLOCKED 💜</h1>
-  <p>Você aceitou o melhor bug da minha vida.</p>
+    <h1>💜 GOOD ENDING UNLOCKED 💜</h1>
+    <p>
+        Aline aceitou ser o melhor bug da minha vida.
+        <br><br>
+        Obrigado por tornar tudo mais bonito. 💜
+    </p>
 </div>
 
 <!-- SPOTIFY -->
-<div style="height:152px;">
-<iframe src="https://open.spotify.com/embed/track/1tIJba7S9uHsNml4BqZrah"
-style="width:100%;height:100%;border:0;border-radius:12px;"></iframe>
+<div style="width:100%;height:152px;position:relative;">
+<iframe
+src="https://open.spotify.com/embed/track/1tIJba7S9uHsNml4BqZrah?utm_source=oembed"
+style="width:100%;height:100%;border:0;border-radius:12px;"
+allowfullscreen
+allow="clipboard-write *; encrypted-media *; fullscreen *; picture-in-picture *;">
+</iframe>
 </div>
 
 <div class="container-main">
-  <h1>Oi, Sasa 💜</h1>
 
-  <div class="card-romantic">
-    <p>Desde que você apareceu, tudo ficou mais bonito.</p>
+<h1>Oi, Aline 💜</h1>
 
-    <h2>Quer namorar comigo? 💜</h2>
+<p>
+Tem uma pergunta que vale mais do que qualquer linha de código que eu já escrevi.
+</p>
 
-    <button class="btn btn-success btn-romantic" id="btnYes">Sim 💜</button>
-    <button class="btn btn-outline-light btn-romantic" id="btnNo">Não</button>
+<div class="terminal">
+Inicializando...<br>
+Carregando sentimentos...<br>
+Verificando compatibilidade...<br>
+100% ✔<br><br>
 
-    <div id="msgYes" style="display:none;margin-top:15px;color:#c77dff;">
-      Eu sabia 😭💜
-    </div>
+Usuária encontrada:<br>
+Aline 💜<br><br>
 
-    <div id="msgNo" style="display:none;margin-top:15px;">
-      Tudo bem… ainda vou tentar 😔
-    </div>
-  </div>
+Pergunta pendente:<br>
+Quer namorar comigo?
+</div>
+
+<div class="card-romantic">
+
+<p>
+Desde que você apareceu, tudo ficou mais leve, mais bonito e mais divertido.
+</p>
+
+<h2>Você quer namorar comigo? 💜</h2>
+
+<br>
+
+<button class="btn btn-success btn-romantic" id="btnYes">
+Sim 💜
+</button>
+
+<button class="btn btn-outline-light btn-romantic" id="btnNo">
+Não
+</button>
+
+<div id="msgYes" style="display:none;margin-top:20px;color:#c77dff;font-size:1.3rem;">
+😭💜 Eu sabia!
+</div>
+
+</div>
 </div>
 
 <script>
-$(function () {
 
-  let escapes = 0;
-  let noLocked = false;
+$(function(){
 
-  // ===== GLITCH ENTER =====
-  $("#glitchScreen").click(function () {
-    $(this).fadeOut();
-  });
+let escapes = 0;
+let noDefeated = false;
 
-  setTimeout(() => $("#glitchScreen").fadeOut(), 4000);
+// intro
+$("#glitchScreen").click(function(){
+    $(this).fadeOut(700);
+});
 
-  // ===== YES =====
-  $("#btnYes").click(function () {
+setTimeout(function(){
+    $("#glitchScreen").fadeOut(700);
+},5000);
+
+// botão sim
+$("#btnYes").click(function(){
 
     $("#msgYes").fadeIn();
-    $("#msgNo").hide();
 
-    // vibração mobile
-    if (navigator.vibrate) {
-      navigator.vibrate([200,100,200]);
+    if(navigator.vibrate){
+        navigator.vibrate([200,100,200]);
     }
 
     startHearts();
 
-    setTimeout(() => {
-      $("#ending").fadeIn();
-    }, 1500);
-  });
+    setTimeout(function(){
+        $("#ending").css("display","flex").hide().fadeIn(1000);
+    },1800);
 
-  // ===== NO ESCAPA =====
-  $("#btnNo").on("mouseenter click touchstart", function () {
-    if (noLocked) return;
+});
+
+// botão não foge
+$("#btnNo").on("mouseenter touchstart click",function(e){
+
+    if(noDefeated)
+        return;
 
     escapes++;
 
-    if (escapes >= 10) {
-      noLocked = true;
-      $("#btnNo").text("talvez... 💜").removeClass("btn-outline-light").addClass("btn-success");
-      return;
+    if(escapes >= 10){
+
+        noDefeated = true;
+
+        $(this)
+            .removeClass("btn-outline-light")
+            .addClass("btn-warning")
+            .text("Tá bom... talvez 💜");
+
+        return;
     }
 
     moveButton();
-  });
-
-  function moveButton() {
-    const btn = $("#btnNo");
-
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
-
-    btn.css({
-      position: "fixed",
-      left: x + "px",
-      top: y + "px",
-      transition: "0.2s"
-    });
-  }
-
-  // ===== HEART RAIN =====
-  function startHearts() {
-    setInterval(() => {
-      const heart = $("<div>💜</div>");
-      heart.addClass("heart");
-
-      heart.css({
-        left: Math.random() * window.innerWidth + "px",
-        fontSize: (10 + Math.random() * 20) + "px",
-        animationDuration: (2 + Math.random() * 3) + "s"
-      });
-
-      $("body").append(heart);
-
-      setTimeout(() => heart.remove(), 5000);
-    }, 150);
-  }
 
 });
+
+function moveButton(){
+
+    let btn = $("#btnNo");
+
+    let x = Math.random() * (window.innerWidth - 160);
+    let y = Math.random() * (window.innerHeight - 80);
+
+    btn.css({
+        position:"fixed",
+        left:x+"px",
+        top:y+"px",
+        transition:".2s"
+    });
+
+}
+
+function startHearts(){
+
+    setInterval(function(){
+
+        let heart = $("<div class='heart'>💜</div>");
+
+        heart.css({
+            left:Math.random()*window.innerWidth+"px",
+            fontSize:(15+Math.random()*25)+"px",
+            animationDuration:(2+Math.random()*3)+"s"
+        });
+
+        $("body").append(heart);
+
+        setTimeout(function(){
+            heart.remove();
+        },5000);
+
+    },120);
+
+}
+
+});
+
 </script>
 
 </body>
