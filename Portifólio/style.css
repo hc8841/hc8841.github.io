@@ -1,0 +1,26 @@
+:root{
+ --term-green:#4af626;--term-green-dim:#269c18;--term-bg:#080a08;
+ --term-panel:#0d110d;--term-white:#d7e2d4;--term-muted:#7f8c7b;
+ --term-cyan:#5bc0de;--term-red:#ff6666;--glow:0 0 8px rgba(74,246,38,.18);
+}
+*{box-sizing:border-box}
+html{background:var(--term-bg)}
+body{background:radial-gradient(circle at 50% 0,#101710 0,#080a08 42%,#050605 100%);color:var(--term-green);font-family:"Cascadia Mono","Fira Code","Courier New",monospace;margin:0;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 3px);opacity:.25}
+#terminal{width:min(1100px,100%);min-height:100vh;margin:auto;padding:28px clamp(16px,4vw,42px) 70px;overflow-wrap:anywhere;text-shadow:var(--glow)}
+.line{margin:0 0 7px;white-space:pre-wrap;line-height:1.55}
+.command-output{color:var(--term-white);text-shadow:none}
+.command-output a{color:var(--term-cyan);text-decoration:none}
+.command-output a:hover{text-decoration:underline}
+.prompt-symbol{font-weight:700}
+#input-line{display:flex;gap:9px;align-items:center}
+.cmd-input{background:transparent;border:0;outline:0;color:var(--term-green);flex:1;font:inherit;caret-color:var(--term-green);padding:0}
+::selection{background:var(--term-green);color:#061006}
+.banner{color:var(--term-green);font-weight:bold}
+.muted{color:var(--term-muted)}
+.accent{color:var(--term-cyan)}
+.ok{color:var(--term-green)}
+.warn{color:#f5d76e}
+.err{color:var(--term-red)}
+.card{border:1px solid #1d3b1d;background:rgba(13,17,13,.72);padding:12px 14px;margin:8px 0;box-shadow:inset 0 0 18px rgba(74,246,38,.025)}
+@media(max-width:600px){#terminal{padding:18px 12px 50px}.line{line-height:1.45;font-size:13px}}
