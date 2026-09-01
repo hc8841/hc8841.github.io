@@ -1,311 +1,200 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Uma pergunta para Fernanda 💗</title>
-
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-  <style>
-    :root {
-      --pink: #ff4f91;
-      --pink-dark: #e92f73;
-      --pink-light: #fff0f6;
-      --rose: #ff8fba;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      min-height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,.8) 0 3px, transparent 4px),
-        radial-gradient(circle at 80% 30%, rgba(255,255,255,.7) 0 4px, transparent 5px),
-        linear-gradient(135deg, #ffd6e7 0%, #fff0f6 45%, #ffc2d9 100%);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      color: #6b2445;
-    }
-
-    .heart {
-      position: fixed;
-      color: rgba(255, 79, 145, .22);
-      animation: float 7s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-      15% { opacity: 1; }
-      to { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
-    }
-
-    .main-card {
-      position: relative;
-      z-index: 2;
-      width: min(92vw, 650px);
-      border: 0;
-      border-radius: 30px;
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 25px 80px rgba(190, 49, 105, .25);
-      backdrop-filter: blur(12px);
-    }
-
-    .heart-big {
-      width: 85px;
-      height: 85px;
-      margin: 0 auto 15px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), #ff79aa);
-      color: white;
-      font-size: 42px;
-      box-shadow: 0 12px 30px rgba(255, 79, 145, .35);
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    h1 {
-      color: var(--pink-dark);
-      font-weight: 800;
-      letter-spacing: -.5px;
-    }
-
-    .subtitle {
-      color: #8d4d69;
-      font-size: 1.1rem;
-    }
-
-    .question {
-      font-size: clamp(1.45rem, 4vw, 2rem);
-      font-weight: 700;
-      margin: 28px 0 25px;
-    }
-
-    .buttons-area {
-      position: relative;
-      min-height: 125px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 15px;
-    }
-
-    .btn-love, .btn-no {
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 30px;
-      font-size: 1.08rem;
-      font-weight: 700;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .btn-love {
-      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
-      color: white;
-      box-shadow: 0 8px 22px rgba(233,47,115,.3);
-    }
-
-    .btn-love:hover {
-      color: white;
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 12px 28px rgba(233,47,115,.4);
-    }
-
-    .btn-no {
-      background: #f4d9e4;
-      color: #91415f;
-    }
-
-    .btn-no:hover {
-      background: #efd0dd;
-    }
-
-    .runaway {
-      position: absolute !important;
-      z-index: 10;
-    }
-
-    .result {
-      display: none;
-      animation: appear .7s ease;
-    }
-
-    @keyframes appear {
-      from { opacity: 0; transform: scale(.85); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .result i {
-      font-size: 4.5rem;
-      color: var(--pink);
-    }
-
-    .result h2 {
-      color: var(--pink-dark);
-      font-weight: 800;
-    }
-
-    .counter {
-      font-size: .85rem;
-      color: #b06b87;
-      margin-top: 12px;
-    }
-
-    .footer {
-      color: #ad6681;
-      font-size: .8rem;
-    }
-
-    @media (max-width: 500px) {
-      .main-card { border-radius: 24px; }
-      .buttons-area { min-height: 145px; }
-      .btn-love, .btn-no { padding: 12px 22px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Tainá — uma pequena homenagem</title>
+<style>
+  :root{
+    --bg:#fff8fb; --ink:#3c2631; --muted:#765d68; --rose:#d85c83;
+    --rose2:#f4b3c7; --card:rgba(255,255,255,.82);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink); font-family:Georgia,"Times New Roman",serif;
+    background:
+      radial-gradient(circle at 15% 10%, #ffe5ef 0 8%, transparent 25%),
+      radial-gradient(circle at 90% 30%, #fbe1ea 0 7%, transparent 24%),
+      linear-gradient(135deg,var(--bg),#fff);
+    overflow-x:hidden;
+  }
+  body:before{
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.16;
+    background-image:radial-gradient(#c45b7d 0.7px,transparent .7px);
+    background-size:18px 18px;
+  }
+  section{min-height:100vh; display:grid; place-items:center; padding:80px 22px; position:relative}
+  .wrap{width:min(900px,100%); text-align:center}
+  .eyebrow{letter-spacing:.25em;text-transform:uppercase;font:600 12px Arial,sans-serif;color:var(--rose)}
+  h1{font-size:clamp(3rem,10vw,7rem);line-height:.9;margin:22px 0}
+  h2{font-size:clamp(2rem,6vw,4rem);margin:15px 0}
+  p{font-size:clamp(1.08rem,2.2vw,1.35rem);line-height:1.8;color:var(--muted)}
+  .hero h1{animation:float 5s ease-in-out infinite}
+  .heart{font-size:54px; animation:pulse 1.8s infinite}
+  .scroll{margin-top:45px;font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#9b7885}
+  .card{
+    background:var(--card); backdrop-filter:blur(8px); border:1px solid #f0ccd8;
+    border-radius:28px; padding:42px; box-shadow:0 20px 60px rgba(111,55,76,.09)
+  }
+  .quote{font-style:italic;font-size:clamp(1.3rem,3vw,1.8rem)}
+  .divider{width:70px;height:2px;background:var(--rose2);margin:28px auto}
+  .timeline{display:grid;gap:18px;margin-top:35px}
+  .item{text-align:left;padding:22px 24px;border-left:3px solid var(--rose2);background:#fff9fc;border-radius:0 18px 18px 0}
+  .item strong{display:block;font-size:1.2rem;margin-bottom:7px}
+  .final{background:linear-gradient(180deg,transparent,#fff0f5)}
+  .question{font-size:clamp(2.4rem,8vw,5.5rem);line-height:1.05;margin:25px 0}
+  .buttons{height:180px;position:relative;margin:20px auto 0;max-width:600px}
+  button{
+    border:0;border-radius:999px;padding:16px 30px;font:bold 16px Arial,sans-serif;
+    cursor:pointer;box-shadow:0 8px 25px rgba(80,30,50,.13);transition:transform .2s
+  }
+  #yes{background:var(--rose);color:white;position:absolute;left:50%;transform:translateX(-110%)}
+  #no{background:#fff;color:#8b6573;position:absolute;left:58%;top:0}
+  #yes:hover{transform:translateX(-110%) scale(1.05)}
+  .answer{display:none;margin-top:30px;font-size:1.4rem;color:var(--rose)}
+  .tiny{font:12px Arial,sans-serif;color:#9b7885;margin-top:25px}
+  .petal{position:fixed;top:-20px;font-size:18px;opacity:.55;pointer-events:none;animation:fall linear infinite}
+  @keyframes float{50%{transform:translateY(-10px)}}
+  @keyframes pulse{50%{transform:scale(1.13)}}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
+  @media(max-width:600px){
+    .card{padding:28px 22px}.buttons{height:210px}
+    #yes{left:38%;top:10px} #no{left:58%;top:75px}
+  }
+</style>
 </head>
-
 <body>
-  <!-- Floating hearts -->
-  <div class="heart" style="left:5%; animation-delay:0s; font-size:24px;">♥</div>
-  <div class="heart" style="left:18%; animation-delay:2s; font-size:17px;">♥</div>
-  <div class="heart" style="left:35%; animation-delay:4s; font-size:30px;">♥</div>
-  <div class="heart" style="left:58%; animation-delay:1s; font-size:20px;">♥</div>
-  <div class="heart" style="left:76%; animation-delay:3s; font-size:32px;">♥</div>
-  <div class="heart" style="left:91%; animation-delay:5s; font-size:18px;">♥</div>
 
-  <main class="min-vh-100 d-flex align-items-center justify-content-center p-3">
-    <section class="main-card card p-4 p-md-5 text-center">
-      <div id="questionScreen">
-        <div class="heart-big">
-          <i class="bi bi-heart-fill"></i>
-        </div>
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Uma pequena homenagem</div>
+    <div class="heart">♡</div>
+    <h1>Tainá</h1>
+    <p>Antes de qualquer pergunta, eu queria te lembrar de uma coisa:<br>
+    algumas pessoas simplesmente tornam o mundo um pouco mais bonito por existirem.</p>
+    <div class="scroll">continue rolando ↓</div>
+  </div>
+</section>
 
-        <h1>Fernanda 💗</h1>
-        <p class="subtitle mb-0">
-          Eu tenho uma pergunta muito importante para fazer...
-        </p>
+<section>
+  <div class="wrap">
+    <div class="card">
+      <div class="eyebrow">Sobre você</div>
+      <h2>Seu jeito doce</h2>
+      <div class="divider"></div>
+      <p>
+        Tem uma doçura no seu jeito que não precisa fazer esforço para aparecer.
+        É aquela coisa que está nos pequenos detalhes, na maneira de tratar as pessoas,
+        no carinho que você coloca nas coisas e na pessoa que você é quando ninguém
+        está tentando te observar.
+      </p>
+      <p class="quote">“Há pessoas que a gente conhece. E há pessoas que a gente sente que vale a pena conhecer de verdade.”</p>
+    </div>
+  </div>
+</section>
 
-        <div class="question">
-          Você quer namorar comigo? 🥺👉👈
-        </div>
-
-        <div class="buttons-area" id="buttonsArea">
-          <button id="yesBtn" class="btn btn-love">
-            <i class="bi bi-heart-fill me-2"></i>SIM!
-          </button>
-
-          <button id="noBtn" class="btn btn-no">
-            Não 😔
-          </button>
-        </div>
-
-        <div id="counter" class="counter"></div>
+<section>
+  <div class="wrap">
+    <div class="eyebrow">E tem mais uma coisa</div>
+    <h2>Eu admiro a sua força.</h2>
+    <p>
+      Porque por trás desse jeito doce existe uma mulher que luta todos os dias.
+      Uma mãe que encara as dificuldades, que se preocupa, que cuida, que dá o melhor
+      de si e que segue em frente.
+    </p>
+    <div class="timeline">
+      <div class="item">
+        <strong>Você e o Rafael</strong>
+        O jeito como você luta por ele diz muito sobre o tamanho do seu coração.
+        Ser mãe não é simples — e mesmo assim você está ali, fazendo o que pode,
+        protegendo, cuidando e amando.
       </div>
-
-      <div id="resultScreen" class="result">
-        <i class="bi bi-hearts"></i>
-        <h2 class="mt-3">EU SABIA! 😭💗</h2>
-        <p class="fs-5">
-          Então agora é oficial, Fernanda!<br>
-          <strong>Você é minha namorada. ❤️</strong>
-        </p>
-        <div class="fs-1 mt-3">🥰 💕 🫶 💗</div>
+      <div class="item">
+        <strong>Doçura e coragem</strong>
+        Talvez seja justamente essa mistura que eu ache tão bonita em você:
+        a delicadeza sem deixar de ser forte.
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="footer mt-4">
-        Feito com carinho (e uma quantidade suspeita de JavaScript) 😌
-      </div>
-    </section>
-  </main>
+<section>
+  <div class="wrap">
+    <div class="card">
+      <div class="eyebrow">E agora...</div>
+      <h2>Eu poderia continuar escrevendo.</h2>
+      <p>
+        Poderia falar de cada detalhe, fazer um texto enorme e tentar encontrar
+        as palavras perfeitas. Mas talvez a verdade seja bem mais simples.
+      </p>
+      <p class="quote">
+        Eu gosto de você. Gosto de quem você é, admiro sua força e adoro esse seu
+        jeito doce de ser.
+      </p>
+      <p>Então, depois de tudo isso, chegou a hora de fazer a pergunta que realmente importa.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<section class="final">
+  <div class="wrap">
+    <div class="heart">♥</div>
+    <div class="eyebrow">Tainá, quer saber?</div>
+    <div class="question">Quer namorar comigo?</div>
+    <p>Prometo tentar fazer valer cada momento ao seu lado. ❤️</p>
 
-  <script>
-    $(function () {
-      let attempts = 0;
+    <div class="buttons" id="arena">
+      <button id="yes">SIM! ❤️</button>
+      <button id="no">Não 😶</button>
+    </div>
 
-      function moveNoButton() {
-        const $area = $('#buttonsArea');
-        const $button = $('#noBtn');
+    <div class="answer" id="answer">
+      Eu sabia! 😌❤️<br>
+      Agora você oficialmente me deve um abraço.
+    </div>
+    <div class="tiny">P.S.: o botão “Não” tem uma tendência inexplicável a fugir.</div>
+  </div>
+</section>
 
-        attempts++;
+<script>
+  const no = document.getElementById("no");
+  const yes = document.getElementById("yes");
+  const arena = document.getElementById("arena");
+  const answer = document.getElementById("answer");
 
-        // Transforma o botão em absoluto na primeira fuga.
-        $button.addClass('runaway');
+  function fugir(){
+    const maxX = Math.max(0, arena.clientWidth - no.offsetWidth);
+    const maxY = Math.max(0, arena.clientHeight - no.offsetHeight);
+    no.style.left = Math.random() * maxX + "px";
+    no.style.top = Math.random() * maxY + "px";
+    no.style.transform = "rotate(" + ((Math.random()*20)-10) + "deg)";
+  }
 
-        const areaWidth = $area.innerWidth();
-        const areaHeight = $area.innerHeight();
-        const buttonWidth = $button.outerWidth();
-        const buttonHeight = $button.outerHeight();
+  no.addEventListener("mouseenter", fugir);
+  no.addEventListener("touchstart", e => { e.preventDefault(); fugir(); });
+  no.addEventListener("click", fugir);
 
-        // Mantém o botão dentro da área.
-        const maxX = Math.max(0, areaWidth - buttonWidth);
-        const maxY = Math.max(0, areaHeight - buttonHeight);
+  yes.addEventListener("click", () => {
+    answer.style.display = "block";
+    yes.textContent = "EU SABIA! ❤️";
+    for(let i=0;i<28;i++) createPetal();
+  });
 
-        let x = Math.random() * maxX;
-        let y = Math.random() * maxY;
+  function createPetal(){
+    const p=document.createElement("div");
+    p.className="petal";
+    p.textContent=["♥","♡","✦"][Math.floor(Math.random()*3)];
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(3+Math.random()*4)+"s";
+    p.style.fontSize=(14+Math.random()*18)+"px";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),8000);
+  }
 
-        // Evita ficar exatamente em cima do SIM.
-        if (attempts < 3 && x < areaWidth / 2) {
-          x = Math.min(maxX, areaWidth * .55 + Math.random() * (maxX * .4));
-        }
-
-        $button.css({
-          left: x + 'px',
-          top: y + 'px'
-        });
-
-        const messages = [
-          'Tem certeza? 👀',
-          'Esse botão parece estar com medo kkkkk',
-          'Você não vai conseguir clicar no Não 😂',
-          ' Fernanda, olha o SIM ali... 👀❤️',
-          'O botão NÃO pediu demissão. 😭',
-          'Aceita logo, mulher! kkkkk 💗'
-        ];
-
-        $('#counter').text(messages[Math.min(attempts - 1, messages.length - 1)]);
-      }
-
-      $('#noBtn').on('mouseenter touchstart click', function (e) {
-        e.preventDefault();
-        moveNoButton();
-      });
-
-      $('#yesBtn').on('click', function () {
-        $('#questionScreen').fadeOut(350, function () {
-          $('#resultScreen').fadeIn(500);
-        });
-
-        // Pequena chuva de corações.
-        for (let i = 0; i < 25; i++) {
-          const $heart = $('<span class="heart">♥</span>');
-          $heart.css({
-            left: Math.random() * 100 + '%',
-            animationDelay: Math.random() * 2 + 's',
-            fontSize: (14 + Math.random() * 25) + 'px'
-          });
-          $('body').append($heart);
-
-          setTimeout(() => $heart.remove(), 7500);
-        }
-      });
-    });
-  </script>
+  for(let i=0;i<8;i++){
+    setTimeout(createPetal, i*700);
+  }
+</script>
 </body>
 </html>
