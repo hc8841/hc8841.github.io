@@ -1,200 +1,392 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Tainá — uma pequena homenagem</title>
-<style>
-  :root{
-    --bg:#fff8fb; --ink:#3c2631; --muted:#765d68; --rose:#d85c83;
-    --rose2:#f4b3c7; --card:rgba(255,255,255,.82);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; color:var(--ink); font-family:Georgia,"Times New Roman",serif;
-    background:
-      radial-gradient(circle at 15% 10%, #ffe5ef 0 8%, transparent 25%),
-      radial-gradient(circle at 90% 30%, #fbe1ea 0 7%, transparent 24%),
-      linear-gradient(135deg,var(--bg),#fff);
-    overflow-x:hidden;
-  }
-  body:before{
-    content:""; position:fixed; inset:0; pointer-events:none; opacity:.16;
-    background-image:radial-gradient(#c45b7d 0.7px,transparent .7px);
-    background-size:18px 18px;
-  }
-  section{min-height:100vh; display:grid; place-items:center; padding:80px 22px; position:relative}
-  .wrap{width:min(900px,100%); text-align:center}
-  .eyebrow{letter-spacing:.25em;text-transform:uppercase;font:600 12px Arial,sans-serif;color:var(--rose)}
-  h1{font-size:clamp(3rem,10vw,7rem);line-height:.9;margin:22px 0}
-  h2{font-size:clamp(2rem,6vw,4rem);margin:15px 0}
-  p{font-size:clamp(1.08rem,2.2vw,1.35rem);line-height:1.8;color:var(--muted)}
-  .hero h1{animation:float 5s ease-in-out infinite}
-  .heart{font-size:54px; animation:pulse 1.8s infinite}
-  .scroll{margin-top:45px;font:12px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#9b7885}
-  .card{
-    background:var(--card); backdrop-filter:blur(8px); border:1px solid #f0ccd8;
-    border-radius:28px; padding:42px; box-shadow:0 20px 60px rgba(111,55,76,.09)
-  }
-  .quote{font-style:italic;font-size:clamp(1.3rem,3vw,1.8rem)}
-  .divider{width:70px;height:2px;background:var(--rose2);margin:28px auto}
-  .timeline{display:grid;gap:18px;margin-top:35px}
-  .item{text-align:left;padding:22px 24px;border-left:3px solid var(--rose2);background:#fff9fc;border-radius:0 18px 18px 0}
-  .item strong{display:block;font-size:1.2rem;margin-bottom:7px}
-  .final{background:linear-gradient(180deg,transparent,#fff0f5)}
-  .question{font-size:clamp(2.4rem,8vw,5.5rem);line-height:1.05;margin:25px 0}
-  .buttons{height:180px;position:relative;margin:20px auto 0;max-width:600px}
-  button{
-    border:0;border-radius:999px;padding:16px 30px;font:bold 16px Arial,sans-serif;
-    cursor:pointer;box-shadow:0 8px 25px rgba(80,30,50,.13);transition:transform .2s
-  }
-  #yes{background:var(--rose);color:white;position:absolute;left:50%;transform:translateX(-110%)}
-  #no{background:#fff;color:#8b6573;position:absolute;left:58%;top:0}
-  #yes:hover{transform:translateX(-110%) scale(1.05)}
-  .answer{display:none;margin-top:30px;font-size:1.4rem;color:var(--rose)}
-  .tiny{font:12px Arial,sans-serif;color:#9b7885;margin-top:25px}
-  .petal{position:fixed;top:-20px;font-size:18px;opacity:.55;pointer-events:none;animation:fall linear infinite}
-  @keyframes float{50%{transform:translateY(-10px)}}
-  @keyframes pulse{50%{transform:scale(1.13)}}
-  @keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}
-  @media(max-width:600px){
-    .card{padding:28px 22px}.buttons{height:210px}
-    #yes{left:38%;top:10px} #no{left:58%;top:75px}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Homenagem · Ester</title>
+  <!-- Bootstrap 5 + jQuery + ícones -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(145deg, #ffe4ec 0%, #ffc0cb 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+    .card-pedido {
+      background: rgba(255, 245, 247, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 2px solid #ffb6c1;
+      border-radius: 48px 48px 32px 32px;
+      box-shadow: 0 20px 40px rgba(255, 105, 135, 0.25), 0 8px 20px rgba(255, 20, 80, 0.1);
+      max-width: 700px;
+      width: 100%;
+      padding: 2rem 1.8rem;
+      transition: all 0.2s ease;
+    }
+    .foto-ester {
+      background: #ffd9e2;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 4.2rem;
+      color: #b3405a;
+      box-shadow: 0 10px 18px rgba(200, 70, 100, 0.25);
+      border: 4px solid #fff5f7;
+    }
+    .titulo-homenagem {
+      font-weight: 600;
+      color: #912f4a;
+      letter-spacing: -0.3px;
+      font-size: 2.1rem;
+      border-bottom: 3px dashed #ff8da1;
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+    .mensagem-ester {
+      font-size: 1.2rem;
+      color: #4a2a32;
+      background: rgba(255, 220, 230, 0.5);
+      padding: 20px 20px;
+      border-radius: 60px 20px 60px 20px;
+      border-left: 6px solid #ff7b9c;
+      font-weight: 450;
+      line-height: 1.6;
+      min-height: 110px;
+      box-shadow: inset 0 2px 8px rgba(255, 150, 180, 0.15);
+    }
+    .btn-rosa {
+      background: #ff7b9c;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 60px;
+      box-shadow: 0 6px 0 #b34a64, 0 8px 18px rgba(255, 70, 110, 0.3);
+      transition: 0.08s linear;
+      font-size: 1.2rem;
+      letter-spacing: 0.3px;
+    }
+    .btn-rosa:active {
+      transform: translateY(5px);
+      box-shadow: 0 1px 0 #b34a64, 0 8px 18px rgba(255, 70, 110, 0.2);
+    }
+    .btn-rosa-claro {
+      background: #ffb3c6;
+      border: 2px solid #ff8aa8;
+      color: #5f2e3b;
+      font-weight: 600;
+      padding: 10px 28px;
+      border-radius: 60px;
+      box-shadow: 0 4px 0 #b36a7a;
+      transition: 0.08s linear;
+      font-size: 1.2rem;
+    }
+    .btn-rosa-claro:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #b36a7a;
+    }
+    .btn-nao-fugitivo {
+      position: relative;
+      transition: left 0.08s ease, top 0.08s ease, right 0.08s ease, bottom 0.08s ease;
+      min-width: 110px;
+      background: #e0b4be;
+      border: 2px solid #c17a8b;
+      color: #3f212b;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 60px;
+      box-shadow: 0 4px 0 #946a76;
+      font-size: 1.2rem;
+    }
+    .btn-nao-fugitivo:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #946a76;
+    }
+    .botoes-area {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px 30px;
+      margin-top: 28px;
+    }
+    .final-pedido {
+      background: #ffeef2;
+      border-radius: 60px 60px 30px 30px;
+      padding: 20px 15px 10px;
+      border: 2px solid #ffa5b9;
+      margin-top: 20px;
+    }
+    .coracao-pulse {
+      color: #d43f5e;
+      animation: pulse 1.4s infinite;
+      display: inline-block;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .texto-ester {
+      font-size: 1.0rem;
+      color: #5e3340;
+    }
+    @media (max-width: 480px) {
+      .card-pedido { padding: 1.5rem 1rem; }
+      .titulo-homenagem { font-size: 1.6rem; }
+      .mensagem-ester { font-size: 1.0rem; padding: 18px 16px; }
+      .botoes-area { gap: 15px; }
+    }
+  </style>
 </head>
 <body>
-
-<section class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Uma pequena homenagem</div>
-    <div class="heart">♡</div>
-    <h1>Tainá</h1>
-    <p>Antes de qualquer pergunta, eu queria te lembrar de uma coisa:<br>
-    algumas pessoas simplesmente tornam o mundo um pouco mais bonito por existirem.</p>
-    <div class="scroll">continue rolando ↓</div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="card">
-      <div class="eyebrow">Sobre você</div>
-      <h2>Seu jeito doce</h2>
-      <div class="divider"></div>
-      <p>
-        Tem uma doçura no seu jeito que não precisa fazer esforço para aparecer.
-        É aquela coisa que está nos pequenos detalhes, na maneira de tratar as pessoas,
-        no carinho que você coloca nas coisas e na pessoa que você é quando ninguém
-        está tentando te observar.
-      </p>
-      <p class="quote">“Há pessoas que a gente conhece. E há pessoas que a gente sente que vale a pena conhecer de verdade.”</p>
+<div class="card-pedido" id="cardPedido">
+  <!-- cabeçalho com foto e nome -->
+  <div class="text-center">
+    <div class="foto-ester">
+      <i class="bi bi-heart-fill" style="font-size: 3.8rem; color: #d9537a;"></i>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="eyebrow">E tem mais uma coisa</div>
-    <h2>Eu admiro a sua força.</h2>
-    <p>
-      Porque por trás desse jeito doce existe uma mulher que luta todos os dias.
-      Uma mãe que encara as dificuldades, que se preocupa, que cuida, que dá o melhor
-      de si e que segue em frente.
+    <h1 class="titulo-homenagem display-6">
+      <i class="bi bi-flower1 me-2" style="color: #e65c7b;"></i>Ester
+    </h1>
+    <p class="text-muted fst-italic" style="color: #914e62 !important; font-weight: 400;">
+      <i class="bi bi-suit-heart-fill text-danger"></i> uma homenagem especial <i class="bi bi-suit-heart-fill text-danger"></i>
     </p>
-    <div class="timeline">
-      <div class="item">
-        <strong>Você e o Rafael</strong>
-        O jeito como você luta por ele diz muito sobre o tamanho do seu coração.
-        Ser mãe não é simples — e mesmo assim você está ali, fazendo o que pode,
-        protegendo, cuidando e amando.
-      </div>
-      <div class="item">
-        <strong>Doçura e coragem</strong>
-        Talvez seja justamente essa mistura que eu ache tão bonita em você:
-        a delicadeza sem deixar de ser forte.
-      </div>
-    </div>
   </div>
-</section>
 
-<section>
-  <div class="wrap">
-    <div class="card">
-      <div class="eyebrow">E agora...</div>
-      <h2>Eu poderia continuar escrevendo.</h2>
-      <p>
-        Poderia falar de cada detalhe, fazer um texto enorme e tentar encontrar
-        as palavras perfeitas. Mas talvez a verdade seja bem mais simples.
-      </p>
-      <p class="quote">
-        Eu gosto de você. Gosto de quem você é, admiro sua força e adoro esse seu
-        jeito doce de ser.
-      </p>
-      <p>Então, depois de tudo isso, chegou a hora de fazer a pergunta que realmente importa.</p>
-    </div>
+  <!-- Área de mensagem dinâmica (puxa-saco + pedido) -->
+  <div id="areaMensagem" class="mensagem-ester my-4 text-center d-flex align-items-center justify-content-center">
+    <span id="textoMensagem" class="fw-semibold" style="font-weight: 500;">
+      Ester, cada dia ao seu lado é um poema sem rima, mas cheio de sentido. ✨
+    </span>
   </div>
-</section>
 
-<section class="final">
-  <div class="wrap">
-    <div class="heart">♥</div>
-    <div class="eyebrow">Tainá, quer saber?</div>
-    <div class="question">Quer namorar comigo?</div>
-    <p>Prometo tentar fazer valer cada momento ao seu lado. ❤️</p>
-
-    <div class="buttons" id="arena">
-      <button id="yes">SIM! ❤️</button>
-      <button id="no">Não 😶</button>
-    </div>
-
-    <div class="answer" id="answer">
-      Eu sabia! 😌❤️<br>
-      Agora você oficialmente me deve um abraço.
-    </div>
-    <div class="tiny">P.S.: o botão “Não” tem uma tendência inexplicável a fugir.</div>
+  <!-- Botões de interação -->
+  <div class="botoes-area" id="botoesArea">
+    <button class="btn btn-rosa" id="btnSim">
+      <i class="bi bi-hand-thumbs-up-fill me-2"></i>Sim, claro
+    </button>
+    <button class="btn btn-nao-fugitivo" id="btnNao" style="position: relative;">
+      <i class="bi bi-x-circle me-1"></i>Não
+    </button>
   </div>
-</section>
+
+  <!-- Rodapé / surpresa (aparece após o SIM) -->
+  <div id="surpresaPedido" class="final-pedido text-center mt-4 d-none">
+    <h3 class="display-6" style="color: #b33b5a; font-weight: 600;">
+      <span class="coracao-pulse">❤️</span> Ester, você quer namorar comigo? <span class="coracao-pulse">❤️</span>
+    </h3>
+    <p class="texto-ester mt-2 fw-semibold" style="font-size: 1.1rem;">
+      <i class="bi bi-emoji-heart-eyes-fill text-danger"></i> 
+      Seu sorriso é o meu lugar favorito. 
+      <i class="bi bi-emoji-heart-eyes-fill text-danger"></i>
+    </p>
+    <div class="d-flex justify-content-center gap-4 mt-3 flex-wrap">
+      <button class="btn btn-rosa" id="btnSimFinal" style="padding: 10px 40px;">
+        <i class="bi bi-check2-heart"></i> SIM, EU QUERO!
+      </button>
+      <button class="btn btn-rosa-claro" id="btnNaoFinal" style="background: #e6b0bf; border-color: #c47a8d;">
+        <i class="bi bi-emoji-neutral"></i> Não
+      </button>
+    </div>
+    <p id="respostaFinal" class="mt-3 fw-bold" style="color: #ab3f5a; font-size: 1.2rem;"></p>
+  </div>
+
+  <!-- pequena observação -->
+  <div class="text-center mt-3" style="color: #8b4c5b; opacity: 0.7; font-size: 0.9rem;">
+    <i class="bi bi-balloon-heart-fill"></i> feito com carinho <i class="bi bi-balloon-heart-fill"></i>
+  </div>
+</div>
 
 <script>
-  const no = document.getElementById("no");
-  const yes = document.getElementById("yes");
-  const arena = document.getElementById("arena");
-  const answer = document.getElementById("answer");
+  $(document).ready(function() {
+    // ----- estados -----
+    let fase = 0; // 0 = elogios, 1 = elogios2, 2 = quase pedido, 3 = pedido revelado
+    const mensagens = [
+      "Ester, cada dia ao seu lado é um poema sem rima, mas cheio de sentido. ✨",
+      "Você tem um brilho que ilumina até os dias mais cinzentos. 🌸",
+      "Sabe, Ester? Seu jeito doce e sua risada são a melodia que eu quero ouvir sempre. 🎶",
+      "Não tem jeito, você me faz querer ser uma pessoa melhor. 💖"
+    ];
+    let msgIndex = 0;
 
-  function fugir(){
-    const maxX = Math.max(0, arena.clientWidth - no.offsetWidth);
-    const maxY = Math.max(0, arena.clientHeight - no.offsetHeight);
-    no.style.left = Math.random() * maxX + "px";
-    no.style.top = Math.random() * maxY + "px";
-    no.style.transform = "rotate(" + ((Math.random()*20)-10) + "deg)";
-  }
+    // elemento texto
+    const $textoMsg = $('#textoMensagem');
+    const $surpresa = $('#surpresaPedido');
+    const $btnSim = $('#btnSim');
+    const $btnNao = $('#btnNao');
+    const $btnSimFinal = $('#btnSimFinal');
+    const $btnNaoFinal = $('#btnNaoFinal');
+    const $respostaFinal = $('#respostaFinal');
 
-  no.addEventListener("mouseenter", fugir);
-  no.addEventListener("touchstart", e => { e.preventDefault(); fugir(); });
-  no.addEventListener("click", fugir);
+    // ----- funções -----
+    function avancarMensagem() {
+      if (fase < 3) {
+        fase++;
+        if (fase === 1) {
+          $textoMsg.text(mensagens[1]);
+        } else if (fase === 2) {
+          $textoMsg.text(mensagens[2]);
+        } else if (fase === 3) {
+          $textoMsg.text(mensagens[3]);
+          // revela o pedido
+          $surpresa.removeClass('d-none');
+          // esconde os botões principais (sim e não) para não confundir
+          $('#botoesArea').addClass('d-none');
+          // ajusta a mensagem final
+          $textoMsg.text('Ester, você é tudo isso e mais um pouco. ❤️');
+        }
+      }
+    }
 
-  yes.addEventListener("click", () => {
-    answer.style.display = "block";
-    yes.textContent = "EU SABIA! ❤️";
-    for(let i=0;i<28;i++) createPetal();
+    // botão SIM (vai elogiando)
+    $btnSim.on('click', function() {
+      if (fase < 3) {
+        avancarMensagem();
+      } else {
+        // se já estiver na fase 3, o botão sim está escondido, mas por segurança
+        if (!$surpresa.hasClass('d-none')) {
+          // nada, já mostrou
+        }
+      }
+      // pequeno efeito 
+      $(this).css('transform', 'scale(0.96)');
+      setTimeout(() => $(this).css('transform', ''), 100);
+    });
+
+    // botão NÃO FUGITIVO (muda de lugar)
+    $btnNao.on('click', function(e) {
+      e.preventDefault();
+      // pega o container pai (botoes-area) e o botão
+      const $container = $('#botoesArea');
+      const containerWidth = $container.width();
+      const containerHeight = $container.height();
+      
+      // dimensões do botão
+      const btnWidth = $btnNao.outerWidth();
+      const btnHeight = $btnNao.outerHeight();
+      
+      // margem interna para não sair
+      const pad = 10;
+      const maxLeft = containerWidth - btnWidth - pad;
+      const maxTop = containerHeight - btnHeight - pad;
+      
+      // posição aleatória dentro do container
+      let newLeft = Math.random() * maxLeft;
+      let newTop = Math.random() * maxTop;
+      
+      // garante que não fique colado nas bordas
+      newLeft = Math.min(maxLeft, Math.max(pad, newLeft));
+      newTop = Math.min(maxTop, Math.max(pad, newTop));
+      
+      // aplica posição relativa ao container (já é relative)
+      $btnNao.css({
+        left: newLeft + 'px',
+        top: newTop + 'px',
+        position: 'relative'
+      });
+      
+      // feedback sonoro visual: treme
+      $btnNao.css('background', '#d49caa');
+      setTimeout(() => $btnNao.css('background', '#e0b4be'), 120);
+      
+      // se já estiver na fase 3 (pedido aberto), o botão não some, mas foge
+      // e também pode avançar mensagem se ainda não tiver chego na fase 3
+      if (fase < 3) {
+        // quando clica no NÃO, também avança a mensagem (pra não ficar travado)
+        // mas não ultrapassa a fase 3
+        if (fase < 3) {
+          avancarMensagem();
+        }
+      } else {
+        // se já tiver na fase 3, o botão não some, só foge 
+        // e mostra uma mensagem engraçada no final?
+        $respostaFinal.text('😂 Ester, você é teimosa, hein? mas eu gosto disso!');
+        setTimeout(() => {
+          if ($respostaFinal.text().includes('teimosa')) {
+            $respostaFinal.text('💕 Brincadeira, eu te adoro!');
+          }
+        }, 800);
+      }
+    });
+
+    // BOTÃO SIM FINAL (dentro do pedido)
+    $btnSimFinal.on('click', function() {
+      $respostaFinal.html('<span class="coracao-pulse">❤️❤️❤️</span> VOCÊ DISSE SIM! <span class="coracao-pulse">❤️❤️❤️</span><br><span style="font-size: 1.4rem;">Eu sou o cara mais feliz do mundo! 🌹</span>');
+      // desabilita os botões finais para não ficar clicando
+      $btnSimFinal.prop('disabled', true).css('opacity', '0.7');
+      $btnNaoFinal.prop('disabled', true).css('opacity', '0.7');
+      // esconde o botão não final? não, mas desabilita
+    });
+
+    // BOTÃO NÃO FINAL (também foge? mas vamos fazer ele fugir também kkk)
+    $btnNaoFinal.on('click', function(e) {
+      e.preventDefault();
+      // foge também, mas dentro do container final
+      const $containerFinal = $('.final-pedido');
+      const containerW = $containerFinal.width();
+      const containerH = $containerFinal.height();
+      const btnW = $btnNaoFinal.outerWidth();
+      const btnH = $btnNaoFinal.outerHeight();
+      
+      const pad2 = 10;
+      let left2 = Math.random() * (containerW - btnW - pad2*2) + pad2;
+      let top2 = Math.random() * (containerH - btnH - pad2*2) + pad2;
+      
+      $btnNaoFinal.css({
+        position: 'relative',
+        left: left2 + 'px',
+        top: top2 + 'px'
+      });
+      
+      $respostaFinal.text('🤭 Não? Tá, mas eu sei que no fundo você quer...');
+      setTimeout(() => {
+        if ($respostaFinal.text().includes('no fundo')) {
+          $respostaFinal.text('💗 Ester, me dá um "sim" ? 💗');
+        }
+      }, 900);
+    });
+
+    // Se clicar em qualquer lugar do card e não estiver na fase 3, avança?
+    // (mas vamos deixar só os botões, melhor)
+    // também: se clicar no "não" depois do pedido, foge e zoa
+
+    // pequeno reset: se o não fugir demais, não sair da área
+    // já tratado com maxLeft/maxTop
+
+    // Inicialização: texto já está com a primeira mensagem.
+    // O botão sim já inicia, e o não também.
+
+    // Extra: se clicar no NÃO principal após o pedido (mas está escondido) não tem problema.
+    // o botão não principal some quando o pedido aparece.
+    // Mas também pode acontecer de clicar no NÃO e ele avançar? Não, já tratado.
+
+    // Se o usuário clicar no NÃO principal depois que o pedido aparecer, não vai acontecer nada pois o botão foi escondido.
+
+    // Melhor: quando fase=3, escondemos os botões principais, mas o não ainda pode ser clicado? Não, pois está com d-none.
+    // Mas se o usuário clicar no NÃO antes de chegar na fase 3, ele avança a mensagem.
+    // Tudo certo.
+
+    // Bônus: se alguém clicar no NÃO muitas vezes, ele vai fugindo e as mensagens vão passando.
+    // Isso é intencional e divertido.
+
+    // Efeito extra: ao clicar no NÃO, o botão treme 
+    // já implementado com mudança de cor
+
+    console.log('💕 Site para Ester carregado com amor! 💕');
   });
-
-  function createPetal(){
-    const p=document.createElement("div");
-    p.className="petal";
-    p.textContent=["♥","♡","✦"][Math.floor(Math.random()*3)];
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(3+Math.random()*4)+"s";
-    p.style.fontSize=(14+Math.random()*18)+"px";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),8000);
-  }
-
-  for(let i=0;i<8;i++){
-    setTimeout(createPetal, i*700);
-  }
 </script>
 </body>
 </html>
