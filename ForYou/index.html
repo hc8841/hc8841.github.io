@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="theme-color" content="#e85d75">
-  <meta name="description" content="Uma homenagem especial para Ester ❤️">
+  <meta name="description" content="Uma homenagem especial para Gabryela ❤️">
 
-  <title>Para Ester ❤️</title>
+  <title>Para Gabryela ❤️</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -770,7 +770,7 @@
         <span>♡</span>
       </div>
 
-      <h1>Ester</h1>
+      <h1>Gabryela</h1>
 
       <p class="subtitle">
         Algumas coisas simplesmente merecem ser ditas. ❤️
@@ -787,7 +787,7 @@
     <!-- Mensagem -->
     <section class="message-box" aria-live="polite">
       <p id="message">
-        Ester, cada dia ao seu lado é um poema sem rima,
+        Gabryela, cada dia ao seu lado é um poema sem rima,
         mas cheio de sentido. ✨
       </p>
     </section>
@@ -827,7 +827,7 @@
       </div>
 
       <h2>
-        Ester, você quer<br>
+        Gabryela, você quer<br>
         namorar comigo?
       </h2>
 
@@ -873,11 +873,11 @@
     ========================================================= */
 
     const messages = [
-      "Ester, cada dia ao seu lado é um poema sem rima, mas cheio de sentido. ✨",
+      "Gabryela, cada dia ao seu lado é um poema sem rima, mas cheio de sentido. ✨",
 
       "Você tem um brilho que ilumina até os dias mais cinzentos. 🌸",
 
-      "Sabe, Ester? Seu jeito doce e sua risada são a melodia que eu quero ouvir sempre. 🎶",
+      "Sabe, Gabryela? Seu jeito doce e sua risada são a melodia que eu quero ouvir sempre. 🎶",
 
       "Não tem jeito... você me faz querer ser uma pessoa melhor. 💖"
     ];
@@ -947,7 +947,7 @@
       setTimeout(() => {
 
         message.textContent =
-          "Ester, você é tudo isso e mais um pouco. ❤️";
+          "Gabryela, você é tudo isso e mais um pouco. ❤️";
 
         message.classList.remove("fade");
 
@@ -998,290 +998,3 @@
 
       const maxY =
         Math.max(
-          padding,
-          container.height - button.height - padding
-        );
-
-      const x =
-        Math.random() * maxX - maxX / 2;
-
-      const y =
-        Math.random() * maxY - maxY / 2;
-
-      noButton.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-      nextMessage();
-    }
-
-
-    noButton.addEventListener("click", moveNoButton);
-
-
-    /* =========================================================
-       PEDIDO FINAL — SIM
-    ========================================================= */
-
-    finalYes.addEventListener("click", () => {
-
-      answer.innerHTML =
-        "❤️❤️❤️<br>" +
-        "VOCÊ DISSE SIM!<br>" +
-        "<small>Eu sou oficialmente o cara mais feliz do mundo. 🌹</small>";
-
-      finalYes.disabled = true;
-      finalNo.disabled = true;
-
-      finalYes.style.opacity = ".7";
-      finalNo.style.opacity = ".5";
-
-      burstHearts(60);
-      createConfetti(100);
-    });
-
-
-    /* =========================================================
-       PEDIDO FINAL — NÃO
-    ========================================================= */
-
-    finalNo.addEventListener("click", () => {
-
-      answer.textContent =
-        "🤭 Não? Tem certeza? Pense com carinho...";
-
-      setTimeout(() => {
-
-        if (!finalNo.disabled) {
-
-          answer.textContent =
-            "💕 Eu aceito um 'sim' quando você estiver pronta.";
-
-        }
-
-      }, 1800);
-
-      moveFinalNo();
-    });
-
-
-    function moveFinalNo() {
-
-      const proposalRect =
-        proposal.getBoundingClientRect();
-
-      const buttonRect =
-        finalNo.getBoundingClientRect();
-
-      const maxX =
-        Math.max(
-          0,
-          (proposalRect.width - buttonRect.width) / 2
-        );
-
-      const x =
-        (Math.random() * maxX * 2) - maxX;
-
-      const y =
-        (Math.random() * 45) - 22;
-
-      finalNo.style.transform =
-        `translate(${x}px, ${y}px)`;
-    }
-
-
-    /* =========================================================
-       CORAÇÕES FLUTUANTES
-    ========================================================= */
-
-    function createFloatingHeart() {
-
-      const heart =
-        document.createElement("span");
-
-      heart.className =
-        "floating-heart";
-
-      heart.textContent =
-        Math.random() > .5 ? "♡" : "♥";
-
-      heart.style.left =
-        `${Math.random() * 100}%`;
-
-      heart.style.fontSize =
-        `${12 + Math.random() * 22}px`;
-
-      heart.style.animationDuration =
-        `${7 + Math.random() * 8}s`;
-
-      heart.style.animationDelay =
-        `${Math.random() * 5}s`;
-
-      hearts.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 16000);
-    }
-
-    for (let i = 0; i < 18; i++) {
-      createFloatingHeart();
-    }
-
-    setInterval(createFloatingHeart, 1800);
-
-
-    /* =========================================================
-       EXPLOSÃO DE CORAÇÕES
-    ========================================================= */
-
-    function burstHearts(amount) {
-
-      for (let i = 0; i < amount; i++) {
-
-        const heart =
-          document.createElement("div");
-
-        heart.className =
-          "burst-heart";
-
-        heart.textContent =
-          Math.random() > .3 ? "❤️" : "💗";
-
-        const angle =
-          Math.random() * Math.PI * 2;
-
-        const distance =
-          80 + Math.random() * 220;
-
-        const x =
-          Math.cos(angle) * distance;
-
-        const y =
-          Math.sin(angle) * distance;
-
-        const rotation =
-          Math.random() * 360 - 180;
-
-        heart.style.setProperty(
-          "--x",
-          `${x}px`
-        );
-
-        heart.style.setProperty(
-          "--y",
-          `${y}px`
-        );
-
-        heart.style.setProperty(
-          "--r",
-          `${rotation}deg`
-        );
-
-        heart.style.animationDelay =
-          `${Math.random() * .15}s`;
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 1400);
-      }
-    }
-
-
-    /* =========================================================
-       CONFETES
-    ========================================================= */
-
-    function createConfetti(amount) {
-
-      for (let i = 0; i < amount; i++) {
-
-        const piece =
-          document.createElement("div");
-
-        piece.className =
-          "confetti";
-
-        piece.style.left =
-          `${Math.random() * 100}vw`;
-
-        piece.style.width =
-          `${5 + Math.random() * 7}px`;
-
-        piece.style.height =
-          `${8 + Math.random() * 12}px`;
-
-        /*
-         * Usamos HSL aleatório para deixar a comemoração
-         * colorida sem precisar definir uma paleta fixa.
-         */
-
-        piece.style.background =
-          `hsl(${Math.random() * 360}, 80%, 65%)`;
-
-        piece.style.borderRadius =
-          Math.random() > .5
-            ? "50%"
-            : "2px";
-
-        piece.style.animationDuration =
-          `${2 + Math.random() * 3}s`;
-
-        piece.style.animationDelay =
-          `${Math.random() * .8}s`;
-
-        document.body.appendChild(piece);
-
-        setTimeout(() => {
-          piece.remove();
-        }, 5500);
-      }
-    }
-
-
-    /* =========================================================
-       MICROINTERAÇÃO — MOVIMENTO DO CARD
-    ========================================================= */
-
-    const card =
-      document.querySelector(".card");
-
-    /*
-     * Só ativa em dispositivos que provavelmente possuem
-     * mouse. No celular não precisamos disso.
-     */
-
-    if (window.matchMedia("(pointer:fine)").matches) {
-
-      card.addEventListener("mousemove", (event) => {
-
-        const rect =
-          card.getBoundingClientRect();
-
-        const x =
-          (event.clientX - rect.left) / rect.width - .5;
-
-        const y =
-          (event.clientY - rect.top) / rect.height - .5;
-
-        card.style.transform =
-          `perspective(1000px)
-           rotateX(${y * -2}deg)
-           rotateY(${x * 2}deg)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "";
-      });
-    }
-
-
-    console.log(
-      "❤️ Para Ester — carregado com carinho."
-    );
-  </script>
-
-</body>
-</html>
