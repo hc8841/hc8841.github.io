@@ -1,0 +1,2672 @@
+<?php
+declare(strict_types=1);
+
+/*
+ * HC Reparos — configuração básica
+ * Este arquivo pode ser servido diretamente pelo Apache/PHP.
+ */
+$empresa = [
+    'nome' => 'HC Reparos',
+    'slogan' => '<?= htmlspecialchars($empresa['slogan'], ENT_QUOTES, 'UTF-8') ?>',
+    'cidade' => 'São Bento do Sul — SC',
+    'telefone' => '(47) 99673-6277',
+    'whatsapp' => '5547996736277',
+    'email' => 'hcreparossbs@outlook.com',
+];
+
+$ano = (int) date('Y');
+$whatsappMensagem = rawurlencode(
+    'Olá HC Reparos! Gostaria de solicitar um orçamento.'
+);
+$whatsappUrl = "https://wa.me/{$empresa['whatsapp']}?text={$whatsappMensagem}";
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <title>HC Reparos | Assistência Técnica em São Bento do Sul</title>
+
+  <meta
+    name="description"
+    content="HC Reparos — assistência técnica em computadores em São Bento do Sul. Diagnóstico, manutenção, limpeza, upgrades, SSD, HD e configuração de sistemas."
+  >
+
+  <meta
+    name="keywords"
+    content="assistência técnica São Bento do Sul, manutenção computador, conserto PC, técnico informática, upgrade PC, limpeza computador, SSD, HC Reparos"
+  >
+
+  <meta name="author" content="HC Reparos">
+
+  <meta name="robots" content="index, follow">
+
+  <meta name="theme-color" content="#0d6efd">
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://hc8841.github.io/HCreparos/"
+  >
+
+  <!-- Open Graph -->
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="pt_BR"
+  >
+
+  <meta
+    property="og:title"
+    content="HC Reparos | Seu PC novo de novo"
+  >
+
+  <meta
+    property="og:description"
+    content="Assistência técnica em computadores em São Bento do Sul. Diagnóstico, manutenção, upgrades e reparos."
+  >
+
+  <meta
+    property="og:url"
+    content="https://hc8841.github.io/HCreparos/"
+  >
+
+  <meta
+    property="og:site_name"
+    content="HC Reparos"
+  >
+
+  <!-- Twitter / X -->
+  <meta
+    name="twitter:card"
+    content="summary"
+  >
+
+  <meta
+    name="twitter:title"
+    content="HC Reparos | Seu PC novo de novo"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Assistência técnica em computadores em São Bento do Sul."
+  >
+
+
+  <!-- =====================================================
+       DADOS ESTRUTURADOS — GOOGLE / SCHEMA.ORG
+       ===================================================== -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ComputerStore",
+    "@id": "https://hc8841.github.io/HCreparos/#business",
+
+    "name": "HC Reparos",
+
+    "description": "Assistência técnica em computadores em São Bento do Sul. Diagnóstico, manutenção, limpeza, upgrades, armazenamento e configuração de sistemas.",
+
+    "url": "https://hc8841.github.io/HCreparos/",
+
+    "telephone": "+5547996736277",
+
+    "email": "hcreparossbs@outlook.com",
+
+    "priceRange": "$$",
+
+    "currenciesAccepted": "BRL",
+
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Antônio dos Santos, 250",
+      "addressLocality": "São Bento do Sul",
+      "addressRegion": "SC",
+      "postalCode": "",
+      "addressCountry": "BR"
+    },
+
+    "areaServed": {
+      "@type": "City",
+      "name": "São Bento do Sul"
+    },
+
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+
+    "sameAs": [
+      "https://share.google/wGY8j0T3sTJsUlXs4",
+      "https://www.facebook.com/share/1Em6YKkEmp/",
+      "https://www.instagram.com/hcreparossbs?stkn=MXZ2NjRtZ2NpbTlsNA=="
+    ],
+
+    "hasMap": "https://www.google.com/maps?q=Rua%20Antônio%20dos%20Santos%2C%20250%2C%20Rio%20Vermelho%20Estação%2C%20São%20Bento%20do%20Sul%2C%20SC",
+
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+5547996736277",
+      "contactType": "customer service",
+      "availableLanguage": [
+        "Portuguese"
+      ]
+    }
+  }
+  </script>
+
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    :root {
+
+      --hc-primary: #0d6efd;
+      --hc-dark: #08111f;
+      --hc-darker: #050b14;
+      --hc-card: #101c2d;
+      --hc-text: #eaf2ff;
+      --hc-muted: #9eacc0;
+      --hc-border: rgba(255,255,255,.09);
+
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+
+    body {
+
+      background: var(--hc-darker);
+
+      color: var(--hc-text);
+
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    }
+
+
+    /* =====================================================
+       ACESSIBILIDADE
+       ===================================================== */
+
+    :focus-visible {
+
+      outline: 3px solid #66a6ff;
+      outline-offset: 3px;
+
+    }
+
+
+    .skip-link {
+
+      position: fixed;
+
+      top: -100px;
+      left: 15px;
+
+      z-index: 9999;
+
+      padding: 10px 15px;
+
+      background: white;
+      color: black;
+
+      border-radius: 8px;
+
+      text-decoration: none;
+      font-weight: 700;
+
+    }
+
+
+    .skip-link:focus {
+      top: 15px;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+       ===================================================== */
+
+    .navbar {
+
+      background:
+        rgba(5, 11, 20, .88) !important;
+
+      backdrop-filter: blur(14px);
+
+      border-bottom:
+        1px solid var(--hc-border);
+
+    }
+
+
+    .navbar-brand {
+
+      font-weight: 800;
+
+      letter-spacing: -.5px;
+
+    }
+
+
+    .brand-dot {
+      color: var(--hc-primary);
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero {
+
+      min-height: 92vh;
+
+      display: flex;
+
+      align-items: center;
+
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(13,110,253,.20),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(13,110,253,.10),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          135deg,
+          #050b14 0%,
+          #081526 55%,
+          #07101d 100%
+        );
+
+    }
+
+
+    .hero::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      opacity: .07;
+
+      background-image:
+
+        linear-gradient(
+          rgba(255,255,255,.8) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.8) 1px,
+          transparent 1px
+        );
+
+      background-size: 42px 42px;
+
+      mask-image:
+        linear-gradient(
+          to bottom right,
+          black,
+          transparent 75%
+        );
+
+    }
+
+
+    .hero-content {
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+
+    .eyebrow {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      border:
+        1px solid rgba(13,110,253,.35);
+
+      background:
+        rgba(13,110,253,.08);
+
+      color: #8bbcff;
+
+      border-radius: 50px;
+
+      padding: 8px 14px;
+
+      font-size: .88rem;
+
+      font-weight: 600;
+
+    }
+
+
+    .hero h1 {
+
+      font-size:
+        clamp(3rem, 7vw, 6rem);
+
+      line-height: .95;
+
+      font-weight: 900;
+
+      letter-spacing: -4px;
+
+    }
+
+
+    .hero h1 span {
+      color: var(--hc-primary);
+    }
+
+
+    .hero p.lead {
+
+      max-width: 680px;
+
+      color: #b9c7da;
+
+      font-size:
+        clamp(1.05rem, 2vw, 1.3rem);
+
+    }
+
+
+    /* =====================================================
+       BOTÕES
+       ===================================================== */
+
+    .btn-hc {
+
+      border-radius: 12px;
+
+      padding: 13px 20px;
+
+      font-weight: 700;
+
+      transition: .2s ease;
+
+    }
+
+
+    .btn-hc:hover {
+      transform: translateY(-2px);
+    }
+
+
+    /* =====================================================
+       SEÇÕES
+       ===================================================== */
+
+    .section {
+      padding: 100px 0;
+    }
+
+
+    .section-title {
+
+      font-weight: 850;
+
+      letter-spacing: -1px;
+
+    }
+
+
+    .section-subtitle {
+
+      color: var(--hc-muted);
+
+      max-width: 680px;
+
+    }
+
+
+    /* =====================================================
+       CARDS
+       ===================================================== */
+
+    .service-card,
+    .feature-card,
+    .contact-card,
+    .about-box {
+
+      height: 100%;
+
+      background:
+
+        linear-gradient(
+          145deg,
+          rgba(16,28,45,.95),
+          rgba(10,20,34,.95)
+        );
+
+      border:
+        1px solid var(--hc-border);
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+      transition: .25s ease;
+
+    }
+
+
+    .service-card:hover,
+    .feature-card:hover,
+    .contact-card:hover {
+
+      transform:
+        translateY(-6px);
+
+      border-color:
+        rgba(13,110,253,.45);
+
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.25);
+
+    }
+
+
+    .icon-box {
+
+      width: 54px;
+      height: 54px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 14px;
+
+      background:
+        rgba(13,110,253,.12);
+
+      color: #66a6ff;
+
+      font-size: 1.45rem;
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .service-card p,
+    .feature-card p,
+    .about-box p,
+    .contact-card p {
+
+      color: var(--hc-muted);
+
+    }
+
+
+    /* =====================================================
+       DIFERENCIAIS
+       ===================================================== */
+
+    .about-section {
+
+      background: #08111f;
+
+      border-top:
+        1px solid var(--hc-border);
+
+      border-bottom:
+        1px solid var(--hc-border);
+
+    }
+
+
+    /* =====================================================
+       PROCESSO
+       ===================================================== */
+
+    .process-number {
+
+      width: 48px;
+      height: 48px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 50%;
+
+      background:
+        var(--hc-primary);
+
+      color: white;
+
+      font-weight: 800;
+
+      flex-shrink: 0;
+
+    }
+
+
+    /* =====================================================
+       CTA
+       ===================================================== */
+
+    .cta {
+
+      background:
+
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(13,110,253,.25),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #0b1d35,
+          #07101c
+        );
+
+      border:
+        1px solid rgba(13,110,253,.28);
+
+      border-radius: 24px;
+
+      padding:
+        clamp(35px, 6vw, 70px);
+
+    }
+
+
+    /* =====================================================
+       MAPA
+       ===================================================== */
+
+    .map-wrap iframe {
+
+      width: 100%;
+
+      min-height: 360px;
+
+      border: 0;
+
+      border-radius: 18px;
+
+      filter:
+        grayscale(.25)
+        contrast(1.05);
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    footer {
+
+      background: #030811;
+
+      border-top:
+        1px solid var(--hc-border);
+
+      color: var(--hc-muted);
+
+    }
+
+
+    .footer-link {
+
+      color: var(--hc-muted);
+
+      text-decoration: none;
+
+      transition: .2s ease;
+
+    }
+
+
+    .footer-link:hover {
+      color: white;
+    }
+
+
+    /* =====================================================
+       WHATSAPP FLUTUANTE
+       ===================================================== */
+
+    .floating-whatsapp {
+
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      width: 58px;
+      height: 58px;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      z-index: 999;
+
+      font-size: 1.55rem;
+
+      box-shadow:
+        0 8px 30px rgba(0,0,0,.35);
+
+    }
+
+
+    /* =====================================================
+       ANIMAÇÕES
+       ===================================================== */
+
+    .reveal {
+
+      opacity: 0;
+
+      transform:
+        translateY(22px);
+
+      transition:
+        opacity .7s ease,
+        transform .7s ease;
+
+    }
+
+
+    .reveal.show {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    .small-label {
+
+      color: #7f90a8;
+
+      font-size: .78rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1.5px;
+
+      font-weight: 800;
+
+    }
+
+
+    /* =====================================================
+       GOOGLE CTA
+       ===================================================== */
+
+    .google-highlight {
+
+      border-color:
+        rgba(13,110,253,.30);
+
+    }
+
+
+    .google-highlight .google-icon {
+
+      font-size: 2rem;
+
+      color: #66a6ff;
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 767px) {
+
+      .hero {
+        min-height: 88vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .floating-whatsapp {
+
+        width: 54px;
+        height: 54px;
+
+        right: 15px;
+        bottom: 15px;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       REDUÇÃO DE MOVIMENTO
+       ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+
+        scroll-behavior: auto !important;
+
+      }
+
+      .reveal {
+
+        opacity: 1;
+
+        transform: none;
+
+      }
+
+    }
+
+    /* =====================================================
+       MELHORIAS VISUAIS — HC REPAROS
+       ===================================================== */
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      transition: background .25s ease, box-shadow .25s ease;
+    }
+
+    .navbar.navbar-scrolled {
+      box-shadow: 0 10px 35px rgba(0,0,0,.24);
+      background: rgba(5,11,20,.96) !important;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      z-index: 10000;
+      background: var(--hc-primary);
+      box-shadow: 0 0 14px rgba(13,110,253,.7);
+      transition: width .08s linear;
+    }
+
+    .hero-content {
+      animation: hero-in .8s ease both;
+    }
+
+    .hero .eyebrow {
+      box-shadow: 0 0 35px rgba(13,110,253,.08);
+    }
+
+    .service-card,
+    .feature-card,
+    .contact-card,
+    .about-box {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before,
+    .feature-card::before,
+    .contact-card::before,
+    .about-box::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(13,110,253,.65), transparent);
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .service-card:hover::before,
+    .feature-card:hover::before,
+    .contact-card:hover::before,
+    .about-box:hover::before {
+      opacity: 1;
+    }
+
+    .service-card h4,
+    .feature-card h5,
+    .contact-card h5 {
+      letter-spacing: -.25px;
+    }
+
+    .floating-whatsapp {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .floating-whatsapp:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 12px 38px rgba(0,0,0,.45);
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 88px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: .25s ease;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @keyframes hero-in {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .back-to-top {
+        right: 15px;
+        bottom: 80px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-content {
+        animation: none;
+      }
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+
+<!-- ACESSIBILIDADE -->
+
+<a
+  href="#conteudo"
+  class="skip-link">
+
+  Pular para o conteúdo
+
+</a>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav
+  class="navbar navbar-expand-lg navbar-dark fixed-top"
+  aria-label="Navegação principal">
+
+  <div class="container">
+
+    <a
+      class="navbar-brand fs-4"
+      href="#inicio"
+      aria-label="HC Reparos - início">
+
+      HC<span class="brand-dot">.</span>REPAROS
+
+    </a>
+
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#menu"
+      aria-controls="menu"
+      aria-expanded="false"
+      aria-label="Abrir menu">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+
+    <div
+      class="collapse navbar-collapse"
+      id="menu">
+
+      <ul
+        class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#servicos">
+
+            Serviços
+
+          </a>
+
+        </li>
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#diferenciais">
+
+            Diferenciais
+
+          </a>
+
+        </li>
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#processo">
+
+            Como funciona
+
+          </a>
+
+        </li>
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#sobre">
+
+            Sobre
+
+          </a>
+
+        </li>
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="#contato">
+
+            Contato
+
+          </a>
+
+        </li>
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link"
+            href="https://share.google/wGY8j0T3sTJsUlXs4"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="HC Reparos no Google">
+
+            <i class="bi bi-google"></i>
+            Google
+
+          </a>
+
+        </li>
+
+
+        <li class="nav-item ms-lg-2">
+
+          <a
+            class="btn btn-primary btn-sm btn-hc"
+            href="https://wa.me/5547996736277"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="bi bi-whatsapp"></i>
+
+            Orçamento
+
+          </a>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+<main id="conteudo">
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<header
+  id="inicio"
+  class="hero">
+
+  <div class="container hero-content">
+
+    <div class="row">
+
+      <div class="col-lg-9">
+
+
+        <div class="eyebrow mb-4">
+
+          <i class="bi bi-pc-display"></i>
+
+          Assistência técnica em São Bento do Sul
+
+        </div>
+
+
+        <h1 class="mb-4">
+
+          Seu PC novo
+          <span>de novo.</span>
+
+        </h1>
+
+
+        <p class="lead mb-4">
+
+          Manutenção, upgrades, diagnóstico e cuidados
+          para o seu computador.
+
+          Atendimento transparente e solução pensada
+          para o seu equipamento.
+
+        </p>
+
+
+        <div class="d-flex flex-wrap gap-3">
+
+
+          <a
+            class="btn btn-primary btn-lg btn-hc"
+            href="<?= $whatsappUrl ?>"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="bi bi-whatsapp"></i>
+
+            Solicitar orçamento
+
+          </a>
+
+
+          <a
+            class="btn btn-outline-light btn-lg btn-hc"
+            href="#servicos">
+
+            Conhecer serviços
+
+            <i class="bi bi-arrow-down"></i>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     SERVIÇOS
+     ===================================================== -->
+
+<section
+  id="servicos"
+  class="section">
+
+  <div class="container">
+
+
+    <div class="mb-5 reveal">
+
+      <div class="small-label mb-2">
+        O que fazemos
+      </div>
+
+      <h2 class="display-5 section-title">
+        Serviços
+      </h2>
+
+      <p class="section-subtitle">
+
+        Soluções para manutenção, desempenho e
+        funcionamento do seu computador.
+
+        Os serviços podem ser personalizados conforme
+        o problema encontrado.
+
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+      <div class="col-md-6 col-lg-4 reveal">
+
+        <div class="service-card">
+
+          <div class="icon-box">
+            <i class="bi bi-search"></i>
+          </div>
+
+          <h4>Diagnóstico</h4>
+
+          <p>
+
+            Identificação de falhas, lentidão,
+            travamentos e outros problemas antes
+            da execução do reparo.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 reveal">
+
+        <div class="service-card">
+
+          <div class="icon-box">
+            <i class="bi bi-cpu"></i>
+          </div>
+
+          <h4>Upgrades</h4>
+
+          <p>
+
+            Melhorias de hardware para aumentar
+            desempenho, capacidade de armazenamento
+            e memória.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 reveal">
+
+        <div class="service-card">
+
+          <div class="icon-box">
+            <i class="bi bi-tools"></i>
+          </div>
+
+          <h4>Manutenção</h4>
+
+          <p>
+
+            Manutenção preventiva e corretiva para
+            computadores e equipamentos compatíveis.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 reveal">
+
+        <div class="service-card">
+
+          <div class="icon-box">
+            <i class="bi bi-wind"></i>
+          </div>
+
+          <h4>Limpeza interna</h4>
+
+          <p>
+
+            Remoção de sujeira e cuidados no sistema
+            de refrigeração para ajudar a manter
+            temperaturas adequadas.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 reveal">
+
+        <div class="service-card">
+
+          <div class="icon-box">
+            <i class="bi bi-hdd-stack"></i>
+          </div>
+
+          <h4>Armazenamento</h4>
+
+          <p>
+
+            Instalação e substituição de SSDs e HDs,
+            além de orientação para organização
+            do armazenamento.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-4 reveal">
+
+        <div class="service-card">
+
+          <div class="icon-box">
+            <i class="bi bi-windows"></i>
+          </div>
+
+          <h4>Sistemas</h4>
+
+          <p>
+
+            Instalação, configuração e otimização
+            do sistema operacional e dos principais
+            componentes de software.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DIFERENCIAIS
+     ===================================================== -->
+
+<section
+  id="diferenciais"
+  class="section about-section">
+
+  <div class="container">
+
+
+    <div class="text-center mb-5 reveal">
+
+      <div class="small-label mb-2">
+        Por que escolher
+      </div>
+
+      <h2 class="display-5 section-title">
+        HC Reparos
+      </h2>
+
+      <p class="section-subtitle mx-auto">
+
+        Mais transparência e menos dor de cabeça
+        na hora de cuidar do seu equipamento.
+
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="feature-card">
+
+          <div class="icon-box">
+            <i class="bi bi-shield-check"></i>
+          </div>
+
+          <h5>Transparência</h5>
+
+          <p>
+
+            Você sabe o que foi encontrado e o que
+            precisa ser feito antes de autorizar
+            o serviço.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="feature-card">
+
+          <div class="icon-box">
+            <i class="bi bi-clipboard2-check"></i>
+          </div>
+
+          <h5>Diagnóstico</h5>
+
+          <p>
+
+            O problema é investigado antes de
+            simplesmente sair trocando peças.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="feature-card">
+
+          <div class="icon-box">
+            <i class="bi bi-chat-square-text"></i>
+          </div>
+
+          <h5>Atendimento</h5>
+
+          <p>
+
+            Comunicação direta para tirar dúvidas
+            e acompanhar o andamento do serviço.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="feature-card">
+
+          <div class="icon-box">
+            <i class="bi bi-patch-check"></i>
+          </div>
+
+          <h5>Qualidade</h5>
+
+          <p>
+
+            Serviço realizado com cuidado e foco
+            em uma solução adequada ao equipamento.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROCESSO
+     ===================================================== -->
+
+<section
+  id="processo"
+  class="section">
+
+  <div class="container">
+
+    <div class="row align-items-center g-5">
+
+
+      <div class="col-lg-5 reveal">
+
+        <div class="small-label mb-2">
+          Sem complicação
+        </div>
+
+        <h2 class="display-5 section-title">
+          Como funciona?
+        </h2>
+
+        <p class="section-subtitle">
+
+          Do primeiro contato à entrega,
+          o processo é simples e transparente.
+
+        </p>
+
+
+        <a
+          href="https://wa.me/5547996736277"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-hc mt-3">
+
+          <i class="bi bi-whatsapp"></i>
+
+          Falar com a HC Reparos
+
+        </a>
+
+      </div>
+
+
+      <div class="col-lg-7">
+
+
+        <div class="d-flex gap-3 mb-4 reveal">
+
+          <div class="process-number">
+            1
+          </div>
+
+          <div>
+
+            <h5>Entre em contato</h5>
+
+            <p class="text-secondary mb-0">
+
+              Conte o que está acontecendo
+              com o seu equipamento.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="d-flex gap-3 mb-4 reveal">
+
+          <div class="process-number">
+            2
+          </div>
+
+          <div>
+
+            <h5>Diagnóstico</h5>
+
+            <p class="text-secondary mb-0">
+
+              Avaliamos o equipamento para
+              encontrar a causa do problema.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="d-flex gap-3 mb-4 reveal">
+
+          <div class="process-number">
+            3
+          </div>
+
+          <div>
+
+            <h5>Orçamento</h5>
+
+            <p class="text-secondary mb-0">
+
+              Você recebe as informações do serviço
+              antes de qualquer reparo.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="d-flex gap-3 mb-4 reveal">
+
+          <div class="process-number">
+            4
+          </div>
+
+          <div>
+
+            <h5>Reparo</h5>
+
+            <p class="text-secondary mb-0">
+
+              Após a aprovação, realizamos
+              o serviço combinado.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="d-flex gap-3 reveal">
+
+          <div class="process-number">
+            5
+          </div>
+
+          <div>
+
+            <h5>Entrega</h5>
+
+            <p class="text-secondary mb-0">
+
+              Equipamento pronto para
+              voltar à rotina.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SOBRE
+     ===================================================== -->
+
+<section
+  id="sobre"
+  class="section about-section">
+
+  <div class="container">
+
+    <div class="row g-5 align-items-center">
+
+
+      <div class="col-lg-6 reveal">
+
+        <div class="small-label mb-2">
+          Quem somos
+        </div>
+
+        <h2 class="display-5 section-title">
+
+          Tecnologia com atendimento humano.
+
+        </h2>
+
+
+        <p class="section-subtitle mt-3">
+
+          A HC Reparos nasceu com o objetivo de
+          oferecer assistência técnica de forma clara,
+          cuidadosa e acessível, ajudando pessoas
+          a manterem seus equipamentos funcionando
+          bem sem complicação.
+
+        </p>
+
+
+        <p class="text-secondary">
+
+          Seja para resolver um problema, melhorar
+          o desempenho de um computador ou simplesmente
+          descobrir por que aquele PC decidiu parar
+          de colaborar, a ideia é entender primeiro
+          e reparar depois.
+
+        </p>
+
+      </div>
+
+
+      <div class="col-lg-6 reveal">
+
+        <div class="about-box">
+
+          <div class="row g-4">
+
+
+            <div class="col-6">
+
+              <div class="small-label">
+                Atendimento
+              </div>
+
+              <h5 class="mt-2">
+                Seg. a Sex.
+              </h5>
+
+              <p>
+                09:00 às 18:00
+              </p>
+
+            </div>
+
+
+            <div class="col-6">
+
+              <div class="small-label">
+                Localização
+              </div>
+
+              <h5 class="mt-2">
+                São Bento do Sul
+              </h5>
+
+              <p>
+                SC
+              </p>
+
+            </div>
+
+
+            <div class="col-12">
+
+              <hr class="border-secondary opacity-25">
+
+
+              <div class="small-label">
+                Especialidade
+              </div>
+
+              <h5 class="mt-2">
+
+                Computadores e tecnologia
+
+              </h5>
+
+              <p class="mb-0">
+
+                Manutenção, diagnóstico, upgrades
+                e cuidados com seu equipamento.
+
+              </p>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTATO
+     ===================================================== -->
+
+<section
+  id="contato"
+  class="section">
+
+  <div class="container">
+
+
+    <div class="cta reveal">
+
+      <div class="row align-items-center g-4">
+
+
+        <div class="col-lg-7">
+
+          <div class="small-label mb-2">
+            Precisa de ajuda?
+          </div>
+
+          <h2 class="display-6 fw-bold">
+
+            Seu PC está dando problema?
+
+          </h2>
+
+          <p class="text-secondary mb-0">
+
+            Entre em contato e conte o que está
+            acontecendo. Vamos avaliar a melhor solução.
+
+          </p>
+
+        </div>
+
+
+        <div class="col-lg-5 text-lg-end">
+
+          <a
+            class="btn btn-primary btn-lg btn-hc"
+            href="<?= $whatsappUrl ?>"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <i class="bi bi-whatsapp"></i>
+
+            Solicitar orçamento
+
+          </a>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="row g-4 mt-4">
+
+
+      <!-- WHATSAPP -->
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="contact-card">
+
+          <div class="icon-box">
+            <i class="bi bi-whatsapp"></i>
+          </div>
+
+          <div class="small-label">
+            WhatsApp
+          </div>
+
+          <h5 class="mt-2">
+            (47) 99673-6277
+          </h5>
+
+          <p>
+            Atendimento e orçamento.
+          </p>
+
+          <a
+            href="https://wa.me/5547996736277"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline-primary btn-sm">
+
+            Abrir WhatsApp
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- E-MAIL -->
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="contact-card">
+
+          <div class="icon-box">
+            <i class="bi bi-envelope"></i>
+          </div>
+
+          <div class="small-label">
+            E-mail
+          </div>
+
+          <h5 class="mt-2 text-break">
+            <?= htmlspecialchars($empresa['email'], ENT_QUOTES, 'UTF-8') ?>
+          </h5>
+
+          <p>
+            Contato por e-mail.
+          </p>
+
+          <a
+            href="mailto:hcreparossbs@outlook.com"
+            class="btn btn-outline-primary btn-sm">
+
+            Enviar e-mail
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- GOOGLE -->
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="contact-card google-highlight">
+
+          <div class="icon-box">
+
+            <i class="bi bi-google google-icon"></i>
+
+          </div>
+
+          <div class="small-label">
+            Google
+          </div>
+
+          <h5 class="mt-2">
+            HC Reparos
+          </h5>
+
+          <p>
+
+            Confira informações, localização
+            e presença da empresa no Google.
+
+          </p>
+
+
+          <div class="d-flex flex-wrap gap-2">
+
+
+            <a
+              href="https://share.google/wGY8j0T3sTJsUlXs4"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">
+
+              <i class="bi bi-google"></i>
+
+              Ver no Google
+
+            </a>
+
+
+            <a
+              href="https://share.google/wGY8j0T3sTJsUlXs4"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-primary btn-sm"
+              title="Abra o perfil da HC Reparos no Google para avaliar a empresa">
+
+              <i class="bi bi-star"></i>
+
+              Avaliar
+
+            </a>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- REDES -->
+
+      <div class="col-md-6 col-lg-3 reveal">
+
+        <div class="contact-card">
+
+          <div class="icon-box">
+            <i class="bi bi-instagram"></i>
+          </div>
+
+          <div class="small-label">
+            Redes sociais
+          </div>
+
+          <h5 class="mt-2">
+            HC Reparos
+          </h5>
+
+          <p>
+            Acompanhe a HC Reparos.
+          </p>
+
+
+          <div class="d-flex gap-2 flex-wrap">
+
+
+            <a
+              href="https://www.instagram.com/hcreparossbs?stkn=MXZ2NjRtZ2NpbTlsNA=="
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-primary btn-sm">
+
+              <i class="bi bi-instagram"></i>
+
+              Instagram
+
+            </a>
+
+
+            <a
+              href="https://www.facebook.com/share/1Em6YKkEmp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-primary btn-sm">
+
+              <i class="bi bi-facebook"></i>
+
+              Facebook
+
+            </a>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GOOGLE / LOCALIZAÇÃO
+     ===================================================== -->
+
+<section
+  id="localizacao"
+  class="section pt-0">
+
+  <div class="container">
+
+
+    <div class="row g-4 align-items-stretch">
+
+
+      <div class="col-lg-5 reveal">
+
+        <div class="contact-card">
+
+
+          <div class="icon-box">
+            <i class="bi bi-geo-alt"></i>
+          </div>
+
+
+          <div class="small-label">
+            Onde estamos
+          </div>
+
+
+          <h4 class="mt-2">
+
+            São Bento do Sul — SC
+
+          </h4>
+
+
+          <p class="mb-4">
+
+            Rua Antônio dos Santos, 250<br>
+
+            Rio Vermelho Estação
+
+          </p>
+
+
+          <div class="small-label">
+            Horário
+          </div>
+
+
+          <p class="mt-2 mb-4">
+
+            <i class="bi bi-clock me-2"></i>
+
+            Segunda a sexta —
+            09:00 às 18:00
+
+          </p>
+
+
+          <a
+            href="https://share.google/wGY8j0T3sTJsUlXs4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-hc">
+
+            <i class="bi bi-google"></i>
+
+            Ver empresa no Google
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="col-lg-7 reveal">
+
+        <div class="map-wrap h-100">
+
+          <iframe
+            title="Mapa mostrando a localização da HC Reparos em São Bento do Sul"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Rua%20Antônio%20dos%20Santos%2C%20250%2C%20Rio%20Vermelho%20Estação%2C%20São%20Bento%20do%20Sul%2C%20SC&output=embed">
+          </iframe>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="py-5">
+
+  <div class="container">
+
+
+    <div class="row g-4">
+
+
+      <div class="col-lg-6">
+
+        <h4 class="text-white fw-bold">
+
+          HC<span class="brand-dot">.</span>REPAROS
+
+        </h4>
+
+
+        <p class="mb-0">
+
+          Seu PC novo de novo.
+
+        </p>
+
+      </div>
+
+
+      <div class="col-sm-6 col-lg-3">
+
+
+        <div class="small-label mb-3">
+          Navegação
+        </div>
+
+
+        <div class="d-flex flex-column gap-2">
+
+
+          <a
+            class="footer-link"
+            href="#servicos">
+
+            Serviços
+
+          </a>
+
+
+          <a
+            class="footer-link"
+            href="#diferenciais">
+
+            Diferenciais
+
+          </a>
+
+
+          <a
+            class="footer-link"
+            href="#processo">
+
+            Como funciona
+
+          </a>
+
+
+          <a
+            class="footer-link"
+            href="#sobre">
+
+            Sobre
+
+          </a>
+
+
+          <a
+            class="footer-link"
+            href="#contato">
+
+            Contato
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="col-sm-6 col-lg-3">
+
+
+        <div class="small-label mb-3">
+          Contato
+        </div>
+
+
+        <p class="mb-1">
+          <?= htmlspecialchars($empresa['telefone'], ENT_QUOTES, 'UTF-8') ?>
+        </p>
+
+
+        <p class="mb-1 text-break">
+          <?= htmlspecialchars($empresa['email'], ENT_QUOTES, 'UTF-8') ?>
+        </p>
+
+
+        <p class="mb-2">
+          São Bento do Sul — SC
+        </p>
+
+
+        <div class="d-flex gap-3 mt-3">
+
+
+          <a
+            href="https://www.instagram.com/hcreparossbs?stkn=MXZ2NjRtZ2NpbTlsNA=="
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            aria-label="Instagram da HC Reparos">
+
+            <i class="bi bi-instagram fs-5"></i>
+
+          </a>
+
+
+          <a
+            href="https://www.facebook.com/share/1Em6YKkEmp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            aria-label="Facebook da HC Reparos">
+
+            <i class="bi bi-facebook fs-5"></i>
+
+          </a>
+
+
+          <a
+            href="https://share.google/wGY8j0T3sTJsUlXs4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            aria-label="HC Reparos no Google">
+
+            <i class="bi bi-google fs-5"></i>
+
+          </a>
+
+
+          <a
+            href="https://wa.me/5547996736277"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+            aria-label="WhatsApp da HC Reparos">
+
+            <i class="bi bi-whatsapp fs-5"></i>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <hr class="border-secondary opacity-25 my-4">
+
+
+    <div
+      class="d-flex flex-column flex-md-row justify-content-between gap-2">
+
+
+      <small>
+
+        © <span id="year"></span>
+        HC Reparos. Todos os direitos reservados.
+
+      </small>
+
+
+      <small>
+
+        Desenvolvido para a HC Reparos.
+
+      </small>
+
+
+    </div>
+
+
+  </div>
+
+</footer>
+
+
+<a href="#inicio" class="back-to-top btn btn-outline-light" id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo"><i class="bi bi-arrow-up"></i></a>
+
+<!-- =====================================================
+     WHATSAPP FLUTUANTE
+     ===================================================== -->
+
+<a
+  href="https://wa.me/5547996736277?text=Ol%C3%A1%20HC%20Reparos!"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="floating-whatsapp btn btn-success"
+  aria-label="Falar com a HC Reparos pelo WhatsApp"
+  title="Falar no WhatsApp">
+
+  <i class="bi bi-whatsapp"></i>
+
+</a>
+
+
+<!-- Bootstrap JS -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    /* ===================================================
+       MENU MOBILE
+       =================================================== */
+
+    const menu =
+      document.getElementById("menu");
+
+    const navLinks =
+      document.querySelectorAll(
+        ".navbar-nav .nav-link"
+      );
+
+
+    navLinks.forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        if (
+          menu &&
+          menu.classList.contains("show")
+        ) {
+
+          const collapse =
+            bootstrap.Collapse.getInstance(menu) ||
+            new bootstrap.Collapse(menu, {
+              toggle: false
+            });
+
+          collapse.hide();
+
+        }
+
+      });
+
+    });
+
+
+    /* ===================================================
+       REVEAL — INTERSECTION OBSERVER
+       =================================================== */
+
+    const elements =
+      document.querySelectorAll(".reveal");
+
+
+    if (
+      "IntersectionObserver" in window
+    ) {
+
+      const observer =
+        new IntersectionObserver(
+
+          function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+              if (entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            });
+
+          },
+
+          {
+            threshold: 0.12
+          }
+
+        );
+
+
+      elements.forEach(function (element) {
+
+        observer.observe(element);
+
+      });
+
+    } else {
+
+      elements.forEach(function (element) {
+
+        element.classList.add("show");
+
+      });
+
+    }
+
+
+    /* ===================================================
+       SCROLL SUAVE
+       =================================================== */
+
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach(function (link) {
+
+
+        link.addEventListener(
+          "click",
+          function (event) {
+
+
+            const targetId =
+              this.getAttribute("href");
+
+
+            if (
+              !targetId ||
+              targetId === "#"
+            ) {
+
+              return;
+
+            }
+
+
+            const target =
+              document.querySelector(
+                targetId
+              );
+
+
+            if (!target) {
+              return;
+            }
+
+
+            event.preventDefault();
+
+
+            const navbarHeight = 70;
+
+
+            const position =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              navbarHeight;
+
+
+            window.scrollTo({
+
+              top: position,
+
+              behavior: "smooth"
+
+            });
+
+
+          }
+        );
+
+      });
+
+
+    /* ===================================================
+       POLIMENTO — SCROLL / NAVBAR / VOLTAR AO TOPO
+       =================================================== */
+
+    const navbar = document.querySelector(".navbar");
+    const progress = document.getElementById("scrollProgress");
+    const backToTop = document.getElementById("backToTop");
+
+    function updateScrollUI() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progressValue = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+      if (progress) {
+        progress.style.width = progressValue + "%";
+      }
+
+      if (navbar) {
+        navbar.classList.toggle("navbar-scrolled", scrollTop > 20);
+      }
+
+      if (backToTop) {
+        backToTop.classList.toggle("show", scrollTop > 500);
+      }
+    }
+
+    window.addEventListener("scroll", updateScrollUI, { passive: true });
+    updateScrollUI();
+
+    /* Destaca a seção atual no menu conforme o usuário navega. */
+    const sections = document.querySelectorAll("main section[id], header[id]");
+    const menuLinks = document.querySelectorAll('.navbar-nav .nav-link[href^="#"]');
+
+    if ("IntersectionObserver" in window) {
+      const sectionObserver = new IntersectionObserver(
+        function(entries) {
+          entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return;
+
+            menuLinks.forEach(function(link) {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === "#" + entry.target.id
+              );
+            });
+          });
+        },
+        { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+      );
+
+      sections.forEach(function(section) {
+        sectionObserver.observe(section);
+      });
+    }
+
+
+  });
+
+</script>
+
+
+</body>
+</html>
