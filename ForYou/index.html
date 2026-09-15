@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17152b">
+<title>Para a Ketlin 🌙</title>
+<style>
+  :root{
+    --bg:#0f0e1c; --card:#19172a; --card2:#211e35; --text:#f5f1ff;
+    --muted:#bdb6d4; --accent:#c8a7ff; --accent2:#8ed8d0;
+    --line:rgba(255,255,255,.09);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--text); background:
+      radial-gradient(circle at 15% 10%,rgba(143,107,210,.22),transparent 30%),
+      radial-gradient(circle at 85% 30%,rgba(75,153,151,.14),transparent 28%),var(--bg);
+    line-height:1.65;
+  }
+  .wrap{max-width:920px;margin:auto;padding:24px}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:8px 0 30px}
+  .brand{font-weight:700;letter-spacing:.4px}
+  .moon{font-size:1.4rem}
+  .hero{min-height:72vh;display:grid;place-items:center;text-align:center;padding:50px 0}
+  .hero-inner{max-width:720px}
+  .eyebrow{color:var(--accent2);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+  h1{font-size:clamp(3rem,9vw,6.5rem);line-height:.95;margin:18px 0;background:linear-gradient(120deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:clamp(1.05rem,2.5vw,1.35rem);color:var(--muted);max-width:650px;margin:0 auto}
+  .button{
+    display:inline-block;margin-top:28px;padding:14px 22px;border-radius:999px;
+    background:var(--accent);color:#191328;text-decoration:none;font-weight:800;border:0;cursor:pointer;
+    box-shadow:0 10px 30px rgba(200,167,255,.18);font-size:1rem
+  }
+  .button.secondary{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none;margin-left:8px}
+  section{padding:60px 0}
+  h2{font-size:2rem;margin:0 0 14px}
+  .subtitle{color:var(--muted);margin-top:0}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:rgba(25,23,42,.8);border:1px solid var(--line);border-radius:22px;padding:24px}
+  .card h3{margin-top:0}
+  .card p{color:var(--muted);margin-bottom:0}
+  .quote{
+    background:linear-gradient(145deg,rgba(200,167,255,.13),rgba(142,216,208,.07));
+    border:1px solid var(--line);border-radius:28px;padding:36px;text-align:center
+  }
+  blockquote{font-size:clamp(1.3rem,3vw,2rem);margin:0;line-height:1.4}
+  .small{color:var(--muted);font-size:.92rem}
+  .breath{display:grid;place-items:center;gap:22px;text-align:center}
+  .circle{
+    width:170px;height:170px;border-radius:50%;display:grid;place-items:center;
+    border:1px solid rgba(200,167,255,.35);
+    background:radial-gradient(circle,rgba(200,167,255,.22),rgba(200,167,255,.03) 65%);
+    transition:transform 4s ease-in-out;
+  }
+  .circle.grow{transform:scale(1.25)}
+  #breathText{font-weight:700;font-size:1.15rem}
+  .message{background:var(--card);border-radius:28px;padding:32px;border:1px solid var(--line)}
+  .message p{font-size:1.08rem}
+  .help{border:1px solid rgba(142,216,208,.25);background:rgba(142,216,208,.06);border-radius:24px;padding:28px}
+  .help strong{color:var(--accent2)}
+  footer{text-align:center;color:var(--muted);padding:45px 0 30px;font-size:.9rem}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}.button.secondary{margin-left:0;margin-top:10px}section{padding:45px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">Um cantinho para a Ketlin</div>
+    <div class="moon">🌙</div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Você não precisa atravessar tudo sozinha</div>
+        <h1>Oi, Ketlin.</h1>
+        <p class="lead">
+          Se hoje estiver pesado, tudo bem. Você não precisa resolver a vida inteira hoje.
+          Por enquanto, basta chegar até o próximo momento.
+        </p>
+        <a class="button" href="#mensagem">Ler uma mensagem 💜</a>
+        <a class="button secondary" href="#respirar">Respirar comigo</a>
+      </div>
+    </section>
+
+    <section id="mensagem">
+      <div class="message">
+        <h2>Uma coisa importante</h2>
+        <p>
+          Ketlin, estar mal não significa que você é fraca, preguiçosa ou um problema para alguém.
+          Depressão pode fazer o mundo parecer menor, mais escuro e mais sem saída do que ele realmente é.
+          Você merece cuidado mesmo nos dias em que não consegue enxergar um motivo para continuar tentando.
+        </p>
+        <p>
+          Não precisa fingir que está tudo bem. Pode pedir ajuda. Pode descansar. Pode chorar.
+          Pode fazer só o mínimo. E, se conseguir, deixe alguém ficar ao seu lado enquanto você passa por essa fase.
+        </p>
+        <p>
+          <strong>Você não precisa acreditar em um futuro perfeito.</strong>
+          Só precisa dar uma chance ao próximo pequeno passo.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Para hoje</h2>
+      <p class="subtitle">Sem cobrança. Só pequenas coisas que podem ajudar o corpo a atravessar o dia.</p>
+      <div class="grid">
+        <div class="card"><h3>💧 Um pouco de água</h3><p>Não precisa fazer tudo. Levantar, beber água e voltar a descansar já conta.</p></div>
+        <div class="card"><h3>🌤️ Um pouco de luz</h3><p>Se der, abra uma janela ou fique alguns minutos perto da luz do dia.</p></div>
+        <div class="card"><h3>🤝 Não se isole</h3><p>Mandar um “não tô bem, fica comigo?” para alguém também é um passo enorme.</p></div>
+      </div>
+    </section>
+
+    <section id="respirar">
+      <div class="breath">
+        <h2>Vamos respirar por um minuto</h2>
+        <p class="subtitle">Sem obrigação de “melhorar”. Só vamos desacelerar um pouquinho.</p>
+        <div class="circle" id="circle"><span id="breathText">Pronta?</span></div>
+        <button class="button" id="startBreath">Começar</button>
+        <div class="small">Inspire quando o círculo crescer. Solte o ar quando ele diminuir.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="quote">
+        <blockquote id="quote">“Um dia ruim não é uma vida ruim.”</blockquote>
+        <button class="button secondary" id="newQuote">Outra mensagem</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="help">
+        <h2>Se estiver ficando perigoso</h2>
+        <p>
+          Se você estiver pensando em se machucar, em morrer, ou sentir que pode não conseguir se manter segura,
+          <strong>não fique sozinha com isso.</strong> Chame alguém de confiança e procure ajuda presencial.
+        </p>
+        <p>
+          No Brasil, o <strong>CVV atende pelo 188</strong>, gratuitamente, 24 horas.
+          Em uma emergência imediata, procure um pronto atendimento ou acione o <strong>SAMU (192)</strong>.
+        </p>
+        <p class="small">Pedir ajuda não é exagero. É cuidado.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Feito com carinho para lembrar uma coisa simples: <strong>você importa.</strong> 💜
+  </footer>
+</div>
+
+<script>
+const quotes = [
+  "“Você não precisa vencer o dia inteiro. Só precisa atravessar este momento.”",
+  "“Descansar também é continuar.”",
+  "“O fato de hoje estar difícil não decide como será amanhã.”",
+  "“Pedir ajuda é um ato de coragem, não de fraqueza.”",
+  "“Você merece receber o mesmo carinho que oferece aos outros.”",
+  "“Um pequeno passo ainda é um passo.”"
+];
+
+document.getElementById('newQuote').onclick = () => {
+  const current = document.getElementById('quote').textContent;
+  let next = quotes[Math.floor(Math.random()*quotes.length)];
+  while(next === current && quotes.length > 1) next = quotes[Math.floor(Math.random()*quotes.length)];
+  document.getElementById('quote').textContent = next;
+};
+
+let running = false;
+document.getElementById('startBreath').onclick = async () => {
+  if(running) return;
+  running = true;
+  const circle = document.getElementById('circle');
+  const text = document.getElementById('breathText');
+  const button = document.getElementById('startBreath');
+  button.disabled = true;
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  for(let i=0;i<3;i++){
+    text.textContent = "Inspire…";
+    circle.classList.add('grow');
+    await wait(4000);
+    text.textContent = "Solte devagar…";
+    circle.classList.remove('grow');
+    await wait(5000);
+  }
+  text.textContent = "Pronto. 🌙";
+  button.disabled = false;
+  running = false;
+};
+</script>
+</body>
+</html>
