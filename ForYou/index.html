@@ -3,195 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#17152b">
-<title>Para a Ketlin 🌙</title>
+<title>Uma pergunta importante ❤️</title>
 <style>
-  :root{
-    --bg:#0f0e1c; --card:#19172a; --card2:#211e35; --text:#f5f1ff;
-    --muted:#bdb6d4; --accent:#c8a7ff; --accent2:#8ed8d0;
-    --line:rgba(255,255,255,.09);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    color:var(--text); background:
-      radial-gradient(circle at 15% 10%,rgba(143,107,210,.22),transparent 30%),
-      radial-gradient(circle at 85% 30%,rgba(75,153,151,.14),transparent 28%),var(--bg);
-    line-height:1.65;
-  }
-  .wrap{max-width:920px;margin:auto;padding:24px}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:8px 0 30px}
-  .brand{font-weight:700;letter-spacing:.4px}
-  .moon{font-size:1.4rem}
-  .hero{min-height:72vh;display:grid;place-items:center;text-align:center;padding:50px 0}
-  .hero-inner{max-width:720px}
-  .eyebrow{color:var(--accent2);font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:2px}
-  h1{font-size:clamp(3rem,9vw,6.5rem);line-height:.95;margin:18px 0;background:linear-gradient(120deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lead{font-size:clamp(1.05rem,2.5vw,1.35rem);color:var(--muted);max-width:650px;margin:0 auto}
-  .button{
-    display:inline-block;margin-top:28px;padding:14px 22px;border-radius:999px;
-    background:var(--accent);color:#191328;text-decoration:none;font-weight:800;border:0;cursor:pointer;
-    box-shadow:0 10px 30px rgba(200,167,255,.18);font-size:1rem
-  }
-  .button.secondary{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none;margin-left:8px}
-  section{padding:60px 0}
-  h2{font-size:2rem;margin:0 0 14px}
-  .subtitle{color:var(--muted);margin-top:0}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .card{background:rgba(25,23,42,.8);border:1px solid var(--line);border-radius:22px;padding:24px}
-  .card h3{margin-top:0}
-  .card p{color:var(--muted);margin-bottom:0}
-  .quote{
-    background:linear-gradient(145deg,rgba(200,167,255,.13),rgba(142,216,208,.07));
-    border:1px solid var(--line);border-radius:28px;padding:36px;text-align:center
-  }
-  blockquote{font-size:clamp(1.3rem,3vw,2rem);margin:0;line-height:1.4}
-  .small{color:var(--muted);font-size:.92rem}
-  .breath{display:grid;place-items:center;gap:22px;text-align:center}
-  .circle{
-    width:170px;height:170px;border-radius:50%;display:grid;place-items:center;
-    border:1px solid rgba(200,167,255,.35);
-    background:radial-gradient(circle,rgba(200,167,255,.22),rgba(200,167,255,.03) 65%);
-    transition:transform 4s ease-in-out;
-  }
-  .circle.grow{transform:scale(1.25)}
-  #breathText{font-weight:700;font-size:1.15rem}
-  .message{background:var(--card);border-radius:28px;padding:32px;border:1px solid var(--line)}
-  .message p{font-size:1.08rem}
-  .help{border:1px solid rgba(142,216,208,.25);background:rgba(142,216,208,.06);border-radius:24px;padding:28px}
-  .help strong{color:var(--accent2)}
-  footer{text-align:center;color:var(--muted);padding:45px 0 30px;font-size:.9rem}
-  @media(max-width:700px){.grid{grid-template-columns:1fr}.button.secondary{margin-left:0;margin-top:10px}section{padding:45px 0}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  overflow:hidden; font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+  background:radial-gradient(circle at 50% 20%,#4b173f 0,#210d28 45%,#09050f 100%);
+  color:#fff;
+}
+.card{
+  width:min(92%,560px); padding:42px 28px; text-align:center; position:relative;
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.18);
+  border-radius:30px; backdrop-filter:blur(14px);
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
+  animation:appear 1s ease;
+}
+.heart{font-size:64px; animation:pulse 1.25s infinite; display:inline-block}
+h1{font-size:clamp(2rem,8vw,3.4rem); margin:12px 0 10px}
+.subtitle{color:#f5dce9;font-size:1.05rem;line-height:1.6;margin:auto;max-width:440px}
+.buttons{display:flex;gap:14px;justify-content:center;margin-top:30px;position:relative;min-height:54px}
+button{
+  border:0;border-radius:999px;padding:15px 28px;font-size:1rem;font-weight:700;
+  cursor:pointer;transition:.2s;box-shadow:0 8px 25px rgba(0,0,0,.25)
+}
+#yes{background:#ff4f8b;color:white}
+#yes:hover{transform:scale(1.06);background:#ff679b}
+#no{background:#fff;color:#5d2148;position:relative}
+.small{margin-top:22px;font-size:.78rem;color:#cda9bd}
+.letter{display:none;animation:fade .7s ease}
+.letter p{font-size:1.08rem;line-height:1.75;color:#f9e9f1}
+.letter strong{color:#ff80a9}
+#again{margin-top:25px;background:#ff4f8b;color:white}
+.floating{position:fixed;bottom:-40px;pointer-events:none;animation:float linear forwards;opacity:.75}
+.confetti{position:fixed;top:-20px;pointer-events:none;animation:fall 3s linear forwards}
+@keyframes appear{from{opacity:0;transform:translateY(25px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes pulse{50%{transform:scale(1.16)}}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes float{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav>
-    <div class="brand">Um cantinho para a Ketlin</div>
-    <div class="moon">🌙</div>
-  </nav>
 
-  <main>
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="eyebrow">Você não precisa atravessar tudo sozinha</div>
-        <h1>Oi, Ketlin.</h1>
-        <p class="lead">
-          Se hoje estiver pesado, tudo bem. Você não precisa resolver a vida inteira hoje.
-          Por enquanto, basta chegar até o próximo momento.
-        </p>
-        <a class="button" href="#mensagem">Ler uma mensagem 💜</a>
-        <a class="button secondary" href="#respirar">Respirar comigo</a>
-      </div>
-    </section>
+<main class="card">
+  <section id="question">
+    <div class="heart">❤️</div>
+    <h1>Tenho uma pergunta...</h1>
+    <p class="subtitle">
+      Entre tantas pessoas nesse mundo, de alguma forma a vida fez nossos caminhos se encontrarem.
+      E eu não quero deixar essa oportunidade passar.
+    </p>
 
-    <section id="mensagem">
-      <div class="message">
-        <h2>Uma coisa importante</h2>
-        <p>
-          Ketlin, estar mal não significa que você é fraca, preguiçosa ou um problema para alguém.
-          Depressão pode fazer o mundo parecer menor, mais escuro e mais sem saída do que ele realmente é.
-          Você merece cuidado mesmo nos dias em que não consegue enxergar um motivo para continuar tentando.
-        </p>
-        <p>
-          Não precisa fingir que está tudo bem. Pode pedir ajuda. Pode descansar. Pode chorar.
-          Pode fazer só o mínimo. E, se conseguir, deixe alguém ficar ao seu lado enquanto você passa por essa fase.
-        </p>
-        <p>
-          <strong>Você não precisa acreditar em um futuro perfeito.</strong>
-          Só precisa dar uma chance ao próximo pequeno passo.
-        </p>
-      </div>
-    </section>
+    <div class="buttons">
+      <button id="yes">Sim, quero ❤️</button>
+      <button id="no">Não 😳</button>
+    </div>
+    <p class="small">Prometo que essa pergunta é séria. O coração, nem tanto. 😂</p>
+  </section>
 
-    <section>
-      <h2>Para hoje</h2>
-      <p class="subtitle">Sem cobrança. Só pequenas coisas que podem ajudar o corpo a atravessar o dia.</p>
-      <div class="grid">
-        <div class="card"><h3>💧 Um pouco de água</h3><p>Não precisa fazer tudo. Levantar, beber água e voltar a descansar já conta.</p></div>
-        <div class="card"><h3>🌤️ Um pouco de luz</h3><p>Se der, abra uma janela ou fique alguns minutos perto da luz do dia.</p></div>
-        <div class="card"><h3>🤝 Não se isole</h3><p>Mandar um “não tô bem, fica comigo?” para alguém também é um passo enorme.</p></div>
-      </div>
-    </section>
-
-    <section id="respirar">
-      <div class="breath">
-        <h2>Vamos respirar por um minuto</h2>
-        <p class="subtitle">Sem obrigação de “melhorar”. Só vamos desacelerar um pouquinho.</p>
-        <div class="circle" id="circle"><span id="breathText">Pronta?</span></div>
-        <button class="button" id="startBreath">Começar</button>
-        <div class="small">Inspire quando o círculo crescer. Solte o ar quando ele diminuir.</div>
-      </div>
-    </section>
-
-    <section>
-      <div class="quote">
-        <blockquote id="quote">“Um dia ruim não é uma vida ruim.”</blockquote>
-        <button class="button secondary" id="newQuote">Outra mensagem</button>
-      </div>
-    </section>
-
-    <section>
-      <div class="help">
-        <h2>Se estiver ficando perigoso</h2>
-        <p>
-          Se você estiver pensando em se machucar, em morrer, ou sentir que pode não conseguir se manter segura,
-          <strong>não fique sozinha com isso.</strong> Chame alguém de confiança e procure ajuda presencial.
-        </p>
-        <p>
-          No Brasil, o <strong>CVV atende pelo 188</strong>, gratuitamente, 24 horas.
-          Em uma emergência imediata, procure um pronto atendimento ou acione o <strong>SAMU (192)</strong>.
-        </p>
-        <p class="small">Pedir ajuda não é exagero. É cuidado.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    Feito com carinho para lembrar uma coisa simples: <strong>você importa.</strong> 💜
-  </footer>
-</div>
+  <section class="letter" id="letter">
+    <div class="heart">💖</div>
+    <h1>Então é um SIM! 🥹</h1>
+    <p>
+      Eu poderia escrever mil coisas aqui, mas talvez a mais importante seja:
+      <strong>eu quero viver essa história com você.</strong>
+      <br><br>
+      Quero dividir risadas, momentos bobos, conversas que duram horas,
+      planos, abraços e todas aquelas pequenas coisas que acabam virando
+      as melhores lembranças.
+      <br><br>
+      Então... oficialmente:
+      <br><br>
+      <strong>quer namorar comigo? ❤️</strong>
+    </p>
+    <button id="again">Voltar ao começo</button>
+  </section>
+</main>
 
 <script>
-const quotes = [
-  "“Você não precisa vencer o dia inteiro. Só precisa atravessar este momento.”",
-  "“Descansar também é continuar.”",
-  "“O fato de hoje estar difícil não decide como será amanhã.”",
-  "“Pedir ajuda é um ato de coragem, não de fraqueza.”",
-  "“Você merece receber o mesmo carinho que oferece aos outros.”",
-  "“Um pequeno passo ainda é um passo.”"
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+const question=document.getElementById("question");
+const letter=document.getElementById("letter");
+
+const phrases=[
+  "Não 😳","Tem certeza? 🥺","Pensa mais um pouquinho...","Olha o outro botão 👀",
+  "Esse aqui parece melhor 😏","Você tá me fazendo sofrer 😭","Última chance! ❤️"
 ];
+let n=0;
 
-document.getElementById('newQuote').onclick = () => {
-  const current = document.getElementById('quote').textContent;
-  let next = quotes[Math.floor(Math.random()*quotes.length)];
-  while(next === current && quotes.length > 1) next = quotes[Math.floor(Math.random()*quotes.length)];
-  document.getElementById('quote').textContent = next;
+function moveNo(){
+  const x=(Math.random()*220)-110;
+  const y=(Math.random()*180)-90;
+  no.style.transform=`translate(${x}px,${y}px)`;
+  no.textContent=phrases[Math.min(++n,phrases.length-1)];
+}
+no.addEventListener("mouseenter",moveNo);
+no.addEventListener("touchstart",(e)=>{e.preventDefault();moveNo()});
+
+yes.addEventListener("click",()=>{
+  question.style.display="none";
+  letter.style.display="block";
+  for(let i=0;i<70;i++) setTimeout(makeConfetti,i*18);
+  for(let i=0;i<18;i++) setTimeout(makeHeart,i*100);
+});
+
+document.getElementById("again").onclick=()=>{
+  letter.style.display="none"; question.style.display="block";
+  no.style.transform="none"; n=0; no.textContent="Não 😳";
 };
 
-let running = false;
-document.getElementById('startBreath').onclick = async () => {
-  if(running) return;
-  running = true;
-  const circle = document.getElementById('circle');
-  const text = document.getElementById('breathText');
-  const button = document.getElementById('startBreath');
-  button.disabled = true;
-
-  const wait = ms => new Promise(r => setTimeout(r, ms));
-  for(let i=0;i<3;i++){
-    text.textContent = "Inspire…";
-    circle.classList.add('grow');
-    await wait(4000);
-    text.textContent = "Solte devagar…";
-    circle.classList.remove('grow');
-    await wait(5000);
-  }
-  text.textContent = "Pronto. 🌙";
-  button.disabled = false;
-  running = false;
-};
+function makeHeart(){
+  const e=document.createElement("div");
+  e.className="floating"; e.textContent=["❤️","💗","💖","💕","✨"][Math.floor(Math.random()*5)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=(18+Math.random()*24)+"px";
+  e.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(e); setTimeout(()=>e.remove(),8000);
+}
+function makeConfetti(){
+  const e=document.createElement("div");
+  e.className="confetti"; e.textContent=["❤️","💖","✨","💕","🌹"][Math.floor(Math.random()*5)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=(12+Math.random()*18)+"px";
+  e.style.animationDuration=(2+Math.random()*2)+"s";
+  document.body.appendChild(e); setTimeout(()=>e.remove(),4500);
+}
+setInterval(makeHeart,700);
 </script>
 </body>
 </html>
