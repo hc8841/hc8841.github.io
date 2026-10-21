@@ -1,136 +1,144 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uma pergunta importante ❤️</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  min-height:100vh; display:flex; align-items:center; justify-content:center;
-  overflow:hidden; font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-  background:radial-gradient(circle at 50% 20%,#4b173f 0,#210d28 45%,#09050f 100%);
-  color:#fff;
-}
-.card{
-  width:min(92%,560px); padding:42px 28px; text-align:center; position:relative;
-  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.18);
-  border-radius:30px; backdrop-filter:blur(14px);
-  box-shadow:0 25px 80px rgba(0,0,0,.45);
-  animation:appear 1s ease;
-}
-.heart{font-size:64px; animation:pulse 1.25s infinite; display:inline-block}
-h1{font-size:clamp(2rem,8vw,3.4rem); margin:12px 0 10px}
-.subtitle{color:#f5dce9;font-size:1.05rem;line-height:1.6;margin:auto;max-width:440px}
-.buttons{display:flex;gap:14px;justify-content:center;margin-top:30px;position:relative;min-height:54px}
-button{
-  border:0;border-radius:999px;padding:15px 28px;font-size:1rem;font-weight:700;
-  cursor:pointer;transition:.2s;box-shadow:0 8px 25px rgba(0,0,0,.25)
-}
-#yes{background:#ff4f8b;color:white}
-#yes:hover{transform:scale(1.06);background:#ff679b}
-#no{background:#fff;color:#5d2148;position:relative}
-.small{margin-top:22px;font-size:.78rem;color:#cda9bd}
-.letter{display:none;animation:fade .7s ease}
-.letter p{font-size:1.08rem;line-height:1.75;color:#f9e9f1}
-.letter strong{color:#ff80a9}
-#again{margin-top:25px;background:#ff4f8b;color:white}
-.floating{position:fixed;bottom:-40px;pointer-events:none;animation:float linear forwards;opacity:.75}
-.confetti{position:fixed;top:-20px;pointer-events:none;animation:fall 3s linear forwards}
-@keyframes appear{from{opacity:0;transform:translateY(25px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes pulse{50%{transform:scale(1.16)}}
-@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@keyframes float{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
-@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anne, tenho uma pergunta ❤️</title>
+  <style>
+    :root { --pink:#ff4f87; --deep:#7b2456; --cream:#fff7fb; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100svh; overflow: hidden;
+      display: grid; place-items: center; padding: 20px;
+      font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+      color: #52213e;
+      background: radial-gradient(circle at top, #ffe1ee, #ffc1d9 45%, #f79dc4);
+    }
+    .hearts { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+    .heart { position: absolute; bottom: -50px; opacity: .65; animation: floatUp linear forwards; }
+    @keyframes floatUp { to { transform: translateY(-115vh) rotate(25deg); opacity: 0; } }
+    .card {
+      position: relative; width: min(100%, 520px); padding: 38px 26px 32px;
+      text-align: center; background: rgba(255,255,255,.88); border: 1px solid #fff;
+      border-radius: 28px; box-shadow: 0 22px 70px #9a275333; backdrop-filter: blur(10px);
+      animation: appear .7s ease both;
+    }
+    @keyframes appear { from { opacity:0; transform:translateY(18px) scale(.97); } to { opacity:1; transform:none; } }
+    .big-heart { font-size: 58px; line-height: 1.2; animation: pulse 1.5s ease-in-out infinite; }
+    @keyframes pulse { 50% { transform: scale(1.12); } }
+    .eyebrow { margin: 12px 0 7px; color: var(--pink); font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; }
+    h1 { margin: 0; font-size: clamp(30px, 8vw, 43px); color: var(--deep); line-height: 1.1; }
+    .message { margin: 18px auto 24px; max-width: 390px; font-size: 16px; line-height: 1.7; }
+    .question { margin: 0 0 22px; font-size: 21px; font-weight: 800; }
+    .buttons { min-height: 54px; display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; }
+    button { border: 0; border-radius: 999px; padding: 14px 27px; font: inherit; font-weight: 800; cursor: pointer; transition: transform .18s, box-shadow .18s; }
+    button:focus-visible { outline: 3px solid #7b2456; outline-offset: 4px; }
+    #yes { background: linear-gradient(135deg, #ff4f87, #f02f70); color: white; box-shadow: 0 8px 20px #ff4f8744; }
+    #yes:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 12px 25px #ff4f8766; }
+    #no { background: #f6eaf0; color: #8a5770; }
+    .hint { min-height: 22px; margin: 16px 0 0; color: #a35b7b; font-size: 12px; }
+    .result { display: none; }
+    .result h2 { font-size: clamp(28px, 7vw, 38px); color: var(--deep); margin: 12px 0; }
+    .result p { line-height: 1.7; }
+    .signature { margin-top: 24px; font-size: 13px; color: #a35b7b; }
+    .confetti { position: fixed; top: -20px; pointer-events:none; animation: fall 3s linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+    @media (max-width: 380px) { .card { padding: 30px 18px; } .message { font-size: 15px; } }
+  </style>
 </head>
 <body>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+  <main class="card">
+    <section id="ask">
+      <div class="big-heart" aria-hidden="true">💗</div>
+      <p class="eyebrow">Uma pergunta importante</p>
+      <h1>Anne, sua maluca…</h1>
+      <p class="message">
+        Eu podia escrever um textão, fazer uma apresentação de 80 slides ou reiniciar o roteador pra ver se o amor conecta melhor…
+        <br><strong>Mas prefiro ir direto ao ponto:</strong> você deixa meus dias mais especiais, e eu quero viver mais momentos bons ao seu lado.
+      </p>
+      <p class="question">Quer namorar comigo? 🥹❤️</p>
+      <div class="buttons">
+        <button id="yes">SIM! ❤️</button>
+        <button id="no">Não 🙃</button>
+      </div>
+      <p class="hint" id="hint">Escolha com carinho. (Principalmente o botão rosa 👀)</p>
+    </section>
+    <section class="result" id="result" aria-live="polite">
+      <div class="big-heart">💖</div>
+      <h2>EU SABIA, ANNE!!!</h2>
+      <p>Agora é oficial: começou nossa história. ❤️</p>
+      <p>Prometo tentar te fazer sorrir, cuidar de você e construir lembranças lindas contigo.</p>
+      <p><strong>Você acabou de deixar alguém muito feliz. 🥹</strong></p>
+      <button id="again">Ver de novo 💌</button>
+    </section>
+    <p class="signature">Feito com carinho e um pouquinho de HTML, CSS e coragem. ✨</p>
+  </main>
+  <script>
+    const hearts = document.getElementById('hearts');
+    const no = document.getElementById('no');
+    const yes = document.getElementById('yes');
+    const hint = document.getElementById('hint');
+    const ask = document.getElementById('ask');
+    const result = document.getElementById('result');
+    let dodges = 0;
 
-<main class="card">
-  <section id="question">
-    <div class="heart">❤️</div>
-    <h1>Tenho uma pergunta...</h1>
-    <p class="subtitle">
-      Entre tantas pessoas nesse mundo, de alguma forma a vida fez nossos caminhos se encontrarem.
-      E eu não quero deixar essa oportunidade passar.
-    </p>
+    function makeHeart() {
+      const el = document.createElement('span');
+      el.className = 'heart';
+      el.textContent = ['♥','♡','💗','💕'][Math.floor(Math.random()*4)];
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.fontSize = (14 + Math.random()*22) + 'px';
+      el.style.animationDuration = (5 + Math.random()*6) + 's';
+      hearts.appendChild(el);
+      setTimeout(() => el.remove(), 11500);
+    }
+    setInterval(makeHeart, 450);
 
-    <div class="buttons">
-      <button id="yes">Sim, quero ❤️</button>
-      <button id="no">Não 😳</button>
-    </div>
-    <p class="small">Prometo que essa pergunta é séria. O coração, nem tanto. 😂</p>
-  </section>
+    function dodge() {
+      dodges++;
+      hint.textContent = ['Opa, esse botão tá tímido 😂', 'Tem certeza? Pensa com carinho! 🥺', 'Acho que o universo tá dando uma dica… 👀', 'Anne, colabora com o sistema KKKKK', 'O botão já respondeu por você: SIM! ❤️'][Math.min(dodges-1, 4)];
+      // Em telas pequenas, mantém o botão dentro da área visível.
+      const rect = no.getBoundingClientRect();
+      const margin = 12;
+      const maxX = Math.max(margin, window.innerWidth - rect.width - margin);
+      const maxY = Math.max(margin, window.innerHeight - rect.height - margin);
+      no.style.position = 'fixed';
+      no.style.left = (margin + Math.random() * (maxX - margin)) + 'px';
+      no.style.top = (margin + Math.random() * (maxY - margin)) + 'px';
+    }
+    no.addEventListener('pointerenter', dodge);
+    no.addEventListener('click', dodge);
+    no.addEventListener('touchstart', (e) => { e.preventDefault(); dodge(); }, { passive: false });
 
-  <section class="letter" id="letter">
-    <div class="heart">💖</div>
-    <h1>Então é um SIM! 🥹</h1>
-    <p>
-      Eu poderia escrever mil coisas aqui, mas talvez a mais importante seja:
-      <strong>eu quero viver essa história com você.</strong>
-      <br><br>
-      Quero dividir risadas, momentos bobos, conversas que duram horas,
-      planos, abraços e todas aquelas pequenas coisas que acabam virando
-      as melhores lembranças.
-      <br><br>
-      Então... oficialmente:
-      <br><br>
-      <strong>quer namorar comigo? ❤️</strong>
-    </p>
-    <button id="again">Voltar ao começo</button>
-  </section>
-</main>
-
-<script>
-const no=document.getElementById("no");
-const yes=document.getElementById("yes");
-const question=document.getElementById("question");
-const letter=document.getElementById("letter");
-
-const phrases=[
-  "Não 😳","Tem certeza? 🥺","Pensa mais um pouquinho...","Olha o outro botão 👀",
-  "Esse aqui parece melhor 😏","Você tá me fazendo sofrer 😭","Última chance! ❤️"
-];
-let n=0;
-
-function moveNo(){
-  const x=(Math.random()*220)-110;
-  const y=(Math.random()*180)-90;
-  no.style.transform=`translate(${x}px,${y}px)`;
-  no.textContent=phrases[Math.min(++n,phrases.length-1)];
-}
-no.addEventListener("mouseenter",moveNo);
-no.addEventListener("touchstart",(e)=>{e.preventDefault();moveNo()});
-
-yes.addEventListener("click",()=>{
-  question.style.display="none";
-  letter.style.display="block";
-  for(let i=0;i<70;i++) setTimeout(makeConfetti,i*18);
-  for(let i=0;i<18;i++) setTimeout(makeHeart,i*100);
-});
-
-document.getElementById("again").onclick=()=>{
-  letter.style.display="none"; question.style.display="block";
-  no.style.transform="none"; n=0; no.textContent="Não 😳";
-};
-
-function makeHeart(){
-  const e=document.createElement("div");
-  e.className="floating"; e.textContent=["❤️","💗","💖","💕","✨"][Math.floor(Math.random()*5)];
-  e.style.left=Math.random()*100+"vw";
-  e.style.fontSize=(18+Math.random()*24)+"px";
-  e.style.animationDuration=(4+Math.random()*4)+"s";
-  document.body.appendChild(e); setTimeout(()=>e.remove(),8000);
-}
-function makeConfetti(){
-  const e=document.createElement("div");
-  e.className="confetti"; e.textContent=["❤️","💖","✨","💕","🌹"][Math.floor(Math.random()*5)];
-  e.style.left=Math.random()*100+"vw";
-  e.style.fontSize=(12+Math.random()*18)+"px";
-  e.style.animationDuration=(2+Math.random()*2)+"s";
-  document.body.appendChild(e); setTimeout(()=>e.remove(),4500);
-}
-setInterval(makeHeart,700);
-</script>
+    function celebrate() {
+      for (let i=0; i<90; i++) {
+        const bit = document.createElement('span');
+        bit.className = 'confetti';
+        bit.textContent = ['💖','💗','✨','💕','❤️'][Math.floor(Math.random()*5)];
+        bit.style.left = Math.random()*100 + 'vw';
+        bit.style.animationDelay = Math.random()*1.2 + 's';
+        bit.style.fontSize = (14 + Math.random()*18) + 'px';
+        document.body.appendChild(bit);
+        setTimeout(() => bit.remove(), 4500);
+      }
+    }
+    yes.addEventListener('click', () => {
+      ask.style.display = 'none';
+      result.style.display = 'block';
+      no.style.display = 'none';
+      celebrate();
+    });
+    document.getElementById('again').addEventListener('click', () => {
+      result.style.display = 'none';
+      ask.style.display = 'block';
+      no.style.display = 'inline-block';
+      no.style.position = '';
+      no.style.left = '';
+      no.style.top = '';
+      dodges = 0;
+      hint.textContent = 'Escolha com carinho. (Principalmente o botão rosa 👀)';
+    });
+  </script>
 </body>
 </html>
