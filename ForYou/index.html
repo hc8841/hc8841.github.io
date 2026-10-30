@@ -1,20 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#160923"><title>Uma coisa pra você, Violeta 💜</title>
-<style>
-:root{--bg:#0b0612;--panel:#170d24;--purple:#a855f7;--lilac:#e0b7ff;--text:#f7eaff;--muted:#c4afd7}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0,#2b1045 0,transparent 50%),var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}a{color:inherit;text-decoration:none}.nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:17px clamp(18px,5vw,70px);background:#0b0612df;backdrop-filter:blur(12px);border-bottom:1px solid #6f2ca544}.brand{font-size:1.5rem;color:var(--lilac);font-style:italic}.nav small{color:var(--muted);letter-spacing:.08em}.hero{min-height:85vh;display:grid;place-items:center;text-align:center;padding:70px 20px;position:relative;isolation:isolate;background:linear-gradient(180deg,#1b0a2c55,#0b0612 95%)}.hero:before{content:'✦';position:absolute;left:12%;top:19%;font-size:2rem;color:#d5a0ff;animation:twinkle 2.7s infinite}.hero:after{content:'✧';position:absolute;right:14%;top:28%;font-size:3rem;color:#a855f7;animation:twinkle 3.5s infinite}.eyebrow{text-transform:uppercase;letter-spacing:.24em;color:#c084fc;font: .78rem Arial,sans-serif}.hero h1{font-size:clamp(4rem,12vw,8.5rem);line-height:.9;margin:22px 0;color:var(--lilac);font-weight:400;font-style:italic;text-shadow:0 0 45px #a855f766}.hero p{font-size:clamp(1.05rem,2.5vw,1.35rem);color:var(--muted);line-height:1.7;max-width:600px;margin:25px auto 32px}.button{display:inline-block;border:1px solid #d8a4ff;background:linear-gradient(120deg,#7e22ce,#a855f7);color:white;border-radius:999px;padding:14px 25px;font:600 .95rem Arial,sans-serif;box-shadow:0 0 30px #9333ea33;cursor:pointer;transition:.2s}.button:hover{transform:translateY(-3px);box-shadow:0 0 35px #9333ea77}.scroll{display:block;margin-top:60px;color:#9b7eb5;font-size:.8rem;letter-spacing:.15em}.section{padding:90px 22px;max-width:1050px;margin:auto}.section h2{text-align:center;font-size:clamp(2rem,5vw,3rem);font-weight:400;color:var(--lilac);margin:0 0 18px}.sub{text-align:center;color:var(--muted);line-height:1.7;max-width:640px;margin:0 auto 42px}.letter{max-width:720px;margin:auto;background:linear-gradient(135deg,#1d102b,#12091d);border:1px solid #9b5bd444;border-radius:20px;padding:clamp(24px,6vw,52px);box-shadow:0 20px 80px #0005;position:relative}.letter:before{content:'💜';position:absolute;top:-20px;left:calc(50% - 20px);font-size:2rem}.letter p{font-size:1.12rem;line-height:1.95;color:#e8d7f5}.letter .signature{font-style:italic;text-align:right;color:#d8a4ff;font-size:1.35rem}.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:35px}.reason{padding:25px;border:1px solid #8b43b733;border-radius:16px;background:#170d24aa}.reason .symbol{font-size:1.8rem;color:#c084fc}.reason h3{font-size:1.15rem;color:var(--lilac);font-weight:400}.reason p{color:var(--muted);line-height:1.65;margin-bottom:0}.question{max-width:none;background:radial-gradient(ellipse at center,#35104e 0,#12091c 65%,#0b0612 100%);text-align:center;padding:100px 20px;border-top:1px solid #6f2ca544;border-bottom:1px solid #6f2ca544}.question h2{font-size:clamp(2.3rem,7vw,4.5rem);max-width:850px;margin:20px auto;color:#e8c8ff}.question p{color:var(--muted);line-height:1.7}.answers{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}.yes{font-size:1.05rem;padding:16px 30px}.maybe{background:transparent;border-color:#69418a;color:#c7addb}.hint{font-size:.8rem!important;font-style:italic;margin-top:25px}.footer{text-align:center;padding:28px 15px;color:#967eac;font-size:.85rem}.heart{position:fixed;z-index:20;pointer-events:none;animation:float 2.5s ease-out forwards;color:#d8a4ff;text-shadow:0 0 12px #a855f7}@keyframes float{from{transform:translateY(0) scale(.6);opacity:1}to{transform:translateY(-100vh) rotate(25deg) scale(1.5);opacity:0}}@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}.response{display:none;max-width:650px;margin:28px auto 0;padding:22px;border:1px solid #b66cff66;border-radius:16px;background:#1d0e2bcc;color:#f3dfff;font-size:1.2rem;line-height:1.7}.response.show{display:block;animation:appear .6s ease}@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none!important;transition:none!important}}
-</style></head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uma pergunta para Fernanda 💗</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root { --pink:#ff5d9e; --pink-light:#ffe3ef; --pink-deep:#a52c62; --ink:#411d32; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; color:var(--ink); overflow-x:hidden; font-family:Georgia, 'Times New Roman', serif;
+      background: radial-gradient(circle at 20% 15%, #fff8fc 0, transparent 32%), radial-gradient(circle at 85% 80%, #ffc4dd 0, transparent 30%), linear-gradient(135deg,#fff0f7,#ffd4e7 50%,#ffeaf3); }
+    .glow { position:fixed; inset:0; pointer-events:none; background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.28),transparent 65%); animation: shimmer 8s infinite; }
+    @keyframes shimmer { 0%,100%{transform:translateX(-30%)} 50%{transform:translateX(30%)} }
+    .heart { position:fixed; bottom:-40px; color:rgba(210,50,120,.24); font-size:22px; animation: floatUp linear infinite; pointer-events:none; z-index:0; }
+    @keyframes floatUp { to { transform:translateY(-115vh) rotate(25deg); opacity:0; } }
+    .main-card { position:relative; z-index:1; width:min(900px,94vw); margin:5vh auto; border:1px solid rgba(255,93,158,.25); border-radius:26px; overflow:hidden; background:rgba(255,255,255,.82); box-shadow:0 25px 80px rgba(165,44,98,.18); backdrop-filter:blur(8px); }
+    .hero { text-align:center; padding:2.2rem 1.5rem 1.6rem; background:linear-gradient(135deg,rgba(255,216,234,.8),rgba(255,241,248,.5)); }
+    .eyebrow { text-transform:uppercase; letter-spacing:.22em; font:600 .72rem/1.4 system-ui,sans-serif; color:#b33c70; }
+    h1 { font-size:clamp(2.5rem,7vw,4.6rem); color:var(--pink-deep); margin:.3rem 0; }
+    .subtitle { font-size:1.1rem; color:#85415f; }
+    .terminal { margin:1.5rem; background:#281a27; border:1px solid #61364f; border-radius:16px; box-shadow:0 14px 35px rgba(51,19,38,.2); overflow:hidden; color:#ffe6f1; }
+    .terminal-bar { display:flex; align-items:center; gap:7px; padding:12px 15px; background:#3a2435; border-bottom:1px solid #5b3a50; font: .78rem system-ui,sans-serif; color:#e9b8d0; }
+    .dot { width:9px;height:9px;border-radius:50%;display:inline-block; }
+    .terminal-title { margin-left:7px; }
+    #terminalText { min-height:300px; padding:22px; white-space:pre-wrap; font:clamp(.9rem,2.5vw,1.03rem)/1.85 'Courier New',monospace; color:#ffd5e8; }
+    .prompt { color:#ff83b6; }
+    .cursor { display:inline-block; width:9px; height:1.1em; background:#ff83b6; vertical-align:middle; margin-left:3px; animation:blink 1s steps(2,start) infinite; }
+    @keyframes blink { to { visibility:hidden; } }
+    .actions { padding:0 1.5rem 2rem; text-align:center; }
+    .btn-romance { background:linear-gradient(135deg,#ff6da8,#e84289); color:white; border:0; border-radius:999px; padding:.85rem 1.5rem; font:600 1rem system-ui,sans-serif; box-shadow:0 8px 20px #ed6ca44d; transition:transform .2s,box-shadow .2s; }
+    .btn-romance:hover { color:white; transform:translateY(-2px); box-shadow:0 12px 25px #ed6ca466; }
+    .btn-soft { border:1px solid #ef9abc; color:#a52c62; background:#fff5fa; border-radius:999px; padding:.8rem 1.35rem; font:600 .95rem system-ui,sans-serif; }
+    .answer { min-height:2rem; margin-top:1rem; color:#a52c62; font-size:1.05rem; }
+    footer { text-align:center; padding:0 1rem 1.5rem; color:#a56a84; font: .8rem system-ui,sans-serif; }
+    .seal { color:#e84289; font-size:1.4rem; }
+    @media(max-width:576px){ .main-card{margin:2vh auto;border-radius:20px}.terminal{margin:1rem}.hero{padding:1.7rem 1rem 1rem}#terminalText{padding:16px;min-height:340px}.actions{padding:0 1rem 1.5rem} }
+  </style>
+</head>
 <body>
-<nav class="nav"><a class="brand" href="#inicio">Violeta ♡</a><small>UMA COISINHA FEITA PRA VOCÊ</small></nav>
-<header class="hero" id="inicio"><div><div class="eyebrow">tem uma coisa que eu queria te dizer...</div><h1>Violeta<span style="color:#a855f7">.</span></h1><p>Tem gente que chega de mansinho e, quando a gente percebe, já deixou tudo um pouquinho mais bonito. Você é uma dessas pessoas.</p><a class="button" href="#carta">Tenho algo pra te contar ↓</a><span class="scroll">DESCE AÍ, DOIDA ✧</span></div></header>
-<section class="section" id="cartaHenrique Chaves (hc841) convidou você para participar de um Match no Spotify. Para aceitar, é só entrar pelo app móvel do Spotify. https://open.spotify.com/blend/taste-match/cfc9567093a17901?si=XUA9D6tDQKqGvPlKQBuT2Q&fallback=getapp><h2>Uma cartinha pra você</h2><p class="sub">Não sou muito bom em transformar tudo o que sinto em palavras… mas vou tentar.</p><div class="letter"><p>Violeta,</p><p>Eu gosto do teu jeito, das nossas conversas, das pequenas coisas que talvez nem perceba que faz. Gosto de como você consegue aparecer nos meus pensamentos do nada — e de como isso acaba me arrancando um sorriso besta.</p><p>Não quero prometer um conto de fadas, porque a vida real é muito mais bagunçada que isso. Quero, sim, poder construir algo bonito contigo: com carinho, risadas, parceria, sinceridade e um tantinho de loucura também.</p><p>E, já que eu fiz esse site inteiro em vez de simplesmente criar coragem e falar logo… acho que você já imagina onde isso vai dar. 💜</p><p class="signature">Com carinho, alguém que gosta de você.</p></div></section>
-<section class="section" id="motivos"><h2>Alguns motivos…</h2><p class="sub">E olha que resumir você em alguns quadradinhos é uma tarefa injusta.</p><div class="reasons"><article class="reason"><div class="symbol">✧</div><h3>Teu jeito</h3><p>Tem alguma coisa em você que chama minha atenção até quando você nem está tentando.</p></article><article class="reason"><div class="symbol">♡</div><h3>Como eu me sinto</h3><p>Você deixa os momentos simples mais especiais. E isso, pra mim, vale muito.</p></article><article class="reason"><div class="symbol">☾</div><h3>O que ainda vem</h3><p>Quero descobrir mais de você, compartilhar momentos e criar lembranças nossas.</p></article></div></section>
-<section class="question" id="pedido"><div class="eyebrow">chegou a hora</div><h2>Então, Violeta…<br>quer namorar comigo?</h2><p>Sem pressão, sem roteiro perfeito. Só eu sendo sincero contigo. 💜</p><div class="answers"><button class="button yes" id="yes">SIM, EU ACEITO! 💜</button><button class="button maybe" id="maybe">Preciso pensar…</button></div><div class="response" id="response" aria-live="polite"></div><p class="hint">Independentemente da resposta, obrigado por chegar até aqui. ♡</p></section>
-<footer class="footer">Feito com carinho, um pouco de coragem e vários tons de roxo. <span style="color:#c084fc">♥</span></footer>
-<script>
-const response=document.getElementById('response');function hearts(){for(let i=0;i<34;i++){setTimeout(()=>{const el=document.createElement('span');el.className='heart';el.textContent=['♥','♡','✦','💜'][Math.floor(Math.random()*4)];el.style.left=Math.random()*100+'vw';el.style.top=(55+Math.random()*40)+'vh';el.style.fontSize=(16+Math.random()*26)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),2700)},i*45)}}
-document.getElementById('yes').addEventListener('click',()=>{response.innerHTML='AAAAAA 💜✨<br>Tá, agora eu tô sorrindo igual um idiota imaginando esse momento. Obrigado por me dar a chance de viver isso contigo. Que seja o começo de uma história muito bonita pra nós dois. ♡';response.classList.add('show');hearts();response.scrollIntoView({behavior:'smooth',block:'center'})});
-document.getElementById('maybe').addEventListener('click',()=>{response.innerHTML='Tudo bem, Violeta. 💜 Quero que você escolha porque sente vontade, não por pressão. Pode pensar com calma — o carinho e o respeito continuam aqui.';response.classList.add('show');response.scrollIntoView({behavior:'smooth',block:'center'})});
-</script></body></html>
+  <div class="glow"></div>
+  <main class="main-card">
+    <header class="hero">
+      <div class="eyebrow">Uma mensagem feita com carinho</div>
+      <h1>Fernanda <span class="seal">♥</span></h1>
+      <p class="subtitle mb-0">Tem uma coisa que eu queria te dizer...</p>
+    </header>
+    <section class="terminal" aria-label="Carta romântica sendo digitada">
+      <div class="terminal-bar">
+        <span class="dot" style="background:#ff6b86"></span><span class="dot" style="background:#ffd166"></span><span class="dot" style="background:#72d6a0"></span>
+        <span class="terminal-title">carta_para_fernanda.txt — coração.exe</span>
+      </div>
+      <div id="terminalText" aria-live="polite"><span class="prompt">&gt; </span><span id="typedText"></span><span class="cursor" id="cursor"></span></div>
+    </section>
+    <section class="actions">
+      <p class="mb-3">E agora, a pergunta mais importante…</p>
+      <button id="yesBtn" class="btn btn-romance me-2 mb-2">Sim, eu aceito! 💗</button>
+      <button id="thinkBtn" class="btn btn-soft mb-2">Quero pensar com carinho 🌷</button>
+      <div id="answer" class="answer" role="status"></div>
+    </section>
+    <footer>Feito com carinho, especialmente para você, Fernanda. <span class="seal">♡</span></footer>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(function () {
+      const letter = `Oi, Fernanda. 💗\n\nEu fiquei pensando em como colocar em palavras o que sinto, mas acho que algumas coisas ficam mais bonitas quando a gente simplesmente tem coragem de dizer.\n\nDesde que você chegou, até os momentos mais simples ganharam um brilho diferente. Seu jeito, seu sorriso e a forma como você faz as coisas parecerem mais leves têm um lugar muito especial nos meus pensamentos.\n\nEu não quero te prometer uma história perfeita, porque sei que a vida não funciona assim. Quero te oferecer algo mais verdadeiro: carinho, respeito, sinceridade, parceria e vontade de construir momentos bons ao seu lado — inclusive nos dias difíceis.\n\nQuero conhecer cada vez mais quem você é, ouvir suas histórias, dividir as minhas, rir das nossas bobagens e fazer parte das pequenas coisas que, no fim, são as que mais importam.\n\nEntão, com o coração um pouquinho acelerado e um sorriso que eu não consigo esconder, eu queria te perguntar uma coisa…\n\nFernanda, você aceita namorar comigo? 💞`;
+      let i = 0;
+      const speed = 29;
+      function typeLetter() {
+        if (i < letter.length) {
+          $('#typedText').append(document.createTextNode(letter.charAt(i)));
+          i++;
+          const ch = letter.charAt(i - 1);
+          setTimeout(typeLetter, ch === '\n' ? 250 : (/[.,…!?]/.test(ch) ? 170 : speed));
+        } else {
+          $('#cursor').fadeOut(250).fadeIn(250).fadeOut(250).fadeIn(250);
+        }
+      }
+      setTimeout(typeLetter, 700);
+
+      $('#yesBtn').on('click', function () {
+        $('#answer').html('💖 Você acabou de deixar meu dia muito mais bonito. Que esse seja o começo de uma história linda para nós! 💖');
+        $(this).text('Nosso começo 💞').prop('disabled', true);
+        $('#thinkBtn').prop('disabled', true).addClass('opacity-50');
+        for (let n = 0; n < 18; n++) makeHeart(true);
+      });
+      $('#thinkBtn').on('click', function () {
+        $('#answer').text('Tudo bem, Fernanda. Quero que você se sinta livre para pensar e responder no seu tempo. O que importa é que seja de coração. 🌷');
+      });
+      function makeHeart(burst) {
+        const h = $('<span class="heart">♥</span>');
+        h.css({ left: (Math.random() * 100) + 'vw', animationDuration: (burst ? 2.5 + Math.random() * 2 : 7 + Math.random() * 8) + 's', fontSize: (14 + Math.random() * 22) + 'px' });
+        $('body').append(h);
+        setTimeout(() => h.remove(), burst ? 5000 : 16000);
+      }
+      for (let n = 0; n < 12; n++) setTimeout(() => makeHeart(false), n * 550);
+      setInterval(() => makeHeart(false), 1800);
+    });
+  </script>
+</body>
+</html>
