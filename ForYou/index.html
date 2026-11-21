@@ -1,86 +1,526 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#789de8">
-<title>Uma pergunta para Kamy 💗</title>
-<style>
-  :root { --blue:#789de8; --deep:#36558f; --pink:#f5a9c8; --pale:#fff5fa; }
-  * { box-sizing:border-box; }
-  body {
-    margin:0; min-height:100vh; display:grid; place-items:center; padding:24px;
-    font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif; color:#35466b;
-    background: radial-gradient(circle at 15% 15%, #dceaff 0 12%, transparent 35%),
-                radial-gradient(circle at 85% 85%, #ffe0ed 0 10%, transparent 35%),
-                linear-gradient(135deg,#b8d2ff,#f9cce0);
-    overflow-x:hidden;
-  }
-  .hearts { position:fixed; inset:0; pointer-events:none; overflow:hidden; }
-  .heart { position:absolute; bottom:-40px; color:#fff; opacity:.55; animation:float 12s linear infinite; }
-  .heart:nth-child(1){left:8%;font-size:24px;animation-delay:0s}
-  .heart:nth-child(2){left:27%;font-size:17px;animation-delay:3s}
-  .heart:nth-child(3){left:73%;font-size:28px;animation-delay:1.5s}
-  .heart:nth-child(4){left:91%;font-size:19px;animation-delay:5s}
-  @keyframes float { to { transform:translateY(-115vh) rotate(25deg); opacity:0; } }
-  .card {
-    width:min(100%,560px); position:relative; text-align:center; padding:clamp(28px,6vw,52px);
-    border:1px solid rgba(255,255,255,.75); border-radius:30px;
-    background:rgba(255,255,255,.82); backdrop-filter:blur(12px);
-    box-shadow:0 24px 70px rgba(60,82,140,.2);
-  }
-  .tag { display:inline-block; padding:8px 14px; border-radius:99px; color:var(--deep);
-    background:#e7efff; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; }
-  .flower { font-size:48px; margin:18px 0 8px; }
-  h1 { margin:8px 0 14px; color:var(--deep); font-size:clamp(2.2rem,8vw,3.4rem); line-height:1.05; }
-  p { font-size:1.08rem; line-height:1.75; margin:12px auto; max-width:420px; }
-  .question { margin:25px 0 22px; color:#b64f82; font-size:clamp(1.35rem,5vw,1.8rem); font-weight:800; }
-  .buttons { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; }
-  button { border:0; border-radius:999px; padding:14px 25px; font:700 1rem inherit; font-size:1rem;
-    cursor:pointer; transition:transform .2s, box-shadow .2s; }
-  button:hover { transform:translateY(-3px); box-shadow:0 8px 20px #789de844; }
-  .yes { color:white; background:linear-gradient(110deg,#6f9be8,#e88eb7); }
-  .think { color:#52658d; background:#edf2ff; }
-  .note { margin-top:25px; font-size:.82rem; color:#8290ad; }
-  #answer { display:none; margin-top:22px; padding:18px; border-radius:18px; background:#fff0f6; color:#a14373; }
-  #answer.show { display:block; animation:pop .35s ease-out; }
-  @keyframes pop { from{opacity:0;transform:scale(.92)} to{opacity:1;transform:scale(1)} }
-  .sparkle { color:#e78bb5; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de namoro para Victoria ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffe6f0 0%, #ffb6c1 100%);
+            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            padding: 16px;
+        }
+
+        /* corações flutuantes de fundo */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hearts-bg span {
+            position: absolute;
+            color: rgba(255, 70, 120, 0.25);
+            font-size: 2rem;
+            animation: floatHeart linear infinite;
+            user-select: none;
+            bottom: -10%;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* cartão principal */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 56px;
+            padding: 48px 40px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 25px 50px -12px rgba(200, 50, 100, 0.4),
+                        0 0 0 2px rgba(255, 255, 255, 0.7),
+                        0 0 40px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .card:hover {
+            box-shadow: 0 30px 60px -10px rgba(200, 50, 100, 0.5),
+                        0 0 0 3px rgba(255, 200, 220, 0.8);
+        }
+
+        /* título */
+        h1 {
+            font-size: clamp(2.2rem, 8vw, 3.8rem);
+            color: #b03060;
+            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 3px 3px 0 #ffd0dd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .victoria-name {
+            background: linear-gradient(135deg, #c71585, #ff1493);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
+            display: inline-block;
+            position: relative;
+            padding: 0 6px;
+        }
+
+        .victoria-name::after {
+            content: "✨";
+            font-size: 0.7em;
+            position: absolute;
+            top: -15px;
+            right: -25px;
+            color: #ff69b4;
+            opacity: 0.8;
+        }
+
+        /* emoji do coração principal */
+        .heart-icon {
+            font-size: 3.5rem;
+            line-height: 1;
+            animation: pulse 1.6s infinite;
+            display: inline-block;
+            filter: drop-shadow(0 8px 6px rgba(200, 0, 80, 0.3));
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #6b2e4a;
+            margin-bottom: 40px;
+            font-weight: 500;
+            background: rgba(255, 230, 240, 0.7);
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ffb6c1;
+            letter-spacing: 0.5px;
+        }
+
+        /* container dos botões */
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .btn {
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 18px 48px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-width: 170px;
+            font-family: inherit;
+            border: 3px solid transparent;
+        }
+
+        .btn-sim {
+            background: linear-gradient(145deg, #ff4d6d, #c9184a);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 25px -5px #c9184a, 0 0 0 2px #ffb3c6;
+            transform: scale(1);
+        }
+
+        .btn-sim:hover {
+            background: linear-gradient(145deg, #ff3355, #a40e3a);
+            transform: scale(1.05);
+            box-shadow: 0 18px 30px -5px #b01040, 0 0 0 4px #ffccdd;
+        }
+
+        .btn-sim:active {
+            transform: scale(0.98);
+        }
+
+        .btn-nao {
+            background: rgba(255, 240, 245, 0.9);
+            color: #9e3c5c;
+            border: 3px solid #ff99bb;
+            box-shadow: 0 8px 18px -5px rgba(200, 100, 130, 0.3);
+            backdrop-filter: blur(4px);
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .btn-nao:hover {
+            background: #fff0f5;
+            border-color: #ff6b9d;
+            transform: scale(1.02);
+        }
+
+        /* quando o botão não é movido via JS, mas mantemos a classe */
+        .btn-nao.moved {
+            transition: all 0.1s cubic-bezier(0.2, 1.6, 0.6, 1);
+        }
+
+        /* mensagem de sucesso */
+        .message {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #b01050;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #ffeef4, #ffd9e6);
+            padding: 24px 24px;
+            border-radius: 40px;
+            border: 2px dashed #ff4d6d;
+            box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.8), 0 10px 20px -5px rgba(200, 40, 80, 0.2);
+            display: none;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* frases escondidas/estilo */
+        .tiny-note {
+            margin-top: 25px;
+            font-size: 1rem;
+            color: #a0607a;
+            font-weight: 400;
+            opacity: 0.8;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* responsivo */
+        @media (max-width: 580px) {
+            .card {
+                padding: 32px 20px;
+                border-radius: 40px;
+            }
+
+            .btn {
+                font-size: 1.25rem;
+                padding: 14px 28px;
+                min-width: 140px;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+                padding: 10px 18px;
+            }
+
+            .message {
+                font-size: 1.5rem;
+            }
+
+            .buttons {
+                gap: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="hearts" aria-hidden="true"><span class="heart">♡</span><span class="heart">♡</span><span class="heart">♥</span><span class="heart">♡</span></div>
-<main class="card">
-  <span class="tag">um recadinho especial</span>
-  <div class="flower">💗</div>
-  <h1>Oi, Kamy!</h1>
-  <p>Eu queria te dizer uma coisa…</p>
-  <p>Gosto de estar com você, das nossas conversas e do jeito que você deixa os meus dias mais felizes. E, quanto mais te conheço, mais vontade tenho de viver momentos especiais ao seu lado.</p>
-  <div class="question">Então… aceita namorar comigo?</div>
-  <div class="buttons">
-    <button class="yes" onclick="answerYes()">SIM! 💖</button>
-    <button class="think" onclick="answerMaybe()">Quero pensar 😊</button>
-  </div>
-  <div id="answer" role="status" aria-live="polite"></div>
-  <div class="note"><span class="sparkle">✦</span> Feito com carinho, especialmente para você. <span class="sparkle">✦</span></div>
-</main>
-<script>
-function answerYes() {
-  const box = document.getElementById('answer');
-  box.innerHTML = 'AAAAA! 💗 Você acabou de deixar meu dia muito mais feliz. Que esse seja o começo de uma história linda pra nós! ✨';
-  box.classList.add('show');
-  for (let i=0;i<18;i++) {
-    const h=document.createElement('span');
-    h.textContent=['💗','💙','💕','✨'][i%4];
-    h.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:${Math.random()*100}vh;font-size:${18+Math.random()*20}px;pointer-events:none;animation:pop .7s ease-out`;
-    document.body.appendChild(h); setTimeout(()=>h.remove(),900);
-  }
-}
-function answerMaybe() {
-  const box = document.getElementById('answer');
-  box.textContent = 'Tudo bem, Kamy! Não precisa ter pressa. O que importa é que você fique à vontade para decidir. 💙';
-  box.classList.add('show');
-}
-</script>
+
+    <!-- fundo com corações flutuantes -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <main class="card">
+        <h1>
+            <span class="heart-icon">❤️</span>
+            <span class="victoria-name">Victoria</span>
+            <span class="heart-icon">❤️</span>
+        </h1>
+        <div class="subtitle">
+            Quer namorar comigo? 💌
+        </div>
+
+        <div class="buttons" id="buttonsArea">
+            <button class="btn btn-sim" id="btnSim">
+                Sim 💖
+            </button>
+            <button class="btn btn-nao" id="btnNao">
+                Não 😢
+            </button>
+        </div>
+
+        <!-- mensagem que aparece após o sim -->
+        <div class="message" id="message">
+            🥳💕 Eu sabia! Você me faz o homem mais feliz do mundo! 💕🥳<br>
+            <span style="font-size: 1.2rem; display: block; margin-top: 10px;">Te amo, Victoria! 💘</span>
+        </div>
+
+        <div class="tiny-note">
+            <span>✨</span> Feito com amor <span>✨</span>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // ========== CORAÇÕES FLUTUANTES ==========
+            function createFloatingHearts() {
+                const container = document.getElementById('heartsBg');
+                if (!container) return;
+                const heartSymbols = ['❤️', '💖', '💗', '💓', '💕', '💘', '💝', '🌸', '✨'];
+                const totalHearts = 28;
+
+                for (let i = 0; i < totalHearts; i++) {
+                    const heart = document.createElement('span');
+                    // símbolo aleatório
+                    heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                    // tamanho aleatório
+                    const size = Math.random() * 2.2 + 1.0; // entre 1.0 e 3.2rem
+                    heart.style.fontSize = size + 'rem';
+                    // posição horizontal aleatória
+                    heart.style.left = Math.random() * 100 + '%';
+                    // duração aleatória
+                    const duration = Math.random() * 12 + 8; // 8s - 20s
+                    heart.style.animationDuration = duration + 's';
+                    // atraso aleatório
+                    heart.style.animationDelay = Math.random() * 10 + 's';
+                    // opacidade variada
+                    heart.style.opacity = Math.random() * 0.4 + 0.2;
+                    container.appendChild(heart);
+                }
+            }
+
+            // ========== BOTÃO NÃO FUJÃO ==========
+            const btnNao = document.getElementById('btnNao');
+            const btnSim = document.getElementById('btnSim');
+            const messageDiv = document.getElementById('message');
+            const buttonsArea = document.getElementById('buttonsArea');
+
+            // vamos armazenar posições originais do botão não
+            let naoOriginalRect = null;
+            let isMoved = false;
+
+            // função para mover o botão "Não" para longe do mouse
+            function escapeButton(e) {
+                // se o botão sim já foi clicado, não move mais o não (opcional, mas pode deixar)
+                if (messageDiv.classList.contains('show')) return;
+
+                const btn = btnNao;
+                // obtém as coordenadas do mouse (ou toque)
+                let mouseX, mouseY;
+                if (e.type === 'mousemove') {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                } else if (e.type === 'touchmove') {
+                    e.preventDefault(); // evita rolagem
+                    mouseX = e.touches[0].clientX;
+                    mouseY = e.touches[0].clientY;
+                } else {
+                    return;
+                }
+
+                // posição atual do botão na tela
+                const rect = btn.getBoundingClientRect();
+                const btnCenterX = rect.left + rect.width / 2;
+                const btnCenterY = rect.top + rect.height / 2;
+
+                // distância entre mouse e centro do botão
+                const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
+                const safeDistance = 140; // pixels
+
+                if (dist < safeDistance) {
+                    // move o botão para longe
+                    // calcula vetor de fuga (direção oposta ao mouse)
+                    let dx = btnCenterX - mouseX;
+                    let dy = btnCenterY - mouseY;
+                    const len = Math.hypot(dx, dy);
+                    if (len < 0.01) {
+                        // se mouse exatamente em cima, escolhe direção aleatória
+                        dx = Math.random() - 0.5;
+                        dy = Math.random() - 0.5;
+                    }
+                    const normLen = Math.hypot(dx, dy);
+                    const moveX = (dx / normLen) * 90; // deslocamento
+                    const moveY = (dy / normLen) * 90;
+
+                    // posição atual em left/top (precisa ser relativa e dentro da tela)
+                    // usamos posicionamento relativo para não quebrar o layout?
+                    // Como o botão está no fluxo, vamos usar transform para não afetar o layout.
+                    // Mas transform não afeta o getBoundingClientRect? Sim, afeta.
+                    // Melhor abordagem: mudar left/top com position relative? Mas aí desloca o fluxo.
+                    // Usar transform: translate() é melhor, porque mantém o fluxo e o getBoundingClientRect atualiza.
+                    // Porém, sucessivos translate acumulam? Não se definirmos um valor fixo.
+                    // Precisamos manter um deslocamento acumulado? Para evitar que o botão saia da tela,
+                    // podemos calcular a posição final e limitar.
+
+                    // Vamos usar posicionamento via transform, mas precisamos gerenciar o estado.
+                    // Para simplificar e evitar bugs, vamos usar position: relative e alterar left/top.
+                    // Mas aí o layout muda. Então, para evitar mudanças bruscas, vamos usar
+                    // posicionamento absoluto apenas quando o botão for movido pela primeira vez.
+                    // Estratégia: quando o mouse chega perto, muda o botão para position: fixed
+                    // com as coordenadas atuais e aplica o deslocamento. Assim ele sai do fluxo e podemos movê-lo livremente.
+
+                    // Se ainda não foi movido, transforma para fixed com a posição atual
+                    if (!isMoved) {
+                        // pega a posição atual do botão na tela
+                        const currentRect = btn.getBoundingClientRect();
+                        // aplica position fixed com as coordenadas atuais
+                        btn.style.position = 'fixed';
+                        btn.style.left = currentRect.left + 'px';
+                        btn.style.top = currentRect.top + 'px';
+                        btn.style.width = currentRect.width + 'px';
+                        btn.style.height = currentRect.height + 'px';
+                        btn.style.margin = '0';
+                        btn.style.zIndex = '1000';
+                        btn.classList.add('moved');
+                        isMoved = true;
+                    }
+
+                    // Agora o botão está fixed, podemos ajustar left/top
+                    // Obtém a posição atual do botão (fixed)
+                    const currentRect2 = btn.getBoundingClientRect();
+                    let newLeft = currentRect2.left + moveX;
+                    let newTop = currentRect2.top + moveY;
+
+                    // limita para não sair da tela
+                    const maxX = window.innerWidth - currentRect2.width - 10;
+                    const maxY = window.innerHeight - currentRect2.height - 10;
+                    newLeft = Math.max(10, Math.min(newLeft, maxX));
+                    newTop = Math.max(10, Math.min(newTop, maxY));
+
+                    btn.style.left = newLeft + 'px';
+                    btn.style.top = newTop + 'px';
+                }
+            }
+
+            // ==== ouvintes de evento para fuga do botão não ====
+            // mouse
+            document.addEventListener('mousemove', escapeButton);
+            // toque (mobile)
+            document.addEventListener('touchmove', escapeButton, { passive: false });
+
+            // ==== clique no botão SIM ====
+            btnSim.addEventListener('click', function() {
+                // mostra a mensagem
+                messageDiv.classList.add('show');
+
+                // esconde os botões ou muda o texto? Vamos esconder o botão não e mudar o sim
+                btnSim.style.display = 'none';
+                btnNao.style.display = 'none';
+
+                // opcional: exibir um coração extra ou confete
+                // criamos alguns corações explodindo
+                for (let i = 0; i < 18; i++) {
+                    const heart = document.createElement('span');
+                    heart.textContent = ['❤️', '💖', '💕', '💘', '🌸'][Math.floor(Math.random() * 5)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.fontSize = (Math.random() * 2.5 + 1.2) + 'rem';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '9999';
+                    heart.style.animation = 'floatHeart 1.8s ease-out forwards';
+                    heart.style.opacity = '0.9';
+                    document.body.appendChild(heart);
+                    // remove depois de 2s
+                    setTimeout(() => heart.remove(), 2000);
+                }
+
+                // Desativa o movimento do botão não (já está escondido)
+                // Remove os listeners de fuga para não gastar processamento
+                document.removeEventListener('mousemove', escapeButton);
+                document.removeEventListener('touchmove', escapeButton);
+
+                // Caso o botão não esteja visível, não precisa mexer
+            });
+
+            // Se o usuário clicar no botão "Não" (não deve ser fácil)
+            btnNao.addEventListener('click', function(e) {
+                // Como o botão foge, é quase impossível clicar.
+                // Mas se clicar, mostramos uma mensagem divertida e ele foge mais.
+                e.preventDefault();
+                // move ele ainda mais
+                if (!isMoved) {
+                    const rect = btnNao.getBoundingClientRect();
+                    btnNao.style.position = 'fixed';
+                    btnNao.style.left = rect.left + 'px';
+                    btnNao.style.top = rect.top + 'px';
+                    btnNao.style.width = rect.width + 'px';
+                    btnNao.style.height = rect.height + 'px';
+                    btnNao.style.margin = '0';
+                    btnNao.style.zIndex = '1000';
+                    btnNao.classList.add('moved');
+                    isMoved = true;
+                }
+                // move para um lugar aleatório
+                const randomX = Math.random() * (window.innerWidth - 200) + 50;
+                const randomY = Math.random() * (window.innerHeight - 150) + 50;
+                btnNao.style.left = randomX + 'px';
+                btnNao.style.top = randomY + 'px';
+
+                // opcional: mudar o texto do botão não
+                btnNao.textContent = '😜 foge!';
+            });
+
+            // Inicializa corações
+            createFloatingHearts();
+
+            // Se a janela for redimensionada e o botão não estiver fixo, ignora
+            // Caso o botão já esteja fixo e a janela mudar, podemos reposicionar? Melhor deixar.
+        })();
+    </script>
 </body>
 </html>
