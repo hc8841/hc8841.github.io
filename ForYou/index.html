@@ -1,526 +1,278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido de namoro para Victoria ❤️</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100918">
+  <title>Julia, uma pergunta especial 💜</title>
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(145deg, #ffe6f0 0%, #ffb6c1 100%);
-            font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            padding: 16px;
-        }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-        /* corações flutuantes de fundo */
-        .hearts-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
+  <style>
+    :root {
+      --bg: #100918;
+      --card: #1b1027;
+      --purple: #a477d5;
+      --purple-light: #d1b3f3;
+      --text: #f7f0ff;
+      --muted: #c0afcf;
+    }
 
-        .hearts-bg span {
-            position: absolute;
-            color: rgba(255, 70, 120, 0.25);
-            font-size: 2rem;
-            animation: floatHeart linear infinite;
-            user-select: none;
-            bottom: -10%;
-        }
+    * { box-sizing: border-box; }
 
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-120vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 26px 16px;
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(ellipse at 12% 12%, rgba(125, 70, 169, .23), transparent 38%),
+        radial-gradient(ellipse at 88% 88%, rgba(80, 42, 119, .24), transparent 42%),
+        var(--bg);
+    }
 
-        /* cartão principal */
-        .card {
-            position: relative;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 56px;
-            padding: 48px 40px;
-            max-width: 700px;
-            width: 100%;
-            box-shadow: 0 25px 50px -12px rgba(200, 50, 100, 0.4),
-                        0 0 0 2px rgba(255, 255, 255, 0.7),
-                        0 0 40px rgba(255, 105, 180, 0.3);
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
+    .glow {
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: #985dc8;
+      filter: blur(155px);
+      opacity: .14;
+      pointer-events: none;
+    }
+    .glow.one { top: -180px; left: -120px; }
+    .glow.two { right: -180px; bottom: -190px; }
 
-        .card:hover {
-            box-shadow: 0 30px 60px -10px rgba(200, 50, 100, 0.5),
-                        0 0 0 3px rgba(255, 200, 220, 0.8);
-        }
+    .proposal-card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 570px);
+      padding: clamp(30px, 7vw, 56px);
+      text-align: center;
+      border: 1px solid rgba(209, 179, 243, .19);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(39, 22, 56, .97), rgba(24, 14, 35, .98));
+      box-shadow: 0 25px 85px rgba(0, 0, 0, .42), 0 0 60px rgba(137, 84, 190, .09);
+      backdrop-filter: blur(14px);
+    }
 
-        /* título */
-        h1 {
-            font-size: clamp(2.2rem, 8vw, 3.8rem);
-            color: #b03060;
-            margin-bottom: 16px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            text-shadow: 3px 3px 0 #ffd0dd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+    .eyebrow {
+      color: var(--purple-light);
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
 
-        .victoria-name {
-            background: linear-gradient(135deg, #c71585, #ff1493);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: none;
-            display: inline-block;
-            position: relative;
-            padding: 0 6px;
-        }
+    .heart {
+      display: inline-grid;
+      width: 78px;
+      height: 78px;
+      margin: 23px 0;
+      place-items: center;
+      border: 1px solid rgba(209, 179, 243, .27);
+      border-radius: 25px;
+      color: #e7d3ff;
+      background: rgba(164, 119, 213, .13);
+      font-size: 2rem;
+      transform: rotate(-6deg);
+      animation: pulse 2.3s ease-in-out infinite;
+    }
 
-        .victoria-name::after {
-            content: "✨";
-            font-size: 0.7em;
-            position: absolute;
-            top: -15px;
-            right: -25px;
-            color: #ff69b4;
-            opacity: 0.8;
-        }
+    h1 {
+      margin: 0 0 17px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      line-height: 1.08;
+    }
+    h1 span { color: var(--purple-light); }
 
-        /* emoji do coração principal */
-        .heart-icon {
-            font-size: 3.5rem;
-            line-height: 1;
-            animation: pulse 1.6s infinite;
-            display: inline-block;
-            filter: drop-shadow(0 8px 6px rgba(200, 0, 80, 0.3));
-        }
+    .message {
+      max-width: 430px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
+    .question {
+      margin: 30px 0 23px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
 
-        .subtitle {
-            font-size: 1.3rem;
-            color: #6b2e4a;
-            margin-bottom: 40px;
-            font-weight: 500;
-            background: rgba(255, 230, 240, 0.7);
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 60px;
-            backdrop-filter: blur(4px);
-            border: 1px solid #ffb6c1;
-            letter-spacing: 0.5px;
-        }
+    .btn-yes {
+      padding: 12px 30px;
+      border: 0;
+      border-radius: 999px;
+      color: #1b1028;
+      font-weight: 700;
+      background: linear-gradient(135deg, #dfc7fa, #a77bdc);
+      box-shadow: 0 8px 25px rgba(164, 119, 213, .27);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-yes:hover {
+      color: #1b1028;
+      transform: translateY(-3px);
+      box-shadow: 0 13px 32px rgba(164, 119, 213, .4);
+    }
 
-        /* container dos botões */
-        .buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            position: relative;
-        }
+    .btn-no {
+      padding: 12px 25px;
+      border: 1px solid rgba(209, 179, 243, .32);
+      border-radius: 999px;
+      color: #dfd0ed;
+      background: transparent;
+    }
+    .btn-no:hover {
+      color: white;
+      border-color: rgba(209, 179, 243, .65);
+      background: rgba(209, 179, 243, .08);
+    }
 
-        .btn {
-            border: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            padding: 18px 48px;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            min-width: 170px;
-            font-family: inherit;
-            border: 3px solid transparent;
-        }
+    .answer {
+      display: none;
+      margin-top: 25px;
+      padding: 19px;
+      border: 1px solid rgba(209, 179, 243, .22);
+      border-radius: 18px;
+      color: #f0e3ff;
+      background: rgba(164, 119, 213, .11);
+      line-height: 1.75;
+    }
 
-        .btn-sim {
-            background: linear-gradient(145deg, #ff4d6d, #c9184a);
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            box-shadow: 0 12px 25px -5px #c9184a, 0 0 0 2px #ffb3c6;
-            transform: scale(1);
-        }
+    .signature {
+      margin-top: 30px;
+      color: #927fa5;
+      font-size: .82rem;
+    }
 
-        .btn-sim:hover {
-            background: linear-gradient(145deg, #ff3355, #a40e3a);
-            transform: scale(1.05);
-            box-shadow: 0 18px 30px -5px #b01040, 0 0 0 4px #ffccdd;
-        }
+    .sparkle {
+      position: fixed;
+      z-index: 0;
+      color: rgba(220, 194, 248, .42);
+      pointer-events: none;
+      animation: float 7s ease-in-out infinite;
+    }
+    .sparkle.s1 { top: 16%; left: 12%; font-size: 21px; }
+    .sparkle.s2 { top: 72%; left: 8%; font-size: 15px; animation-delay: -2s; }
+    .sparkle.s3 { top: 19%; right: 12%; font-size: 16px; animation-delay: -4s; }
+    .sparkle.s4 { right: 9%; bottom: 15%; font-size: 23px; animation-delay: -1s; }
 
-        .btn-sim:active {
-            transform: scale(0.98);
-        }
+    @keyframes pulse {
+      0%, 100% { transform: rotate(-6deg) scale(1); }
+      50% { transform: rotate(0) scale(1.08); }
+    }
+    @keyframes float {
+      0%, 100% { translate: 0 0; opacity: .3; }
+      50% { translate: 0 -18px; opacity: .85; }
+    }
 
-        .btn-nao {
-            background: rgba(255, 240, 245, 0.9);
-            color: #9e3c5c;
-            border: 3px solid #ff99bb;
-            box-shadow: 0 8px 18px -5px rgba(200, 100, 130, 0.3);
-            backdrop-filter: blur(4px);
-            transition: all 0.15s ease;
-            position: relative;
-        }
-
-        .btn-nao:hover {
-            background: #fff0f5;
-            border-color: #ff6b9d;
-            transform: scale(1.02);
-        }
-
-        /* quando o botão não é movido via JS, mas mantemos a classe */
-        .btn-nao.moved {
-            transition: all 0.1s cubic-bezier(0.2, 1.6, 0.6, 1);
-        }
-
-        /* mensagem de sucesso */
-        .message {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #b01050;
-            margin-top: 40px;
-            background: linear-gradient(135deg, #ffeef4, #ffd9e6);
-            padding: 24px 24px;
-            border-radius: 40px;
-            border: 2px dashed #ff4d6d;
-            box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.8), 0 10px 20px -5px rgba(200, 40, 80, 0.2);
-            display: none;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .message.show {
-            display: block;
-        }
-
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.7); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        /* frases escondidas/estilo */
-        .tiny-note {
-            margin-top: 25px;
-            font-size: 1rem;
-            color: #a0607a;
-            font-weight: 400;
-            opacity: 0.8;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        /* responsivo */
-        @media (max-width: 580px) {
-            .card {
-                padding: 32px 20px;
-                border-radius: 40px;
-            }
-
-            .btn {
-                font-size: 1.25rem;
-                padding: 14px 28px;
-                min-width: 140px;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-                padding: 10px 18px;
-            }
-
-            .message {
-                font-size: 1.5rem;
-            }
-
-            .buttons {
-                gap: 16px;
-            }
-        }
-    </style>
+    @media (max-width: 420px) {
+      .proposal-card { border-radius: 24px; }
+      .message { font-size: .95rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">✧</span>
+  <span class="sparkle s3">✦</span>
+  <span class="sparkle s4">✧</span>
 
-    <!-- fundo com corações flutuantes -->
-    <div class="hearts-bg" id="heartsBg"></div>
+  <main class="proposal-card">
+    <div class="eyebrow">Uma mensagem especial para você</div>
+    <div class="heart" aria-hidden="true">♥</div>
 
-    <main class="card">
-        <h1>
-            <span class="heart-icon">❤️</span>
-            <span class="victoria-name">Victoria</span>
-            <span class="heart-icon">❤️</span>
-        </h1>
-        <div class="subtitle">
-            Quer namorar comigo? 💌
-        </div>
+    <h1>Julia<span>,</span></h1>
 
-        <div class="buttons" id="buttonsArea">
-            <button class="btn btn-sim" id="btnSim">
-                Sim 💖
-            </button>
-            <button class="btn btn-nao" id="btnNao">
-                Não 😢
-            </button>
-        </div>
+    <p class="message">
+      Desde que você chegou, meus dias ganharam um brilho diferente.
+      Eu gosto das nossas conversas, dos nossos momentos e, principalmente,
+      de ter você por perto. Não sei exatamente o que o futuro reserva,
+      mas sei que gostaria muito de descobrir ao seu lado.
+    </p>
 
-        <!-- mensagem que aparece após o sim -->
-        <div class="message" id="message">
-            🥳💕 Eu sabia! Você me faz o homem mais feliz do mundo! 💕🥳<br>
-            <span style="font-size: 1.2rem; display: block; margin-top: 10px;">Te amo, Victoria! 💘</span>
-        </div>
+    <h2 class="question">Aceita namorar comigo? 💜</h2>
 
-        <div class="tiny-note">
-            <span>✨</span> Feito com amor <span>✨</span>
-        </div>
-    </main>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <button id="yesBtn" class="btn btn-yes">Sim, eu aceito! 💜</button>
+      <button id="noBtn" class="btn btn-no">Quero pensar</button>
+    </div>
 
-    <script>
-        (function() {
-            // ========== CORAÇÕES FLUTUANTES ==========
-            function createFloatingHearts() {
-                const container = document.getElementById('heartsBg');
-                if (!container) return;
-                const heartSymbols = ['❤️', '💖', '💗', '💓', '💕', '💘', '💝', '🌸', '✨'];
-                const totalHearts = 28;
+    <div id="answer" class="answer" role="status" aria-live="polite"></div>
 
-                for (let i = 0; i < totalHearts; i++) {
-                    const heart = document.createElement('span');
-                    // símbolo aleatório
-                    heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                    // tamanho aleatório
-                    const size = Math.random() * 2.2 + 1.0; // entre 1.0 e 3.2rem
-                    heart.style.fontSize = size + 'rem';
-                    // posição horizontal aleatória
-                    heart.style.left = Math.random() * 100 + '%';
-                    // duração aleatória
-                    const duration = Math.random() * 12 + 8; // 8s - 20s
-                    heart.style.animationDuration = duration + 's';
-                    // atraso aleatório
-                    heart.style.animationDelay = Math.random() * 10 + 's';
-                    // opacidade variada
-                    heart.style.opacity = Math.random() * 0.4 + 0.2;
-                    container.appendChild(heart);
-                }
-            }
+    <div class="signature">Com carinho, para a Julia. ✨</div>
+  </main>
 
-            // ========== BOTÃO NÃO FUJÃO ==========
-            const btnNao = document.getElementById('btnNao');
-            const btnSim = document.getElementById('btnSim');
-            const messageDiv = document.getElementById('message');
-            const buttonsArea = document.getElementById('buttonsArea');
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-            // vamos armazenar posições originais do botão não
-            let naoOriginalRect = null;
-            let isMoved = false;
+  <script>
+    $(function () {
+      $("#yesBtn").on("click", function () {
+        $("#answer")
+          .stop(true, true)
+          .html("<strong>Você acabou de me fazer a pessoa mais feliz! 💜</strong><br>Que essa seja a primeira de muitas histórias lindas que vamos viver juntos.")
+          .fadeIn(500);
 
-            // função para mover o botão "Não" para longe do mouse
-            function escapeButton(e) {
-                // se o botão sim já foi clicado, não move mais o não (opcional, mas pode deixar)
-                if (messageDiv.classList.contains('show')) return;
+        $(this).text("SIM! 💜").prop("disabled", true);
+        $("#noBtn").fadeOut(250);
+        launchHearts();
+      });
 
-                const btn = btnNao;
-                // obtém as coordenadas do mouse (ou toque)
-                let mouseX, mouseY;
-                if (e.type === 'mousemove') {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                } else if (e.type === 'touchmove') {
-                    e.preventDefault(); // evita rolagem
-                    mouseX = e.touches[0].clientX;
-                    mouseY = e.touches[0].clientY;
-                } else {
-                    return;
-                }
+      $("#noBtn").on("click", function () {
+        const messages = [
+          "Tudo bem, Julia. Não precisa ter pressa. 💜",
+          "Pode pensar com carinho. O que importa é você se sentir bem. ✨",
+          "Sem pressão nenhuma. Meu carinho por você continua aqui. 🌙"
+        ];
 
-                // posição atual do botão na tela
-                const rect = btn.getBoundingClientRect();
-                const btnCenterX = rect.left + rect.width / 2;
-                const btnCenterY = rect.top + rect.height / 2;
+        const message = messages[Math.floor(Math.random() * messages.length)];
+        $("#answer").stop(true, true).text(message).fadeIn(350);
+      });
 
-                // distância entre mouse e centro do botão
-                const dist = Math.hypot(mouseX - btnCenterX, mouseY - btnCenterY);
-                const safeDistance = 140; // pixels
+      function launchHearts() {
+        const symbols = ["♥", "♡", "✦", "💜"];
 
-                if (dist < safeDistance) {
-                    // move o botão para longe
-                    // calcula vetor de fuga (direção oposta ao mouse)
-                    let dx = btnCenterX - mouseX;
-                    let dy = btnCenterY - mouseY;
-                    const len = Math.hypot(dx, dy);
-                    if (len < 0.01) {
-                        // se mouse exatamente em cima, escolhe direção aleatória
-                        dx = Math.random() - 0.5;
-                        dy = Math.random() - 0.5;
-                    }
-                    const normLen = Math.hypot(dx, dy);
-                    const moveX = (dx / normLen) * 90; // deslocamento
-                    const moveY = (dy / normLen) * 90;
+        for (let i = 0; i < 26; i++) {
+          const $particle = $("<span>")
+            .text(symbols[Math.floor(Math.random() * symbols.length)])
+            .css({
+              position: "fixed",
+              left: (8 + Math.random() * 84) + "vw",
+              top: (55 + Math.random() * 28) + "vh",
+              color: "#dfc7fa",
+              fontSize: (14 + Math.random() * 19) + "px",
+              pointerEvents: "none",
+              zIndex: 5
+            })
+            .appendTo("body");
 
-                    // posição atual em left/top (precisa ser relativa e dentro da tela)
-                    // usamos posicionamento relativo para não quebrar o layout?
-                    // Como o botão está no fluxo, vamos usar transform para não afetar o layout.
-                    // Mas transform não afeta o getBoundingClientRect? Sim, afeta.
-                    // Melhor abordagem: mudar left/top com position relative? Mas aí desloca o fluxo.
-                    // Usar transform: translate() é melhor, porque mantém o fluxo e o getBoundingClientRect atualiza.
-                    // Porém, sucessivos translate acumulam? Não se definirmos um valor fixo.
-                    // Precisamos manter um deslocamento acumulado? Para evitar que o botão saia da tela,
-                    // podemos calcular a posição final e limitar.
-
-                    // Vamos usar posicionamento via transform, mas precisamos gerenciar o estado.
-                    // Para simplificar e evitar bugs, vamos usar position: relative e alterar left/top.
-                    // Mas aí o layout muda. Então, para evitar mudanças bruscas, vamos usar
-                    // posicionamento absoluto apenas quando o botão for movido pela primeira vez.
-                    // Estratégia: quando o mouse chega perto, muda o botão para position: fixed
-                    // com as coordenadas atuais e aplica o deslocamento. Assim ele sai do fluxo e podemos movê-lo livremente.
-
-                    // Se ainda não foi movido, transforma para fixed com a posição atual
-                    if (!isMoved) {
-                        // pega a posição atual do botão na tela
-                        const currentRect = btn.getBoundingClientRect();
-                        // aplica position fixed com as coordenadas atuais
-                        btn.style.position = 'fixed';
-                        btn.style.left = currentRect.left + 'px';
-                        btn.style.top = currentRect.top + 'px';
-                        btn.style.width = currentRect.width + 'px';
-                        btn.style.height = currentRect.height + 'px';
-                        btn.style.margin = '0';
-                        btn.style.zIndex = '1000';
-                        btn.classList.add('moved');
-                        isMoved = true;
-                    }
-
-                    // Agora o botão está fixed, podemos ajustar left/top
-                    // Obtém a posição atual do botão (fixed)
-                    const currentRect2 = btn.getBoundingClientRect();
-                    let newLeft = currentRect2.left + moveX;
-                    let newTop = currentRect2.top + moveY;
-
-                    // limita para não sair da tela
-                    const maxX = window.innerWidth - currentRect2.width - 10;
-                    const maxY = window.innerHeight - currentRect2.height - 10;
-                    newLeft = Math.max(10, Math.min(newLeft, maxX));
-                    newTop = Math.max(10, Math.min(newTop, maxY));
-
-                    btn.style.left = newLeft + 'px';
-                    btn.style.top = newTop + 'px';
-                }
-            }
-
-            // ==== ouvintes de evento para fuga do botão não ====
-            // mouse
-            document.addEventListener('mousemove', escapeButton);
-            // toque (mobile)
-            document.addEventListener('touchmove', escapeButton, { passive: false });
-
-            // ==== clique no botão SIM ====
-            btnSim.addEventListener('click', function() {
-                // mostra a mensagem
-                messageDiv.classList.add('show');
-
-                // esconde os botões ou muda o texto? Vamos esconder o botão não e mudar o sim
-                btnSim.style.display = 'none';
-                btnNao.style.display = 'none';
-
-                // opcional: exibir um coração extra ou confete
-                // criamos alguns corações explodindo
-                for (let i = 0; i < 18; i++) {
-                    const heart = document.createElement('span');
-                    heart.textContent = ['❤️', '💖', '💕', '💘', '🌸'][Math.floor(Math.random() * 5)];
-                    heart.style.position = 'fixed';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.top = Math.random() * 100 + '%';
-                    heart.style.fontSize = (Math.random() * 2.5 + 1.2) + 'rem';
-                    heart.style.pointerEvents = 'none';
-                    heart.style.zIndex = '9999';
-                    heart.style.animation = 'floatHeart 1.8s ease-out forwards';
-                    heart.style.opacity = '0.9';
-                    document.body.appendChild(heart);
-                    // remove depois de 2s
-                    setTimeout(() => heart.remove(), 2000);
-                }
-
-                // Desativa o movimento do botão não (já está escondido)
-                // Remove os listeners de fuga para não gastar processamento
-                document.removeEventListener('mousemove', escapeButton);
-                document.removeEventListener('touchmove', escapeButton);
-
-                // Caso o botão não esteja visível, não precisa mexer
-            });
-
-            // Se o usuário clicar no botão "Não" (não deve ser fácil)
-            btnNao.addEventListener('click', function(e) {
-                // Como o botão foge, é quase impossível clicar.
-                // Mas se clicar, mostramos uma mensagem divertida e ele foge mais.
-                e.preventDefault();
-                // move ele ainda mais
-                if (!isMoved) {
-                    const rect = btnNao.getBoundingClientRect();
-                    btnNao.style.position = 'fixed';
-                    btnNao.style.left = rect.left + 'px';
-                    btnNao.style.top = rect.top + 'px';
-                    btnNao.style.width = rect.width + 'px';
-                    btnNao.style.height = rect.height + 'px';
-                    btnNao.style.margin = '0';
-                    btnNao.style.zIndex = '1000';
-                    btnNao.classList.add('moved');
-                    isMoved = true;
-                }
-                // move para um lugar aleatório
-                const randomX = Math.random() * (window.innerWidth - 200) + 50;
-                const randomY = Math.random() * (window.innerHeight - 150) + 50;
-                btnNao.style.left = randomX + 'px';
-                btnNao.style.top = randomY + 'px';
-
-                // opcional: mudar o texto do botão não
-                btnNao.textContent = '😜 foge!';
-            });
-
-            // Inicializa corações
-            createFloatingHearts();
-
-            // Se a janela for redimensionada e o botão não estiver fixo, ignora
-            // Caso o botão já esteja fixo e a janela mudar, podemos reposicionar? Melhor deixar.
-        })();
-    </script>
+          $particle.animate(
+            { top: "-=240", opacity: 0 },
+            1900 + Math.random() * 900,
+            function () { $(this).remove(); }
+          );
+        }
+      }
+    });
+  </script>
 </body>
 </html>
